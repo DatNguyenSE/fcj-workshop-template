@@ -1,5 +1,5 @@
 ---
-title: "Event 2"
+title: "Sự kiện 2"
 date: 2024-01-01
 weight: 1
 chapter: false
@@ -7,119 +7,125 @@ pre: " <b> 4.2. </b> "
 ---
 
 {{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+⚠️ **Lưu ý:** Nội dung dưới đây chỉ mang tính chất tham khảo. Vui lòng **không sao chép nguyên văn** vào báo cáo của bạn, bao gồm cả phần cảnh báo này.
 {{% /notice %}}
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+# Báo cáo tổng kết: “AWS: Enterprise Cloud Architectures and Industry Application featuring Cloud Kinetics & Renova Cloud”
 
-### Mục Đích Của Sự Kiện
+### Mục tiêu sự kiện
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+- Cung cấp góc nhìn về kiến trúc điện toán đám mây doanh nghiệp và các ứng dụng AWS trong thực tế.
+- Chia sẻ cơ hội nghề nghiệp và xu hướng phát triển của ngành điện toán đám mây.
+- Giúp sinh viên hiểu sự khác biệt giữa môi trường học tập và môi trường làm việc thực tế.
+- Định hướng sinh viên chuẩn bị cho môi trường làm việc trong kỷ nguyên AI.
 
-### Danh Sách Diễn Giả
+### Diễn giả
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- **Nguyễn Gia Hưng** – Job Market & Career Trends
+- **Bành Cầm Vinh** – School vs Industry, Same Skills, Different "Game"
+- **Như Trần** – Career Journey and Opportunities at AWS
+- **Khang Nguyễn** – AI-Ready Freshers
 
-### Nội Dung Nổi Bật
+### Nội dung nổi bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Job Market & Career Trends
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- Tổng quan về thị trường việc làm AWS và Cloud Computing tại Việt Nam.
+- Nhu cầu tuyển dụng ngày càng tăng đối với các vị trí liên quan đến AWS và điện toán đám mây.
+- Vai trò quan trọng của việc xây dựng mạng lưới quan hệ (networking) trong quá trình phát triển nghề nghiệp.
+- Chia sẻ về việc nhiều cơ hội nghề nghiệp đến từ sự giới thiệu nội bộ và các mối quan hệ trong ngành.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### School vs Industry, Same Skills, Different "Game"
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+- So sánh giữa môi trường học tập và môi trường làm việc thực tế.
+- Giới thiệu về Data Engineering và vai trò của lĩnh vực này trong doanh nghiệp.
+- Kiến thức chuyên môn là chưa đủ, kỹ năng giao tiếp và làm việc nhóm cũng rất quan trọng.
+- Tinh thần học hỏi liên tục để thích nghi với yêu cầu của doanh nghiệp.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+#### Career Journey and Professional Growth
 
-#### Domain-Driven Design (DDD)
+- Chia sẻ hành trình theo đuổi công việc tại AWS.
+- Câu chuyện thực tế về sự kiên trì qua nhiều lần ứng tuyển.
+- Giá trị của việc xây dựng các mối quan hệ nghề nghiệp trong quá trình tìm kiếm cơ hội.
+- Xem những lần thất bại là động lực để tiếp tục phát triển bản thân.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+#### AI-Ready Freshers
 
-#### Event-Driven Architecture
+- Chia sẻ về hành trình học tập và phát triển sự nghiệp trong lĩnh vực công nghệ.
+- AI nên được xem là công cụ hỗ trợ thay vì thay thế con người.
+- Tư duy phản biện, sáng tạo, giao tiếp và khả năng thích nghi vẫn là những kỹ năng quan trọng.
+- Sinh viên cần chủ động học hỏi và tận dụng AI để nâng cao hiệu quả làm việc.
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+### Kiến thức và bài học rút ra
 
-#### Compute Evolution
+#### Định hướng nghề nghiệp
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+- Xây dựng mạng lưới quan hệ nghề nghiệp quan trọng không kém việc phát triển kỹ năng chuyên môn.
+- Tham gia cộng đồng công nghệ giúp mở rộng cơ hội nghề nghiệp trong tương lai.
+- Sự kiên trì và không ngừng học hỏi là yếu tố quan trọng để đạt được mục tiêu nghề nghiệp.
 
-#### Amazon Q Developer
+#### Góc nhìn từ doanh nghiệp
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+- Có nhiều khác biệt giữa các dự án trên giảng đường và dự án thực tế trong doanh nghiệp.
+- Làm việc nhóm, giao tiếp và hiểu yêu cầu nghiệp vụ là những kỹ năng không thể thiếu.
+- Data Engineering là một trong những lĩnh vực đang phát triển mạnh trong hệ sinh thái Cloud.
 
-### Những Gì Học Được
+#### AI và nguồn nhân lực tương lai
 
-#### Tư Duy Thiết Kế
+- AI giúp nâng cao năng suất làm việc nhưng không thể thay thế hoàn toàn con người.
+- Người làm công nghệ cần biết cách kết hợp AI với khả năng tư duy và sáng tạo của bản thân.
+- Học tập suốt đời là yếu tố cần thiết để thích nghi với sự thay đổi nhanh chóng của công nghệ.
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+### Khả năng áp dụng vào công việc
 
-#### Kiến Trúc Kỹ Thuật
+- Tiếp tục nâng cao kiến thức về AWS và Cloud Computing thông qua các dự án thực tế.
+- Rèn luyện kỹ năng giao tiếp và làm việc nhóm khi tham gia phát triển phần mềm.
+- Chủ động tham gia các cộng đồng công nghệ để mở rộng mối quan hệ nghề nghiệp.
+- Ứng dụng các công cụ AI để hỗ trợ công việc, đồng thời tiếp tục phát triển tư duy phân tích và giải quyết vấn đề.
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+### Cảm nhận sau sự kiện
 
-#### Chiến Lược Hiện Đại Hóa
+Tham gia sự kiện **"AWS: Enterprise Cloud Architectures and Industry Application featuring Cloud Kinetics & Renova Cloud"** đã giúp mình có thêm nhiều góc nhìn thực tế về ngành điện toán đám mây cũng như định hướng phát triển nghề nghiệp trong lĩnh vực AWS.
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+#### Học hỏi từ những người có kinh nghiệm
 
-### Ứng Dụng Vào Công Việc
+- Các diễn giả đã chia sẻ những kinh nghiệm thực tế trong quá trình học tập và làm việc, giúp mình hiểu rõ hơn về môi trường làm việc trong ngành Cloud.
+- Mình có cơ hội tìm hiểu về thị trường việc làm AWS tại Việt Nam cũng như nhu cầu tuyển dụng đối với các vị trí liên quan đến điện toán đám mây.
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+#### Định hướng nghề nghiệp
 
-### Trải nghiệm trong event
+- Điều khiến mình ấn tượng nhất là tầm quan trọng của việc xây dựng các mối quan hệ nghề nghiệp.
+- Các diễn giả chia sẻ rằng nhiều cơ hội việc làm đến từ việc tham gia cộng đồng công nghệ và sự giới thiệu từ những người trong ngành.
+- Câu chuyện của chị Như Trần về hành trình nhiều lần ứng tuyển trước khi gia nhập AWS đã truyền động lực để mình kiên trì hơn khi theo đuổi mục tiêu nghề nghiệp.
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+#### Hiểu hơn về yêu cầu của doanh nghiệp
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+- Phần chia sẻ về sự khác biệt giữa môi trường học tập và môi trường làm việc giúp mình nhận ra rằng doanh nghiệp không chỉ đánh giá kiến thức kỹ thuật mà còn rất coi trọng khả năng giao tiếp, hợp tác và thích nghi.
+- Những chia sẻ về Data Engineering cũng giúp mình hiểu thêm về một hướng phát triển trong lĩnh vực Cloud.
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+#### Chuẩn bị cho kỷ nguyên AI
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+- Chủ đề AI-Ready Freshers giúp mình có góc nhìn tích cực hơn về AI.
+- Mình nhận ra rằng AI là công cụ hỗ trợ nâng cao hiệu quả công việc, còn tư duy sáng tạo, khả năng phân tích và giao tiếp của con người vẫn luôn giữ vai trò quan trọng.
 
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+#### Một số hình ảnh tại sự kiện
 
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+  <div style="text-align: center;">
+    <img src="/images/4-EventParticipated/4.2-Event2/event2.jpg"
+         alt="Event Participation"
+         style="width: 320px; height: auto; border-radius: 8px;">
+    <p>Event Participation</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="/images/4-EventParticipated/4.2-Event2/event2.1.jpg"
+         alt="Technical Sharing Session"
+         style="width: 320px; height: auto; border-radius: 8px;">
+    <p>Memorize moments</p>
+  </div>
+
+</div>
+
+> Nhìn chung, sự kiện không chỉ mang đến cho mình nhiều kiến thức về ngành Cloud và hệ sinh thái AWS mà còn giúp mình có thêm động lực, định hướng nghề nghiệp rõ ràng hơn và hiểu được những kỹ năng cần chuẩn bị để sẵn sàng cho môi trường làm việc trong tương lai.

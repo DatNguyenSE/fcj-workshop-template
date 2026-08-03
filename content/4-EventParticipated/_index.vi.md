@@ -1,46 +1,48 @@
 ---
-title: "Các events đã tham gia"
+title: "Các sự kiện đã tham gia"
 date: 2024-01-01
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+> Phần này tóm tắt các sự kiện tôi đã tham gia trong quá trình thực tập. Những buổi chia sẻ kỹ thuật này mang lại cơ hội quý báu để học hỏi từ các chuyên gia trong ngành, khám phá các công nghệ AWS thực tế, cũng như tích lũy kiến ​​thức về điện toán đám mây, kỹ thuật phần mềm và định hướng phát triển nghề nghiệp.
 
-> Trong phần này, các bạn cần liệt kê và mô tả chi tiết các sự kiện (event) mà mình đã tham gia trong suốt quá trình thực tập hoặc làm việc. 
-> 
-> Mỗi sự kiện nên được trình bày theo định dạng Event 1, Event 2, Event 3…, kèm theo các thông tin:
-> * Tên sự kiện
-> * Thời gian tổ chức
-> * Địa điểm (nếu có)
-> * Vai trò của bạn trong sự kiện (người tham dự, hỗ trợ tổ chức, diễn giả, v.v.)
-> * Mô tả ngắn gọn nội dung và hoạt động chính trong sự kiện
-> * Kết quả hoặc giá trị đạt được (bài học, kỹ năng mới, đóng góp cho nhóm/dự án)
-> * Việc liệt kê này giúp thể hiện rõ sự tham gia thực tế của bạn, cũng như các kỹ năng mềm và kinh nghiệm bạn đã tích lũy qua từng sự kiện.
+Trong thời gian thực tập, tôi đã tham gia hai sự kiện kỹ thuật liên quan đến AWS và điện toán đám mây. Mỗi sự kiện đều mang đến những góc nhìn độc đáo, từ kiến ​​thức kỹ thuật thực hành cho đến những lời khuyên nghề nghiệp từ các chuyên gia giàu kinh nghiệm. Những trải nghiệm này không chỉ giúp tôi mở rộng hiểu biết về các công nghệ đám mây hiện đại mà còn hỗ trợ tôi chuẩn bị tốt hơn cho việc học tập và phát triển sự nghiệp trong tương lai.
 
+### [Sự kiện 1](4.1-Event1/)
+&emsp;**Sự ​​kiện:** AWS Technical Sharing Session
+&emsp;**Thời gian:** Ngày 5 tháng 6 năm 2026
 
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
+&emsp;**Vai trò:** Người tham dự
 
-### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+&emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh
 
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
+---
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+### [Sự kiện 2](4.2-Event2/)
+&emsp;**Sự ​​kiện:** Enterprise Cloud Architectures and Industry Application featuring Cloud Kinetics & Renova Cloud
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+&emsp;**Thời gian:** Ngày 4 tháng 7 năm 2026
 
+&emsp;**Vai trò:** Người tham dự
 
+&emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh
 
-### [Event 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+### [Sự kiện 3](4.3-Event3/)
+&emsp;**Sự ​​kiện:** AI From Scratch 
 
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
+&emsp;**Thời gian:** Ngày 18 tháng 7 năm 2026
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+&emsp;**Vai trò:** Người tham dự
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+&emsp;**Địa điểm:** Phòng LB 24 (Tầng 2) - Thư viện FPTU TP.HCM
 
+### [Sự kiện 4](4.4-Event4/)
+&emsp;**Sự ​​kiện:** FCAJ – Agentic AI Build Week
+
+&emsp;**Thời gian:** Ngày 4 tháng 7 năm 2026
+
+&emsp;**Vai trò:** Người tham dự
+
+&emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh

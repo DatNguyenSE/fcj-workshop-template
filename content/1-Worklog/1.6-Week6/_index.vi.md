@@ -1,58 +1,37 @@
 ---
 title: "Worklog Tuần 6"
-date: 2024-01-01
-weight: 1
+date: 2026-06-15
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+### Mục tiêu tuần 6
 
-### Mục tiêu tuần 6:
+* Thiết kế giao diện Dashboard tổng quan hiển thị số dư, tổng thu, tổng chi và ngân sách khả dụng.
+* Xây dựng bộ Angular Stat Card Components thống kê tài chính trực quan với biểu tượng và chỉ số biến động.
+* Thiết kế màn hình Danh sách giao dịch (Transaction List UI) hỗ trợ dạng bảng trên Desktop và dạng Card trên Mobile.
+* Xây dựng Form Modal / Dialog thêm mới và chỉnh sửa giao dịch với trải nghiệm người dùng tối ưu.
+* Phát triển bộ lọc giao dịch nâng cao theo khoảng thời gian, loại giao dịch và danh mục.
+* Thiết kế giao diện Quản lý danh mục chi tiêu (Expense Category Management UI).
+* Kiểm tra hiển thị dữ liệu giả lập (Mock Data Service) ở giai đoạn đầu và tinh chỉnh giao diện Responsive.
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Các công việc thực hiện trong tuần
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Thiết kế cấu trúc bố cục trang Dashboard tổng quan (Overview Dashboard).<br>- Xây dựng bộ Angular Stat Cards tài chính: Số dư hiện tại, Tổng thu nhập, Tổng chi tiêu và Số dư ngân sách khả dụng.<br>- Tích hợp các icon minh họa trực quan và phối màu gradient tạo ấn tượng cao cấp. | 15/06/2026 | 15/06/2026 | [Dashboard Design Best Practices](https://uxdesign.cc/) |
+| 3 | - Thiết kế giao diện màn hình Danh sách giao dịch (Transaction List Page).<br>- Xây dựng component Bảng danh sách trên Desktop với các cột: Ngày, Tên giao dịch, Danh mục, Ví, Số tiền (âm/dương màu sắc phân biệt) và Thao tác.<br>- Thiết kế dạng Card view thay thế cho bảng khi hiển thị trên giao diện Mobile. | 16/06/2026 | 16/06/2026 | [Responsive Data Tables](https://css-tricks.com/responsive-data-tables/) |
+| 4 | - Phát triển Form Modal / Dialog thêm mới và chỉnh sửa giao dịch (Transaction Form Dialog).<br>- Xây dựng các ô nhập liệu bằng Angular Reactive Forms: Số tiền, Ngày giao dịch, Danh mục, Ví áp dụng và Ghi chú.<br>- Thiết lập dữ liệu Mock Data Service trong Angular để kiểm thử luồng hiển thị và thao tác thêm/sửa trên UI. | 17/06/2026 | 17/06/2026 | [Angular Material Dialog](https://material.angular.io/components/dialog/overview) |
+| 5 | - Xây dựng Thanh công cụ bộ lọc (Filter Bar Component): tìm kiếm theo từ khóa, lọc theo khoảng ngày, loại thu/chi và danh mục chi tiêu.<br>- Thiết kế trang Quản lý danh mục chi tiêu (Expense Category UI) dạng Grid Card cho phép xem danh mục mặc định và tạo danh mục tùy chỉnh. | 18/06/2026 | 18/06/2026 | [UI Filtering Patterns](https://uxplanet.org/) |
+| 6 | - Kiểm tra giao diện Dashboard, Transaction List và Category Mgmt trên điện thoại di động.<br>- Khắc phục các lỗi tràn chữ, vỡ khung bảng giao dịch trên màn hình nhỏ.<br>- Tối ưu hóa khoảng cách padding/margin và lưu trữ kết quả thực hiện tuần 6. | 19/06/2026 | 19/06/2026 | [Mobile UI Checklist](https://material.io/design) |
 
+### Kết quả đạt được tuần 6
 
-### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hoàn thành thiết kế giao diện Dashboard tổng quan sắc nét với bộ Angular Stat Cards thống kê tài chính trực quan.
+* Xây dựng thành công màn hình Danh sách giao dịch với khả năng tự động chuyển đổi giữa Bảng Desktop và Card Mobile.
+* Hoàn thiện Form Dialog thêm mới và chỉnh sửa giao dịch với giao diện thân thiện, dễ tương tác.
+* Phát triển bộ lọc giao dịch đa tiêu chí hỗ trợ tìm kiếm và phân loại dữ liệu linh hoạt trong Angular.
+* Thiết kế thành công trang Quản lý danh mục chi tiêu phân biệt rõ ràng bằng màu sắc và icon.
+* Kiểm thử hiển thị thành công với Angular Mock Data Service cho toàn bộ các màn hình giao dịch.
+* Đảm bảo giao diện Dashboard và Transaction đáp ứng chuẩn responsive 100% trên cả Desktop và Mobile.
