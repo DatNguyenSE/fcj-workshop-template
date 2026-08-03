@@ -7,11 +7,11 @@ chapter: false
 
 # Báo cáo thực tập
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** Trương Trần Anh Minh
+&emsp; **Họ và tên:** Nguyễn Thành Đạt
 
-&emsp; **Số điện thoại:** 0789951911
+&emsp; **Số điện thoại:** 0918882942
 
-&emsp; **Email:** minhtruong300605@gmail.com
+&emsp; **Email:** datnt05se@gmail.com
 
 &emsp; **Trường:** Đại học FPT
 

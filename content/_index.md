@@ -9,11 +9,11 @@ chapter: false
 # Internship Report
 
 ### Student Information:
-&emsp; **Full Name:** Trương Trần Anh Minh
+&emsp; **Full Name:** Nguyen Thanh Dat
 
-&emsp; **Phone Number:** 0789951911
+&emsp; **Phone Number:** 0918882942
 
-&emsp; **Email:** minhtruong300605@gmail.com
+&emsp; **Email:** datnt05se@gmail.com
 
 &emsp; **University:** FPT University
 
