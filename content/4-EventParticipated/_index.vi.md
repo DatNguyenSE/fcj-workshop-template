@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-> Phần này tóm tắt các sự kiện tôi đã tham gia trong quá trình thực tập. Những buổi chia sẻ kỹ thuật này mang lại cơ hội quý báu để học hỏi từ các chuyên gia trong ngành, khám phá các công nghệ AWS thực tế, cũng như tích lũy kiến ​​thức về điện toán đám mây, kỹ thuật phần mềm và định hướng phát triển nghề nghiệp.
+> Phần này ghi lại các sự kiện kỹ thuật tôi tham gia trong thời gian thực tập. Những buổi chia sẻ giúp tôi liên hệ kiến thức AWS đã học với các ví dụ từ những người đang làm sản phẩm thực tế.
 
-Trong thời gian thực tập, tôi đã tham gia hai sự kiện kỹ thuật liên quan đến AWS và điện toán đám mây. Mỗi sự kiện đều mang đến những góc nhìn độc đáo, từ kiến ​​thức kỹ thuật thực hành cho đến những lời khuyên nghề nghiệp từ các chuyên gia giàu kinh nghiệm. Những trải nghiệm này không chỉ giúp tôi mở rộng hiểu biết về các công nghệ đám mây hiện đại mà còn hỗ trợ tôi chuẩn bị tốt hơn cho việc học tập và phát triển sự nghiệp trong tương lai.
+Tôi đã tham gia bốn buổi chia sẻ về kiến trúc AWS, dịch vụ AI, bảo mật, nghề nghiệp và dự án nhóm. Tôi chủ yếu tham dự, ghi chú lại nội dung và chọn những phần có thể áp dụng cho việc học Cloud và phát triển phần mềm của mình.
 
 ### [Sự kiện 1](4.1-Event1/)
 &emsp;**Sự ​​kiện:** AWS Technical Sharing Session

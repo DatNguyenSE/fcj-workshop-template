@@ -10,117 +10,56 @@ pre: " <b> 4.2. </b> "
 
 ### Event Objectives
 
-- Provide insights into enterprise cloud architecture and real-world AWS applications.
-- Share career opportunities and current trends in the cloud computing industry.
-- Bridge the gap between academic learning and industry expectations.
-- Encourage students to prepare for an AI-driven workplace and build long-term career skills.
+- Understand how enterprise teams approach cloud architecture and AWS adoption.
+- Compare what students practice at university with what companies expect in daily work.
+- Learn about cloud career paths, Data Engineering and the effect of AI on entry-level roles.
 
 ### Speakers
 
-- **Nguyễn Gia Hưng** – Job Market & Career Trends
-- **Bành Cầm Vinh** – School vs Industry, Same Skills, Different "Game"
-- **Như Trần** – Career Journey and Opportunities at AWS
-- **Khang Nguyễn** – AI-Ready Freshers
+- **Nguyễn Gia Hưng** - Job Market & Career Trends
+- **Bành Cầm Vinh** - School vs Industry, Same Skills, Different "Game"
+- **Như Trần** - Career Journey and Opportunities at AWS
+- **Khang Nguyễn** - AI-Ready Freshers
 
 ### Key Highlights
 
 #### Job Market & Career Trends
 
-- Overview of the AWS and cloud computing job market in Vietnam.
-- Growing demand for professionals with AWS and cloud-related skills.
-- The importance of networking and professional relationships in career development.
-- Insights into how referrals and industry connections can open career opportunities.
+The speakers described the growing need for people who understand cloud fundamentals and can apply them in projects. I also noted that joining communities and building professional connections can help students hear about opportunities earlier.
 
-#### School vs Industry, Same Skills, Different "Game"
+#### School and Industry
 
-- Comparison between university learning and real working environments.
-- Introduction to Data Engineering and its role in modern organizations.
-- Technical knowledge alone is not enough; communication and collaboration are equally important.
-- Continuous learning is essential for adapting to industry requirements.
+University assignments often focus on completing a feature, while company work also requires understanding requirements, communication, testing and maintenance. The introduction to Data Engineering gave me another direction to explore in the cloud field.
 
-#### Career Journey and Professional Growth
+#### Career Journey and Growth
 
-- Personal experience of pursuing a career at AWS.
-- Real-life story of perseverance through multiple application attempts.
-- Building professional networks can significantly improve career opportunities.
-- Rejections should be treated as learning experiences rather than failures.
+The personal sharing about applying more than once before joining AWS was realistic and encouraging. A rejection can show what needs to be improved rather than being the end of the process.
 
-#### AI-Ready Freshers
+#### AI-ready Freshers
 
-- Personal learning and career journey in the technology industry.
-- AI should be considered a productivity tool rather than a replacement for humans.
-- Critical thinking, creativity, communication, and adaptability remain essential skills.
-- Fresh graduates should embrace AI while continuously improving their technical and soft skills.
+AI was presented as a tool for research, drafting and productivity. However, checking the result, explaining decisions and solving the actual problem still require human thinking, communication and adaptability.
 
 ### Key Takeaways
 
-#### Career Development
-
-- Building professional networks is just as important as developing technical skills.
-- Career opportunities often come through community involvement and industry connections.
-- Persistence and continuous improvement are key to achieving long-term career goals.
-
-#### Industry Perspective
-
-- There are significant differences between academic projects and real-world software development.
-- Understanding business requirements and teamwork is essential for success.
-- Data Engineering is an increasingly valuable field within the cloud ecosystem.
-
-#### AI and Future Workforce
-
-- AI can enhance productivity but cannot replace human creativity and decision-making.
-- Future professionals should learn how to work effectively alongside AI technologies.
-- Lifelong learning is necessary to remain competitive in the rapidly changing technology industry.
+- Technical skills should be developed together with communication and teamwork.
+- Career progress usually comes from repeated practice, feedback and useful relationships.
+- Data Engineering and cloud operations are worth learning alongside software development.
 
 ### Applying to Work
 
-- Continue strengthening AWS and cloud computing knowledge through hands-on projects.
-- Improve communication and teamwork skills while participating in software development projects.
-- Build professional relationships by joining technology communities and networking events.
-- Use AI tools responsibly to improve productivity while continuing to develop problem-solving and critical-thinking skills.
+I will continue building small AWS projects, practice explaining my technical choices, and use AI tools as an assistant instead of copying their output. When working on the expense system, I should also ask about the business requirement before starting a feature.
 
 ### Event Experience
 
-Attending the **"AWS: Enterprise Cloud Architectures and Industry Application featuring Cloud Kinetics & Renova Cloud"** event gave me valuable insights into both cloud technology and career development within the AWS ecosystem.
+This event felt useful because it talked about both technology and the transition from school to work. The speakers used personal examples, so the advice was easier for me to relate to than general career slogans.
 
-#### Learning from experienced professionals
+### Lessons Learned
 
-- The speakers shared practical experiences from their careers, providing a realistic view of working in the cloud industry.
-- I gained a better understanding of the current AWS job market in Vietnam and the growing demand for cloud professionals.
+The biggest lesson was that becoming job-ready is a gradual process. I need to improve my cloud knowledge, communication and ability to learn from feedback at the same time.
 
-#### Career insights
-
-- One of the most memorable lessons was the importance of networking and building professional relationships.
-- The speakers emphasized that career opportunities can often come from referrals and active participation in the technology community.
-- Như Trần's personal journey of applying multiple times before joining AWS inspired me to remain persistent when pursuing future career opportunities.
-
-#### Understanding industry expectations
-
-- The session comparing university learning with industry practice helped me recognize that employers value communication, collaboration, and adaptability in addition to technical knowledge.
-- The introduction to Data Engineering also broadened my understanding of career paths within cloud computing.
-
-#### Preparing for the AI era
-
-- The discussion on becoming an AI-ready fresher encouraged me to view AI as a powerful assistant rather than a replacement for human capabilities.
-- I learned that creativity, critical thinking, and continuous learning will remain essential skills even as AI technologies continue to evolve.
-
-#### Some event photos
+### Some event photos
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-
-  <div style="text-align: center;">
-    <img src="/images/4-EventParticipated/4.2-Event2/event2.jpg"
-         alt="Event Participation"
-         style="width: 320px; height: auto; border-radius: 8px;">
-    <p>Event Participation</p>
-  </div>
-
-  <div style="text-align: center;">
-    <img src="/images/4-EventParticipated/4.2-Event2/event2.1.jpg"
-         alt="Technical Sharing Session"
-         style="width: 320px; height: auto; border-radius: 8px;">
-    <p>Memorize moments</p>
-  </div>
+  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.2-Event2/event2.jpg" alt="Event Participation" style="width: 320px; height: auto; border-radius: 8px;"><p>Event Participation</p></div>
+  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.2-Event2/event2.1.jpg" alt="Technical Sharing Session" style="width: 320px; height: auto; border-radius: 8px;"><p>Memorable moment</p></div>
 </div>
-
-> Overall, this event not only expanded my understanding of enterprise cloud architecture and the AWS industry but also provided valuable career guidance, helping me better prepare for future opportunities in cloud computing.

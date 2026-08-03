@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-> This section summarizes the events I participated in during my internship. These technical sharing sessions provided valuable opportunities to learn from industry professionals, explore practical AWS technologies, and gain insights into cloud computing, software engineering, and career development.
+> This section records the technical events I attended during the internship. The sessions helped me connect the AWS lessons from the training with examples shared by people who work on real products.
 
-During my internship, I participated in two technical events related to AWS and cloud computing. Each event offered unique perspectives, ranging from hands-on technical knowledge to career guidance from experienced professionals. These experiences not only broadened my understanding of modern cloud technologies but also helped me better prepare for future academic and professional development.
+I joined four sessions covering AWS architecture, AI services, security, careers and team projects. I mainly attended and took notes, then selected the parts that could support my own cloud and software development work.
 
 ### [Event 1](4.1-Event1/)
 &emsp;**Event:** AWS Technical Sharing Session

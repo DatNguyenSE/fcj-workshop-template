@@ -10,107 +10,62 @@ pre: " <b> 4.1. </b> "
 
 ### Event Objectives
 
-- Introduce practical AWS solutions and cloud-native technologies used in modern software development.
-- Share real-world experiences from industry professionals in Cloud, DevOps, AI, Cybersecurity, and Game Development.
-- Expand participants' knowledge of AWS services and their applications across different domains.
-- Provide opportunities for networking and learning from engineers and solution architects.
+- See how AWS services are used together in different software projects.
+- Learn practical examples about containers, security, AI, system administration and real-time applications.
+- Listen to engineers' career experiences and collect advice that can be useful during the internship.
 
 ### Speakers
 
-- Bao Huynh – Docker: A Containerization Technology
-- Le Hoang Gia Dai – WAF + Machine Learning-based Network Intrusion Detection System on AWS
-- Tran Trung Vinh – From IT Helpdesk to Senior Sysadmin
-- Viet Phat – GraphRAG: Build GraphRAG Applications using Amazon Bedrock & Amazon Neptune
-- Truong Huy Phuoc – The Art of Effective Teamwork
-- Nguyen Quoc Bao – Multiplayer in the Cloud: Connecting Godot Clients with AWS WebSockets
+- Bao Huynh - Docker and containerization
+- Le Hoang Gia Dai - AWS WAF and machine-learning intrusion detection
+- Tran Trung Vinh - From IT Helpdesk to Senior Sysadmin
+- Viet Phat - GraphRAG with Amazon Bedrock and Amazon Neptune
+- Truong Huy Phuoc - Effective teamwork
+- Nguyen Quoc Bao - Multiplayer applications with AWS WebSockets
 
 ### Key Highlights
 
 #### Cloud-native Development
 
-- Learned how Docker simplifies application deployment through containerization.
-- Compared Containers and Virtual Machines in terms of portability, consistency, and resource efficiency.
-- Understood Docker Image, Docker Container, Dockerfile, and common cloud-native use cases.
+The Docker session helped me see why packaging an application in an image makes development and deployment more consistent. I also reviewed the difference between a container and a virtual machine, and the roles of an image, container and Dockerfile.
 
 #### AI and Data Technologies
 
-- Explored GraphRAG architecture using Amazon Bedrock and Amazon Neptune to enhance Retrieval-Augmented Generation with Knowledge Graphs.
-- Compared AWS Fully Managed solutions with open-source implementations using LlamaIndex.
-- Learned how multi-hop reasoning improves Generative AI response quality.
+The GraphRAG example combined Amazon Bedrock with Amazon Neptune. I learned that a knowledge graph can help an AI system find relationships between information, while multi-step retrieval can make the answer more relevant.
 
 #### Cybersecurity on AWS
 
-- Learned how AWS WAF protects web applications against common attacks.
-- Explored a Machine Learning-based Network Intrusion Detection System using AWS services and the CSE-CIC-IDS2018 dataset.
-- Understood the integration of Amazon GuardDuty, Security Hub, CloudWatch, and Lambda for cloud security monitoring.
+The speakers showed how AWS WAF can filter common web attacks. The intrusion detection example also explained how GuardDuty, Security Hub, CloudWatch and Lambda can work together to detect and respond to suspicious activity.
 
 #### Career Development & Team Collaboration
 
-- Gained insights into the career path from IT Helpdesk to Senior System Administrator.
-- Learned the importance of Linux, networking, troubleshooting, documentation, and continuous learning.
-- Understood four key principles of effective teamwork: shared goals, proper task allocation, open communication, and personal accountability.
+The career talk made the path from IT Helpdesk to system administration feel more realistic. The main advice was to keep practicing Linux, networking, troubleshooting and documentation. For teamwork, I noted the need for a shared goal, clear task ownership, regular communication and responsibility for one's own part.
 
 #### Real-time Applications on AWS
 
-- Learned how to build multiplayer applications using Amazon API Gateway WebSocket, AWS Lambda, DynamoDB, and CloudWatch.
-- Compared WebSocket, UDP/ENet, and HTTP Polling for different multiplayer scenarios.
-- Understood matchmaking, connection management, and serverless game architecture.
+The multiplayer example used API Gateway WebSocket, Lambda, DynamoDB and CloudWatch. It helped me distinguish WebSocket from polling and understand the basic flow of connections, matchmaking and serverless game backends.
 
 ### Key Takeaways
 
-#### Professional Knowledge
-
-- Improved understanding of containerization, cloud security, Generative AI, multiplayer architectures, and cloud-native application development.
-- Learned how AWS services can be combined to build scalable, secure, and real-time systems.
-
-#### Technical Mindset
-
-- Recognized the importance of selecting suitable architectures based on application requirements rather than relying on a single technology.
-- Understood that modern software development requires both technical knowledge and collaboration skills.
+- A good cloud solution depends on choosing services that fit the problem, not just using many services.
+- Security, monitoring and deployment should be considered from the beginning.
+- Communication and steady self-learning are important alongside coding skills.
 
 ### Applying to Work
 
-For the SmartInvoice Shield project:
-
-- Apply Docker to standardize the development and deployment environment.
-- Explore Amazon Bedrock and GraphRAG for improving AI-powered document understanding.
-- Consider AWS security services when designing cloud-based applications.
-- Apply teamwork principles and project management tools to improve collaboration during development.
+For my expense management project, I can apply Docker to keep the .NET environment consistent, use S3 for receipt files, and follow the security and monitoring ideas from the session. The teamwork notes are also useful when dividing backend, frontend and cloud tasks.
 
 ### Event Experience
 
-Attending the first AWS First Cloud Journey technical sharing session was a valuable experience.
-
-- Gained practical knowledge from professionals working in different technical domains.
-- Understood how AWS services are applied in real-world projects instead of only learning theoretical concepts.
-- Had the opportunity to broaden knowledge in Cloud Computing, AI, Cybersecurity, DevOps, and Game Development within a single event.
+This was my first broad AWS sharing session, so I liked that the topics were not limited to one service. The examples made the lessons easier to remember because each speaker connected the technology to a real situation.
 
 ### Lessons Learned
 
-- Cloud technologies are most valuable when combined with suitable software architecture and engineering practices.
-- Continuous learning and hands-on experience are essential for career growth in the cloud industry.
-- Effective teamwork and communication are just as important as technical skills in successful software projects.
+I learned that cloud engineering includes architecture decisions, operations and collaboration, not only writing code. I also need to keep practicing instead of relying only on slides or documentation.
 
 ### Some event photos
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-
-  <div style="text-align: center;">
-    <img src="/images/4-EventParticipated/4.1-Event1/event1.jpg"
-         alt="Event Participation"
-         style="width: 320px; height: auto; border-radius: 8px;">
-    <p>Event Participation</p>
-  </div>
-
-  <div style="text-align: center;">
-    <img src="/images/4-EventParticipated/4.1-Event1/event1.2.jpg"
-         alt="Technical Sharing Session"
-         style="width: 320px; height: auto; border-radius: 8px;">
-    <p>Memorize moments</p>
-  </div>
-
+  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.1-Event1/event1.jpg" alt="Event Participation" style="width: 320px; height: auto; border-radius: 8px;"><p>Event Participation</p></div>
+  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.1-Event1/event1.2.jpg" alt="Technical Sharing Session" style="width: 320px; height: auto; border-radius: 8px;"><p>Memorable moment</p></div>
 </div>
-
-
-
->The **AWS Sharing Session** brought together industry professionals from various technical fields to share practical knowledge and real-world experiences in cloud computing. Covering topics such as Docker, cloud security, Generative AI, system administration, teamwork, and multiplayer architectures on AWS, the event provided participants with a comprehensive overview of how AWS technologies are applied across different domains. Beyond the technical content, the session also offered valuable career insights and encouraged continuous learning, collaboration, and active engagement within the cloud community.
