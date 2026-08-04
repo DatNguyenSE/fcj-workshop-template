@@ -18,3 +18,4 @@ Trong workshop này, bạn sẽ sử dụng hai VPC.
 
 ![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)   
   
+  
