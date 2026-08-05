@@ -25,7 +25,7 @@ pre: " <b> 1.4. </b> "
 | 5 | - Nghiên cứu dịch vụ hạ tầng AWS: Application Load Balancer (ALB) phân phối lưu lượng và Auto Scaling Group (ASG) tự động điều chỉnh số lượng server theo tải.<br>- Phân tích mô hình cân bằng tải và tính sẵn sàng cao cho ứng dụng web Snaptics. | 04/06/2026 | 04/06/2026 | [AWS ALB Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)<br>[Auto Scaling Guide](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html) |
 | 6 | - Tìm hiểu các dịch vụ giám sát và quản lý chi phí: Amazon CloudWatch, AWS Budgets và Route 53.<br>- Cấu hình thử nghiệm AWS Budgets cảnh báo khi chi phí vượt ngưỡng.<br>- Viết câu lệnh AWS CLI kiểm tra thông tin tài nguyên hệ thống và tổng kết kết quả công việc tuần 4. | 05/06/2026 | 05/06/2026 | [Amazon CloudWatch Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)<br>[AWS Budgets Guide](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html) |
 
-### Kết quả đạt me tuần 4
+### Kết quả đạt được tuần 4
 
 * Chính thức thống nhất đề tài Snaptics và định hình bài toán quản lý tài chính cá nhân/gia đình thông minh.
 * Phân định rõ ràng mục tiêu tính năng MVP cho 2 nhóm người dùng: User và Admin.

@@ -1,6 +1,6 @@
 ---
 title: "Week 9 Worklog"
-date: 2026-07-13
+date: 2026-07-06
 weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
@@ -8,27 +8,31 @@ pre: " <b> 1.9. </b> "
 
 ### Week 9 Objectives
 
-* Analyze detailed project requirements for the team proposal "IoT Weather Platform for Lab Research" tailored for the ITea Lab research team.
-* Define project scope and goals (Ingesting telemetry from 5 Raspberry Pi + ESP32 weather stations, expandable to 15 stations, MQTT protocol).
-* Select and design a unified AWS Serverless solution: AWS IoT Core, AWS Lambda, Amazon S3 Data Lake, AWS Glue, API Gateway, AWS Amplify, and Amazon Cognito.
-* Draw comprehensive architecture diagrams covering Edge Architecture (Edge Devices) and Platform Architecture (Cloud Backend).
-* Calculate monthly operational expenditure using AWS Pricing Calculator and establish a risk management matrix for the proposal.
+* Retrieve the Gemini API Key from AWS Parameter Store and securely integrate the Google Gemini 2.5 Flash SDK into the .NET Backend.
+* Build the Backend AI Insight Assistant API flow to provide smart financial consultations based on user spending data.
+* Build the Fullstack Spending Analysis & Reports feature.
+* Develop Backend statistics APIs and integrate visual charts with **Ngx-charts / Chart.js** on the Frontend (Angular).
+* Design a flexible time filter (day, week, month, quarter, year) and handle real-time data query logic from the SQL Server database.
+* Design a modern Chatbot interface on Angular (Conversation history sidebar, main chat window, query input box).
+* Implement real-time messaging flows, AI typing indicator animations, and suggested prompt chips.
 
 ### Tasks Completed During the Week
 
 | Day | Tasks | Start Date | Completion Date | Learning Resources |
 | --- | --- | --- | --- | --- |
-| Monday | - Convene team meeting to finalize the Proposal for "IoT Weather Platform for Lab Research".<br>- Analyze existing limitations: legacy weather stations required manual data collection, lacking centralized storage and real-time analytics.<br>- Define target personas (5 ITea Lab researchers) and core problem statements. | 13/07/2026 | 13/07/2026 | [Proposal Document](2-Proposal/)<br>[AWS IoT Core Overview](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) |
-| Tuesday | - Design telemetry data ingestion and ETL transformation pipelines.<br>- Select AWS IoT Core to ingest MQTT messages from Raspberry Pi edge devices.<br>- Design S3 Data Lake layout: Bucket 1 for raw telemetry (Raw Data Lake), Bucket 2 for transformed analytical datasets. | 14/07/2026 | 14/07/2026 | [AWS IoT Rules](https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html)<br>[Building Data Lakes on AWS](https://aws.amazon.com/solutions/implementations/data-lake-solution/) |
-| Wednesday | - Research automated analytics solutions using AWS Glue (Crawlers for S3 cataloging & ETL Jobs for data partitioning).<br>- Evaluate AWS Amplify for hosting Next.js web dashboards and Amazon Cognito for secure user authentication.<br>- Select Infrastructure as Code tools (AWS CDK/SDK) for backend deployment. | 15/07/2026 | 15/07/2026 | [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html)<br>[Amazon Cognito User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) |
-| Thursday | - **Architecture Diagram Drafting:**<br>- Draw Edge Architecture depicting sensor streams: ESP32 -> Raspberry Pi (Docker) -> MQTT over Wi-Fi.<br>- Draw Platform Architecture mapping interactions across IoT Core -> S3 -> Glue -> Lambda -> API Gateway -> Amplify Next.js.<br>- Formulate risk matrix (network loss, sensor failure, budget overrun) and fallback mitigations. | 16/07/2026 | 16/07/2026 | [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/)<br>[Proposal Section 3](2-Proposal/#3-kiến-trúc-giải-pháp) |
-| Friday | - **Budget Estimation & Proposal Finalization:**<br>- Utilize AWS Pricing Calculator to compute detailed service breakdowns (Lambda $0, S3 $0.15, Amplify $0.35, Glue $0.09, IoT Core $0.08).<br>- Confirm optimized monthly cloud cost estimate: **$0.70/month** (~$8.40/year).<br>- Integrate proposal documentation into Hugo structure (`content/2-Proposal/`) and verify site rendering. | 17/07/2026 | 17/07/2026 | [AWS Pricing Calculator](https://calculator.aws/)<br>[Proposal Budget Section](2-Proposal/#6-ước-tính-ngân-sách) |
+| Monday | - Securely fetched `GeminiApiKey` from AWS Systems Manager via `IConfiguration` in the .NET Backend.<br>- Integrated Gemini 2.5 Flash SDK to build the financial consultant AI Chatbot API.<br>- Built APIs to store user conversation histories in the database. | 06/07/2026 | 06/07/2026 | [Google Gemini API Docs](https://ai.google.dev/docs) |
+| Tuesday | - Designed Database schema and wrote Backend APIs for general spending statistics analysis.<br>- Designed the layout of the Spending Analysis & Reports page on Angular.<br>- Integrated **Ngx-charts / Chart.js** to render budget allocation Pie Charts and overview Bar Charts. | 07/07/2026 | 07/07/2026 | [Ngx-charts Guide](https://swimlane.github.io/ngx-charts/) |
+| Wednesday | - Built APIs for tracking spending trends over time.<br>- Developed Line Charts on the Frontend and a time filter toolbar (Week, Month, Quarter, Year).<br>- Optimized SQL queries to quickly calculate percentage increase/decrease compared to the previous period. | 08/07/2026 | 08/07/2026 | [Financial Chart Patterns](https://dribbble.com/) |
+| Thursday | - Designed the AI Assistant Chat Component UI structure on Angular.<br>- Configured Frontend to call AI Insight APIs and display Message Bubbles distinguishing User and AI.<br>- Built visual AI typing indicator animations. | 09/07/2026 | 09/07/2026 | [Chat Interface UI Patterns](https://uicoach.io/) |
+| Friday | - Designed a list of sample Prompt Chips on the Chatbot start screen.<br>- Configured a Dead Letter Queue (DLQ) flow for SQS as a fallback for AI API Timeout errors.<br>- Tested mobile responsiveness for reporting charts and the AI Chat interface. | 10/07/2026 | 10/07/2026 | [AI Chatbot UX Best Practices](https://uxplanet.org/) |
 
 ### Week 9 Achievements
 
-* Successfully formulated the "IoT Weather Platform for Lab Research" project proposal, solving legacy manual weather monitoring limitations.
-* Designed a full serverless cloud architecture integrating AWS IoT Core, S3 Data Lake, AWS Glue, Lambda, API Gateway, Amplify, and Cognito.
-* Produced standardized architecture diagrams covering both Edge Architecture (Raspberry Pi/ESP32) and Platform Architecture (AWS Serverless Cloud).
-* Developed a structured risk mitigation matrix addressing hardware/network failures with local Docker container buffering strategies.
-* Computed exact monthly infrastructure costs using AWS Pricing Calculator, achieving extreme cost efficiency ($0.70/month).
-* Published complete bilingual Proposal content into the Hugo platform (`content/2-Proposal/_index.vi.md` and `_index.md`).
+* Successfully and securely integrated Gemini 2.5 Flash into the Backend system using the API Key fetched from AWS.
+* Completed the AI Assistant integration flow and the modern Chat Interface.
+* Built realistic typing animations providing a natural interaction feel with the AI.
+* Completed the Spending Analysis feature from Backend APIs to Frontend with dynamic Ngx-charts.
+* Developed a versatile report time filter and efficient data querying from the database.
+* Visually displayed spending trend comparisons (increase/decrease) for financial periods.
+* Integrated sample Prompt Chips to help users easily start conversations with the AI.
+* Ensured financial charts and the AI chat interface are 100% responsive on mobile screens.

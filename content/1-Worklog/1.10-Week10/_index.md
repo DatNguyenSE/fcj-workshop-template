@@ -1,6 +1,6 @@
 ---
 title: "Week 10 Worklog"
-date: 2026-07-20
+date: 2026-07-13
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -8,27 +8,29 @@ pre: " <b> 1.10. </b> "
 
 ### Week 10 Objectives
 
-* Configure AWS IoT Core Topic Rules to automatically store edge telemetry into Amazon S3 Raw Data Lake Buckets.
-* Build AWS Lambda functions (Python/Node.js) handling backend logic and set up Amazon API Gateway RESTful endpoints.
-* Configure AWS Glue Crawlers to catalog S3 schemas automatically and create Glue ETL Jobs for data transformation into analytical Parquet format.
-* Deploy a Next.js Web Dashboard onto AWS Amplify, integrating Amazon Cognito User Pools for researcher authentication.
-* Research advanced scalable cloud architecture (Amazon ECS Fargate, ALB, Aurora Serverless v2, ElastiCache) in preparation for technical blogging.
+* Build the Fullstack Notification Center and Header Dropdown Menu feature.
+* Integrate SignalR to push real-time notifications from the .NET Backend to the Angular Frontend.
+* Set up APIs and classify notifications: Invoice Scans, Budget Alerts, AI Suggestions, Family Wallet Invitations.
+* Build the Fullstack Support Ticket feature including Ticket management APIs, Ticket creation form UI, and discussion threads.
+* Practice **Workshop 5.5** lab: Configure VPC Endpoint IAM Policies to tighten security and restrict Amazon S3 resource access.
+* Build the User Account Settings UI and integrate profile update APIs.
 
 ### Tasks Completed During the Week
 
 | Day | Tasks | Start Date | Completion Date | Learning Resources |
 | --- | --- | --- | --- | --- |
-| Monday | - Configure AWS IoT Core Rule subscribing to topic `lab/weather/telemetry`.<br>- Configure S3 action writing JSON payloads directly into Amazon S3 Raw Bucket partitioned by `year=YYYY/month=MM/day=DD/`.<br>- Test publishing simulated MQTT messages and verify automated S3 object creation. | 20/07/2026 | 20/07/2026 | [AWS IoT S3 Action](https://docs.aws.amazon.com/iot/latest/developerguide/s3-rule-action.html)<br>[AWS IoT Rule Tutorial](https://docs.aws.amazon.com/iot/latest/developerguide/iot-write-to-s3.html) |
-| Tuesday | - Program AWS Lambda Function to query the latest weather telemetry data.<br>- Create Amazon API Gateway REST API integrating with Lambda via GET `/api/weather/latest`.<br>- Configure CORS headers and verify endpoint response using Postman. | 21/07/2026 | 21/07/2026 | [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)<br>[API Gateway Integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-lambda-integrations.html) |
-| Wednesday | - Create AWS Glue Crawler to inspect S3 Raw Bucket periodically and extract schema metadata into AWS Glue Data Catalog.<br>- Write PySpark Glue ETL Job filtering telemetry noise and exporting to S3 Processed Bucket in compressed Parquet format for fast queries.<br>- Trigger Glue Job and verify transformed datasets on S3. | 22/07/2026 | 22/07/2026 | [AWS Glue Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html)<br>[AWS Glue ETL Jobs](https://docs.aws.amazon.com/glue/latest/dg/author-job.html) |
-| Thursday | - Create Amazon Cognito User Pool `WeatherLabUserPool` and configure App Client credentials.<br>- Deploy Next.js Web Dashboard to AWS Amplify via Git repository integration.<br>- Integrate Amplify Auth SDK into Next.js dashboard UI to secure weather monitoring views. | 23/07/2026 | 23/07/2026 | [AWS Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)<br>[Amplify Authentication](https://docs.amplify.aws/lib/auth/getting-started/q/platform/js/) |
-| Friday | - **Research Scalable Web Application Architecture:**<br>- Analyze high-traffic ecommerce scalability challenges.<br>- Study end-to-end traffic flow: Route 53 -> CloudFront -> AWS WAF -> ALB -> Amazon ECS Fargate -> ElastiCache -> Aurora Serverless v2.<br>- Gather AWS Solutions Guidance references to draft Technical Blog 1. | 24/07/2026 | 24/07/2026 | [AWS Web Store Guidance](https://docs.aws.amazon.com/solutions/web-store-on-aws/)<br>[Amazon ECS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html) |
+| Monday | - Designed Database schema for Notifications and Support Tickets.<br>- Wrote APIs to fetch notification lists and mark them as read.<br>- Designed Notification Dropdown Menu UI on the Top Header and the Notification Bell icon with an unread badge. | 13/07/2026 | 13/07/2026 | [Notification System UX](https://uxdesign.cc/) |
+| Tuesday | - Integrated SignalR WebSockets into the .NET Backend and Angular Frontend for real-time notifications.<br>- Classified UI designs for notification types: Invoice Scans, Budget Alerts, Financial AI Insights, Wallet Invitations.<br>- Tested notification flows upon new transactions. | 14/07/2026 | 14/07/2026 | [SignalR with Angular](https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client) |
+| Wednesday | - Built CRUD APIs for Support Tickets and message discussion threads.<br>- Designed the Support Ticket Page layout on Angular.<br>- Built the Submitted Tickets Data Table and the New Support Ticket Form with validation. | 15/07/2026 | 15/07/2026 | [Helpdesk UI Patterns](https://dribbble.com/) |
+| Thursday | - **Practice Workshop 5 (Part 5 - VPC Endpoint Policies):**<br>&emsp; + Learned about layered security using VPC Endpoint IAM Policies ([Workshop VPC Endpoint Policies](5-Workshop/5.5-Policy/)).<br>&emsp; + Drafted a JSON Endpoint Policy attached to the VPC Endpoint to exclusively allow access to the Snaptics project S3 Bucket.<br>&emsp; + Executed Access Denied tests by querying S3 Buckets outside the permitted list. | 16/07/2026 | 16/07/2026 | [Workshop VPC Endpoint Policies](5-Workshop/5.5-Policy/)<br>[VPC Endpoint Policy Reference](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) |
+| Friday | - Integrated APIs and designed the Ticket Detail & Discussion Thread UI.<br>- Built the User Account Settings Page and integrated APIs for updating personal info and changing passwords.<br>- Checked form validation errors and optimized responsiveness for Week 10. | 17/07/2026 | 17/07/2026 | [Account Settings Layout](https://refactoringui.com/) |
 
 ### Week 10 Achievements
 
-* Deployed AWS IoT Core Rules to capture MQTT telemetry automatically and partition raw JSON objects into Amazon S3.
-* Developed AWS Lambda function logic and API Gateway endpoints to serve real-time weather metrics to web clients.
-* Configured AWS Glue Crawlers and Glue ETL Jobs to transform raw IoT data into optimized analytical Parquet files on S3.
-* Deployed Next.js frontend application onto AWS Amplify and completed integration with Amazon Cognito User Pools for access security.
-* Deepened technical knowledge regarding enterprise scalable web architectures (Amazon ECS Fargate, ALB, Aurora Serverless v2, ElastiCache).
-* Prepared architectural diagrams and theoretical content for publishing Technical Blog 1 on Scalable E-Commerce Architecture.
+* Completed the Fullstack Notification Center, successfully integrating SignalR for smooth real-time notification pushes.
+* Classified and visually designed 4+ core notification groups, ensuring data synchronization with the Backend.
+* Completed the professional Support Ticket Management feature from API to User Interface.
+* Successfully practiced Workshop 5.5: Drafted and attached VPC Endpoint Policies, blocking unauthorized access to non-project S3 Buckets.
+* Successfully integrated detailed discussion flows in Tickets between Users and the Support Team.
+* Completed a clean, secure User Account Settings page and successfully invoked password change APIs.
+* Ensured aesthetic consistency and smooth responsiveness across all screen sizes.
