@@ -6,56 +6,44 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# AWS LESSONS AND CLOUD-NATIVE MINDSET FROM MY INTERNSHIP
+# HARD-EARNED AWS LESSONS AND THE CLOUD-NATIVE MINDSET FROM A REAL-WORLD PROJECT
 
-During my internship, I had the opportunity to participate in a real-world backend project where Amazon S3 was integrated for storing documents and images. Although Amazon S3 was the primary AWS service used in the project, the implementation process provided valuable opportunities to learn cloud-native application design and gain a broader understanding of the AWS ecosystem.
+13 weeks of interning and grinding on the Snaptics project has truly completely transformed my programming mindset. "Works on my machine" becomes utterly meaningless the moment you step into the Cloud environment!
 
-Beyond learning how cloud storage is integrated into backend applications, I also explored important concepts related to system architecture, security, cost optimization, and cloud best practices that are commonly applied in production environments.
+Specifically, manually integrating Amazon S3 into the .NET Backend to build the Invoice Scanning flow provided me with some "hard-earned" but incredibly valuable lessons about the Cloud-Native mindset.
 
-### Key Lessons
-
-Throughout the internship, I learned several important cloud-native concepts.
+### The Most Memorable "Aha Moments"
 
 - **Decoupling Compute and Storage**
-  - Learned how backend services can focus on business logic while uploaded files are stored in Amazon S3.
-  - Understood why storing object URLs in the database is more efficient than storing binary files directly.
-  - Recognized how this design improves scalability and reduces storage pressure on application servers.
+  - Previously, whenever I built an image upload form, I would save the file straight into the `/wwwroot` folder of the server. Moving to the Cloud, I realized doing that is suicidal! The server bloats, and backups become difficult.
+  - I learned how to push all invoice image files up to Amazon S3, and the Backend Database only saves a lightweight URL. The processing logic is separate, the storage repository is separate—it's incredibly unburdening!
 
-- **Working with AWS SDK for Amazon S3**
-  - Learned how the AWSSDK.S3 package is integrated into a .NET backend.
-  - Explored common operations such as file upload, download, metadata management, and object deletion using C#.
-  - Gained a better understanding of interacting with AWS services programmatically instead of relying solely on the AWS Management Console.
+- **Wrestling with AWS SDK for .NET**
+  - The feeling of writing C# code to successfully call an API and push a file directly into an S3 bucket for the first time was truly fantastic. I started getting used to interacting with infrastructure via code instead of clicking around the Management Console.
 
-- **Cost Optimization**
-  - Learned that unused objects can gradually increase cloud storage costs.
-  - Understood the importance of cleaning up temporary files.
-  - Explored Amazon S3 Lifecycle Policies for automatically removing obsolete objects.
+- **The Magic of Pre-signed URLs**
+  - This was my biggest "Aha Moment"! Initially, I had a huge headache: *"How do I keep my S3 Bucket completely Private (no public access), but still allow the user's Angular Frontend to load the invoice images to view?"*
+  - The answer was **Pre-signed URLs**. My Backend code silently uses an Access/Secret key pair to generate a temporary link that lives for exactly 15 minutes, then tosses it to the Frontend. It's 100% secure and convenient—no need to download the image to the server and then stream it to the Frontend!
 
-- **IAM and Least Privilege**
-  - Learned why applications should avoid using the AWS Root Account.
-  - Understood how IAM users and policies provide secure access control.
-  - Recognized the importance of applying the Principle of Least Privilege.
+- **Learning IAM and "Least Privilege" the Hard Way**
+  - At first, out of convenience, I just granted `S3FullAccess` permissions to the IAM User used in the code. As a result, the code review caught it and forced me to tear it down and redo it.
+  - I had to sit down and tightly configure a JSON Policy: Only allowing `PutObject` and `GetObject` permissions specifically for the `snaptics-invoices-xyz` Bucket. It was a bit tedious initially, but I slept very soundly knowing the system was incredibly secure.
 
-- **Protecting AWS Credentials**
-  - Learned why Access Keys and Secret Keys should be stored securely using environment variables or configuration files excluded from source control.
-  - Understood the risks of hardcoding sensitive credentials into application source code.
+- **Stumbling over CORS (Cross-Origin Resource Sharing)**
+  - After finishing the code, the Frontend called the image URL and got slapped in the face by the browser with a glaring red CORS error. I learned the hard way that Cloud security doesn't just reside in the Backend; you also have to set up CORS Policies right on the S3 Bucket so the browser "recognizes" the Frontend's domain name.
 
-- **Secure File Sharing with Pre-signed URLs**
-  - Learned how Amazon S3 Pre-signed URLs provide temporary and secure access to private objects.
-  - Understood how private S3 buckets can securely share files with authorized users.
+- **The Cost Optimization Problem**
+  - Invoice data generates a lot of garbage (blurry images, failed upload images). If left alone, S3 will charge for permanent storage. I had to immediately set up S3 Lifecycle Policies to automatically "take out the trash," deleting temporary images after 7 days.
 
-- **Understanding Browser Security**
-  - Learned about Cross-Origin Resource Sharing (CORS) when frontend applications communicate with Amazon S3.
-  - Understood how S3 CORS policies help allow trusted requests while maintaining security.
-  - Recognized that cloud security involves both backend permissions and browser-level security policies.
+### Summarizing the Journey
 
-### What I Learned
+This internship didn't just teach me how to use a few AWS services. It tore down and rebuilt my mindset.
 
-This internship helped me realize that cloud computing is much more than simply using AWS services. Designing cloud-native applications requires careful consideration of architecture, security, scalability, and cost optimization to build reliable systems.
+I realized Cloud Computing isn't just about renting a virtual machine and dumping old code onto it to run. Cloud-Native is an art of design: security from its inception (IAM), cost optimization from the start (Lifecycle), decoupling functionalities (S3 + EC2 + SQS), and secure sharing (Pre-signed URLs).
 
-Learning from a real-world project also gave me a better understanding of how AWS services work together in practice. These experiences strengthened my cloud-native mindset and provided a valuable foundation for my future development as a Backend Developer and Cloud Engineer.
+These practical combat experiences are priceless baggage, creating massive momentum for me to continue pursuing the path to becoming a professional Fullstack / Cloud Engineer!
 
-### Images
+### Illustration
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 20px;">
 
@@ -63,22 +51,22 @@ Learning from a real-world project also gave me a better understanding of how AW
     <img src="/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.jpg"
          alt="Amazon S3 Architecture"
          style="width:100%; height:260px; object-fit:contain; background:#fafafa; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
-    <p>Cloud-native architecture integrating Amazon S3 into the backend application.</p>
+    <p>Cloud-Native architecture integrating Amazon S3 into the Backend app.</p>
   </div>
 
   <div style="width: 420px; text-align: center;">
     <img src="/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.1.jpg"
          alt="Amazon S3 Pre-signed URL"
          style="width:100%; height:260px; object-fit:contain; background:#fafafa; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
-    <p>Generating Amazon S3 Pre-signed URLs using the AWS SDK for .NET.</p>
+    <p>Implementing Amazon S3 Pre-signed URLs using AWS SDK for .NET.</p>
   </div>
 
 </div>
 
 ### References
 
-The knowledge summarized in this blog was learned through:
+The knowledge summarized in this article was learned from:
 
-- Participating in a real-world internship project.
+- Participation in a real-world project during the internship.
 - AWS Official Documentation  
   https://docs.aws.amazon.com/

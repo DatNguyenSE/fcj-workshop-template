@@ -6,54 +6,42 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# NHỮNG BÀI HỌC VỀ AWS VÀ TƯ DUY CLOUD-NATIVE TỪ KỲ THỰC TẬP
+# NHỮNG BÀI HỌC "TRẦY DA TRÓC VẨY" VỀ AWS VÀ TƯ DUY CLOUD-NATIVE TỪ DỰ ÁN THỰC TẾ
 
-Trong quá trình thực tập, mình có cơ hội tham gia vào một dự án Backend thực tế, trong đó Amazon S3 được sử dụng để lưu trữ tài liệu và hình ảnh. Mặc dù Amazon S3 là dịch vụ AWS chính được sử dụng trong dự án, quá trình triển khai đã giúp mình hiểu rõ hơn về cách xây dựng ứng dụng theo mô hình Cloud-Native cũng như mở rộng kiến thức về hệ sinh thái AWS.
+13 tuần thực tập và cày cuốc với dự án Snaptics đã thực sự làm thay đổi hoàn toàn tư duy lập trình của mình. "Works on my machine" (Chạy ngon trên máy tôi) trở nên hoàn toàn vô nghĩa khi bước lên môi trường Cloud! 
 
-Bên cạnh việc tìm hiểu cách tích hợp dịch vụ lưu trữ đám mây vào hệ thống Backend, mình còn học được nhiều kiến thức về thiết kế hệ thống, bảo mật, tối ưu chi phí và các thực hành tốt trên nền tảng Cloud thường được áp dụng trong các dự án thực tế.
+Đặc biệt, việc phải tự tay tích hợp Amazon S3 vào Backend .NET để làm luồng Quét Hóa Đơn đã mang đến cho mình những bài học "trầy da tróc vẩy" nhưng cực kỳ đáng giá về tư duy Cloud-Native.
 
-### Những kiến thức nổi bật
+### Những "Aha Moments" Đáng Nhớ Nhất
 
-Trong quá trình tham gia dự án, mình đã học được nhiều khái niệm quan trọng về Cloud-Native.
+- **Tách biệt Compute và Storage (Decoupling)**
+  - Hồi trước, cứ làm form upload ảnh là mình lưu thẳng file vào thư mục `/wwwroot` của server. Lên Cloud rồi mới thấy làm thế là tự sát! Server phình to, back-up khó khăn.
+  - Mình học được cách đẩy toàn bộ file hình hóa đơn lên Amazon S3, và Backend Database chỉ lưu lại một đoạn URL mỏng nhẹ. Logic xử lý riêng, kho lưu trữ riêng, nhẹ gánh cực kỳ!
 
-- **Tách biệt Compute và Storage**
-  - Hiểu cách Backend chỉ tập trung xử lý nghiệp vụ, trong khi các tệp được lưu trữ trên Amazon S3.
-  - Hiểu lý do chỉ lưu URL của đối tượng trong cơ sở dữ liệu thay vì lưu trực tiếp dữ liệu nhị phân.
-  - Nhận thấy cách thiết kế này giúp hệ thống dễ mở rộng và giảm tải cho máy chủ ứng dụng.
+- **Vật lộn với AWS SDK for .NET**
+  - Cảm giác lần đầu tiên viết code C# gọi API đẩy thành công một file thẳng lên bucket S3 thật sự rất tuyệt. Mình bắt đầu quen với việc tương tác hạ tầng bằng code thay vì bấm giao diện Management Console.
 
-- **Làm việc với AWS SDK for Amazon S3**
-  - Tìm hiểu cách tích hợp thư viện AWSSDK.S3 vào ứng dụng .NET.
-  - Tìm hiểu các thao tác như tải lên, tải xuống, quản lý metadata và xóa đối tượng bằng C#.
-  - Hiểu rõ hơn cách tương tác với các dịch vụ AWS thông qua lập trình thay vì chỉ thao tác trên AWS Management Console.
+- **Sự lợi hại của Pre-signed URL**
+  - Đây chính là "Aha Moment" lớn nhất của mình! Ban đầu mình rất đau đầu: *"Làm sao để cái Bucket S3 của mình khóa Private hoàn toàn (không ai chọc vào được), nhưng thằng Frontend Angular của người dùng vẫn load được ảnh hóa đơn để xem?"*
+  - Câu trả lời là **Pre-signed URL**. Code Backend của mình dùng cặp Access/Secret key âm thầm tạo ra một cái link tạm thời sống đúng 15 phút rồi quăng cho Frontend. Vừa bảo mật 100%, vừa tiện lợi, khỏi phải tải ảnh về server rồi mới stream qua cho Frontend!
 
-- **Tối ưu chi phí**
-  - Hiểu rằng các đối tượng không còn sử dụng vẫn có thể làm tăng chi phí lưu trữ trên Cloud.
-  - Nhận thức được tầm quan trọng của việc dọn dẹp các tệp tạm thời.
-  - Tìm hiểu Amazon S3 Lifecycle Policies để tự động xóa các đối tượng không còn cần thiết.
+- **Thấm đòn với IAM và "Least Privilege"**
+  - Ban đầu, tiện tay mình cấp luôn quyền `S3FullAccess` cho con IAM User dùng trong code. Kết quả bị review bắt đập đi làm lại.
+  - Mình buộc phải ngồi cấu hình JSON Policy kẹp chặt lại: Chỉ được phép quyền `PutObject` và `GetObject` vào đúng duy nhất cái Bucket `snaptics-invoices-xyz`. Hơi cực lúc đầu, nhưng ngủ rất ngon vì biết hệ thống cực kỳ an toàn.
 
-- **IAM và nguyên tắc phân quyền tối thiểu**
-  - Hiểu lý do không nên sử dụng AWS Root Account cho ứng dụng.
-  - Tìm hiểu cách IAM Users và IAM Policies được sử dụng để quản lý quyền truy cập.
-  - Nhận thức được tầm quan trọng của nguyên tắc Least Privilege trong việc tăng cường bảo mật.
+- **Vấp ngã với CORS (Cross-Origin Resource Sharing)**
+  - Code xong xuôi, Frontend gọi URL ảnh bị trình duyệt vả ngay lỗi CORS đỏ chót. Mình học được bài học xương máu rằng bảo mật Cloud không chỉ nằm ở Backend, mà còn phải thiết lập CORS Policy ngay trên S3 Bucket để trình duyệt nó "nhận anh em" với tên miền của Frontend.
 
-- **Bảo vệ thông tin xác thực AWS**
-  - Hiểu lý do Access Key và Secret Key cần được lưu trữ an toàn bằng biến môi trường hoặc các tệp cấu hình không được đưa lên hệ thống quản lý mã nguồn.
-  - Nhận thức được rủi ro khi hardcode thông tin xác thực trong mã nguồn.
+- **Bài toán Tối ưu chi phí**
+  - Dữ liệu hóa đơn tạo ra rác rất nhiều (ảnh mờ, ảnh lỗi upload). Nếu để im, S3 sẽ tính tiền lưu trữ vĩnh viễn. Mình phải thiết lập ngay S3 Lifecycle Policies để tự động "đổ rác" xóa các ảnh tạm sau 7 ngày.
 
-- **Chia sẻ tệp an toàn bằng Pre-signed URL**
-  - Tìm hiểu cách Amazon S3 Pre-signed URL cho phép truy cập tạm thời vào các đối tượng riêng tư.
-  - Hiểu cách duy trì S3 Bucket ở chế độ riêng tư nhưng vẫn cho phép người dùng được cấp quyền truy cập.
+### Tổng kết hành trình
 
-- **Hiểu về bảo mật trình duyệt**
-  - Tìm hiểu về Cross-Origin Resource Sharing (CORS) khi ứng dụng Frontend giao tiếp với Amazon S3.
-  - Hiểu cách cấu hình S3 CORS để cho phép các yêu cầu hợp lệ đồng thời vẫn đảm bảo tính bảo mật.
-  - Nhận thấy rằng bảo mật Cloud không chỉ nằm ở Backend mà còn liên quan đến các chính sách bảo mật của trình duyệt.
+Kỳ thực tập này không chỉ dạy mình cách dùng vài dịch vụ AWS. Nó đập đi xây lại tư duy của mình. 
 
-### Những điều mình học được
+Mình nhận ra Cloud Computing không phải là thuê một cái máy ảo rồi bê y nguyên code cũ lên chạy. Cloud-Native là nghệ thuật thiết kế: bảo mật từ trong trứng (IAM), tối ưu chi phí ngay từ đầu (Lifecycle), tách rời các chức năng (S3 + EC2 + SQS), và chia sẻ an toàn (Pre-signed URL).
 
-Kỳ thực tập giúp mình nhận ra rằng Cloud Computing không chỉ đơn thuần là sử dụng các dịch vụ AWS mà còn là quá trình thiết kế hệ thống sao cho bảo mật, dễ mở rộng, tối ưu chi phí và có khả năng vận hành ổn định.
-
-Thông qua việc tham gia dự án thực tế, mình hiểu rõ hơn cách các dịch vụ AWS phối hợp với nhau trong một ứng dụng Cloud-Native. Những kiến thức và trải nghiệm này đã giúp mình xây dựng nền tảng vững chắc hơn về phát triển Backend trên Cloud, đồng thời tạo tiền đề cho định hướng trở thành Backend Developer và Cloud Engineer trong tương lai.
+Những trải nghiệm thực chiến này là hành trang vô giá, tạo đà rất lớn để mình tiếp tục theo đuổi con đường trở thành một Fullstack / Cloud Engineer chuyên nghiệp!
 
 ### Hình minh họa
 
@@ -74,11 +62,3 @@ Thông qua việc tham gia dự án thực tế, mình hiểu rõ hơn cách cá
   </div>
 
 </div>
-
-### Tài liệu tham khảo
-
-Những kiến thức được tổng hợp trong bài viết này được học hỏi từ:
-
-- Quá trình tham gia dự án thực tế trong kỳ thực tập.
-- AWS Official Documentation  
-  https://docs.aws.amazon.com/
