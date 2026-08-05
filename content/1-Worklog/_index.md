@@ -8,7 +8,7 @@ pre: " <b> 1. </b> "
 
 This section documents the complete weekly worklog throughout the **13-week** FCJ Workforce internship program (from **May 11, 2026 to August 07, 2026**).
 
-Role: **Frontend Developer – UI/UX Web Design** for the **Snaptics** project (AI-Powered Personal & Family Expense Management Platform on AWS).
+Role: **Fullstack Developer** for the **Snaptics** project (AI-Powered Personal & Family Expense Management Platform on AWS). The worklog details the journey of learning AWS cloud infrastructure, database design, backend API development, frontend UI design, AI service integration, and application deployment on AWS Cloud.
 
 Weekly Breakdown:
 
@@ -20,20 +20,20 @@ Weekly Breakdown:
 
 **Week 4:** [Snaptics Project Discussion, Sitemap, Wireframe & AWS Services](1.4-week4/) *(01/06/2026 – 05/06/2026)*
 
-**Week 5:** [Frontend SPA Initialization, Design System Tokens, Layout & Auth UI](1.5-week5/) *(08/06/2026 – 12/06/2026)*
+**Week 5:** [Database Design, Data Flows & Core API Construction](1.5-week5/) *(08/06/2026 – 12/06/2026)*
 
-**Week 6:** [Overview Dashboard UI, Transactions & Expense Categories](1.6-week6/) *(15/06/2026 – 19/06/2026)*
+**Week 6:** [Transaction APIs, Route Guards & Frontend-Backend Integration](1.6-week6/) *(15/06/2026 – 19/06/2026)*
 
-**Week 7:** [Receipt Scanning UI & OCR Result Verification Form](1.7-week7/) *(22/06/2026 – 26/06/2026)*
+**Week 7:** [Amazon RDS Deployment, DB Migration & S3 Image Storage](1.7-week7/) *(22/06/2026 – 26/06/2026)*
 
-**Week 8:** [Personal & Family Wallet UI and Budget Management UI](1.8-week8/) *(29/06/2026 – 03/07/2026)*
+**Week 8:** [SQS Provisioning, Parameter Store & Azure OCR Integration](1.8-week8/) *(29/06/2026 – 03/07/2026)*
 
-**Week 9:** [Spending Analysis Reports & AI Insight Chatbot UI](1.9-week9/) *(06/07/2026 – 10/07/2026)*
+**Week 9:** [Gemini AI Insight, Spending Analysis & Ngx-charts Reports](1.9-week9/) *(06/07/2026 – 10/07/2026)*
 
-**Week 10:** [Notification Center UI, Support Ticket & Account Settings UI](1.10-week10/) *(13/07/2026 – 17/07/2026)*
+**Week 10:** [Notification Center, Support Ticket & VPC Endpoints](1.10-week10/) *(13/07/2026 – 17/07/2026)*
 
-**Week 11:** [Admin Panel UI & Hangfire Job Management UI](1.11-week11/) *(20/07/2026 – 24/07/2026)*
+**Week 11:** [Admin Panel, User Management & Hangfire Jobs](1.11-week11/) *(20/07/2026 – 24/07/2026)*
 
-**Week 12:** [Backend API Integration, Removing Mock Data & Mobile Fixes](1.12-week12/) *(27/07/2026 – 31/07/2026)*
+**Week 12:** [Real API Integration, Swagger Configuration & UI Fixes](1.12-week12/) *(27/07/2026 – 31/07/2026)*
 
-**Week 13:** [End-to-End Testing, Production Build, AWS Amplify & Project Submission](1.13-week13/) *(03/08/2026 – 07/08/2026)*
+**Week 13:** [E2E Testing, CloudFront/ECS Fargate Deployment & Project Submission](1.13-week13/) *(03/08/2026 – 07/08/2026)*
