@@ -8,30 +8,29 @@ pre: " <b> 1.6. </b> "
 
 ### Mục tiêu tuần 6
 
-* Thiết kế giao diện Dashboard tổng quan hiển thị số dư, tổng thu, tổng chi và ngân sách khả dụng.
-* Xây dựng bộ Angular Stat Card Components thống kê tài chính trực quan với biểu tượng và chỉ số biến động.
-* Thiết kế màn hình Danh sách giao dịch (Transaction List UI) hỗ trợ dạng bảng trên Desktop và dạng Card trên Mobile.
-* Xây dựng Form Modal / Dialog thêm mới và chỉnh sửa giao dịch với trải nghiệm người dùng tối ưu.
-* Phát triển bộ lọc giao dịch nâng cao theo khoảng thời gian, loại giao dịch và danh mục.
-* Thiết kế giao diện Quản lý danh mục chi tiêu (Expense Category Management UI).
-* Kiểm tra hiển thị dữ liệu giả lập (Mock Data Service) ở giai đoạn đầu và tinh chỉnh giao diện Responsive.
+* Tiếp tục hỗ trợ team Backend xây dựng và hoàn thiện các API của hệ thống Snaptics.
+* Hỗ trợ Frontend kết nối và gọi API, xử lý dữ liệu trả về và các trạng thái lỗi.
+* Phối hợp kiểm tra tính khớp nối giữa API Backend và các màn hình Frontend.
+* Thiết lập bảo mật phía Frontend: bảo vệ route, kiểm tra trạng thái đăng nhập và phân quyền người dùng.
+* Xử lý an toàn token, validation dữ liệu đầu vào và các trường hợp phiên đăng nhập hết hạn.
+* Kiểm thử các luồng nghiệp vụ từ Frontend qua Backend và ghi nhận lỗi tích hợp.
+* Cập nhật tài liệu API và thống nhất cách trao đổi dữ liệu giữa hai nhóm.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Thiết kế cấu trúc bố cục trang Dashboard tổng quan (Overview Dashboard).<br>- Xây dựng bộ Angular Stat Cards tài chính: Số dư hiện tại, Tổng thu nhập, Tổng chi tiêu và Số dư ngân sách khả dụng.<br>- Tích hợp các icon minh họa trực quan và phối màu gradient tạo ấn tượng cao cấp. | 15/06/2026 | 15/06/2026 | [Dashboard Design Best Practices](https://uxdesign.cc/) |
-| 3 | - Thiết kế giao diện màn hình Danh sách giao dịch (Transaction List Page).<br>- Xây dựng component Bảng danh sách trên Desktop với các cột: Ngày, Tên giao dịch, Danh mục, Ví, Số tiền (âm/dương màu sắc phân biệt) và Thao tác.<br>- Thiết kế dạng Card view thay thế cho bảng khi hiển thị trên giao diện Mobile. | 16/06/2026 | 16/06/2026 | [Responsive Data Tables](https://css-tricks.com/responsive-data-tables/) |
-| 4 | - Phát triển Form Modal / Dialog thêm mới và chỉnh sửa giao dịch (Transaction Form Dialog).<br>- Xây dựng các ô nhập liệu bằng Angular Reactive Forms: Số tiền, Ngày giao dịch, Danh mục, Ví áp dụng và Ghi chú.<br>- Thiết lập dữ liệu Mock Data Service trong Angular để kiểm thử luồng hiển thị và thao tác thêm/sửa trên UI. | 17/06/2026 | 17/06/2026 | [Angular Material Dialog](https://material.angular.io/components/dialog/overview) |
-| 5 | - Xây dựng Thanh công cụ bộ lọc (Filter Bar Component): tìm kiếm theo từ khóa, lọc theo khoảng ngày, loại thu/chi và danh mục chi tiêu.<br>- Thiết kế trang Quản lý danh mục chi tiêu (Expense Category UI) dạng Grid Card cho phép xem danh mục mặc định và tạo danh mục tùy chỉnh. | 18/06/2026 | 18/06/2026 | [UI Filtering Patterns](https://uxplanet.org/) |
-| 6 | - Kiểm tra giao diện Dashboard, Transaction List và Category Mgmt trên điện thoại di động.<br>- Khắc phục các lỗi tràn chữ, vỡ khung bảng giao dịch trên màn hình nhỏ.<br>- Tối ưu hóa khoảng cách padding/margin và lưu trữ kết quả thực hiện tuần 6. | 19/06/2026 | 19/06/2026 | [Mobile UI Checklist](https://material.io/design) |
+| 2 | - Hỗ trợ team Backend hoàn thiện các API cho Dashboard và giao dịch.<br>- Kiểm tra request/response, mã trạng thái và dữ liệu trả về.<br>- Trao đổi với Frontend để thống nhất cách gọi API và hiển thị dữ liệu. | 15/06/2026 | 15/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 3 | - Hỗ trợ Frontend kết nối API danh sách giao dịch, thêm, sửa và xóa giao dịch.<br>- Kiểm tra các trường hợp dữ liệu rỗng, lỗi mạng và lỗi validation.<br>- Phối hợp Backend điều chỉnh API khi phát hiện vấn đề tích hợp. | 16/06/2026 | 16/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 4 | - Cài đặt bảo vệ route phía Frontend dựa trên trạng thái đăng nhập và quyền người dùng.<br>- Hỗ trợ xử lý token, phiên đăng nhập hết hạn và chuyển hướng an toàn.<br>- Kiểm tra validation dữ liệu đầu vào trước khi gửi request lên Backend. | 17/06/2026 | 17/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 5 | - Kiểm thử các luồng gọi API từ Frontend đến Backend trong các chức năng chính.<br>- Rà soát quyền truy cập, dữ liệu nhạy cảm và cách xử lý lỗi phía Frontend.<br>- Ghi nhận, phân loại và phối hợp sửa các lỗi kết nối giữa hai nhóm. | 18/06/2026 | 18/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 6 | - Kiểm tra toàn bộ luồng nghiệp vụ sau khi tích hợp Backend và Frontend.<br>- Cập nhật tài liệu API, hướng dẫn bảo mật phía Frontend và kết quả kiểm thử.<br>- Tổng kết các phần đã hoàn thành và kế hoạch tiếp tục phát triển hệ thống. | 19/06/2026 | 19/06/2026 | [Snaptics Proposal](2-Proposal/) |
 
 ### Kết quả đạt được tuần 6
 
-* Hoàn thành thiết kế giao diện Dashboard tổng quan sắc nét với bộ Angular Stat Cards thống kê tài chính trực quan.
-* Xây dựng thành công màn hình Danh sách giao dịch với khả năng tự động chuyển đổi giữa Bảng Desktop và Card Mobile.
-* Hoàn thiện Form Dialog thêm mới và chỉnh sửa giao dịch với giao diện thân thiện, dễ tương tác.
-* Phát triển bộ lọc giao dịch đa tiêu chí hỗ trợ tìm kiếm và phân loại dữ liệu linh hoạt trong Angular.
-* Thiết kế thành công trang Quản lý danh mục chi tiêu phân biệt rõ ràng bằng màu sắc và icon.
-* Kiểm thử hiển thị thành công với Angular Mock Data Service cho toàn bộ các màn hình giao dịch.
-* Đảm bảo giao diện Dashboard và Transaction đáp ứng chuẩn responsive 100% trên cả Desktop và Mobile.
+* Hỗ trợ team Backend hoàn thiện các API và xử lý các vấn đề trong quá trình xây dựng hệ thống.
+* Hỗ trợ Frontend gọi API, xử lý dữ liệu trả về và kết nối các luồng nghiệp vụ với Backend.
+* Thiết lập bảo vệ route, kiểm tra đăng nhập, phân quyền và xử lý phiên hết hạn phía Frontend.
+* Áp dụng validation dữ liệu đầu vào và cách xử lý lỗi an toàn trước khi gửi request.
+* Kiểm thử các luồng tích hợp, phát hiện và phối hợp xử lý lỗi giữa Backend và Frontend.
+* Hoàn thiện tài liệu API, tài liệu bảo mật Frontend và tổng kết kết quả tuần 6.

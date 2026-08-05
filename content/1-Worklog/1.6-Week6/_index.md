@@ -8,28 +8,28 @@ pre: " <b> 1.6. </b> "
 
 ### Week 6 Objectives
 
-* Understand Infrastructure as Code (IaC) principles and the benefits of AWS CloudFormation for automated provisioning.
-* Master CloudFormation template syntax (YAML/JSON) including Parameters, Resources, Outputs, and Mappings sections.
-* Master resource automation scripting using AWS CLI combined with JMESPath `--query` filters and JSON formatting.
-* Explore CloudFormation Stack Lifecycle management, Stack Updates, Rollback behaviors, and Drift Detection.
-* Practice deploying a complete 2-tier infrastructure (VPC, Subnets, Security Groups, EC2, RDS) using a single CloudFormation template via AWS CLI.
+* Continue supporting the Backend team in building and completing Snaptics APIs.
+* Help the Frontend team connect to APIs, handle responses, and process error states.
+* Coordinate integration between Backend APIs and Frontend screens.
+* Implement Frontend security measures including route protection, authentication checks, and authorization.
+* Handle tokens safely, validate input data, and manage expired sessions.
+* Test end-to-end flows and document API integration and Frontend security practices.
 
 ### Tasks Completed During the Week
 
 | Day | Tasks | Start Date | Completion Date | Learning Resources |
 | --- | --- | --- | --- | --- |
-| Monday | - Explore Infrastructure as Code (IaC) fundamentals and AWS CloudFormation overview.<br>- Compare manual management via Console vs automated provisioning with CloudFormation templates.<br>- Study core YAML template sections: AWSTemplateFormatVersion, Description, Parameters, Resources, and Outputs. | 22/06/2026 | 22/06/2026 | [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)<br>[Template Anatomy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html) |
-| Tuesday | - Practice writing a CloudFormation YAML template provisioning basic VPC networking infrastructure.<br>- Declare resources: AWS::EC2::VPC, AWS::EC2::Subnet, AWS::EC2::InternetGateway, AWS::EC2::RouteTable, and SubnetRouteTableAssociation.<br>- Utilize Intrinsic Functions (`!Ref`, `!Sub`, `!GetAtt`) to resolve resource dependencies dynamically. | 23/06/2026 | 23/06/2026 | [CloudFormation Resource Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)<br>[Intrinsic Functions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html) |
-| Wednesday | - Enhance automation scripting skills using AWS CLI in Linux Bash shell environment.<br>- Utilize `--query` options with JMESPath syntax to extract dynamic resource properties (VPC ID, Instance IP).<br>- Write shell scripts to inspect AWS resource states and output formatted JSON reports. | 24/06/2026 | 24/06/2026 | [AWS CLI Command Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html)<br>[Filtering AWS CLI Output](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html) |
-| Thursday | - Expand CloudFormation template to include Security Groups, EC2 Instance, and RDS DBInstance resources.<br>- Study CloudFormation Stack Events and automatic Rollback mechanisms on resource creation failures.<br>- Learn how to use Drift Detection to identify manual configuration drift against the declared template code. | 25/06/2026 | 25/06/2026 | [Stack Management](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)<br>[Detecting Drift](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html) |
-| Friday | - **Practice & Automation:**<br>- Execute `aws cloudformation create-stack` to launch the complete 2-tier stack via CLI.<br>- Track stack creation progress using `aws cloudformation describe-stack-events`.<br>- Verify successful stack creation and retrieve application endpoint URL from Outputs.<br>- Save YAML code to repository and document execution evidence. | 26/06/2026 | 26/06/2026 | [AWS CLI CloudFormation](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/index.html)<br>[Deploying Stacks](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stacks.html) |
+| Monday | - Support the Backend team in completing APIs for the Dashboard and transaction features.<br>- Check requests, responses, status codes, and returned data.<br>- Coordinate with Frontend to align API calls and data display. | 15/06/2026 | 15/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| Tuesday | - Help Frontend connect APIs for listing, creating, editing, and deleting transactions.<br>- Test empty data, network errors, and validation errors.<br>- Coordinate Backend adjustments when integration issues are found. | 16/06/2026 | 16/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| Wednesday | - Implement Frontend route protection based on authentication status and user roles.<br>- Handle tokens, expired sessions, and safe redirects.<br>- Validate input data before sending requests to Backend. | 17/06/2026 | 17/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| Thursday | - Test API calls from Frontend to Backend across the main features.<br>- Review access permissions, sensitive data, and safe Frontend error handling.<br>- Record, classify, and coordinate fixes for integration issues. | 18/06/2026 | 18/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| Friday | - Test all business flows after Backend and Frontend integration.<br>- Update API documentation, Frontend security guidance, and test results.<br>- Summarize completed work and the next system development tasks. | 19/06/2026 | 19/06/2026 | [Snaptics Proposal](2-Proposal/) |
 
 ### Week 6 Achievements
 
-* Gained a solid grasp of Infrastructure as Code (IaC) principles, appreciating reusability, consistency, and error reduction.
-* Mastered YAML syntax for CloudFormation templates and effective use of Intrinsic Functions (`!Ref`, `!Sub`, `!GetAtt`).
-* Authored a production-ready CloudFormation template defining VPC, Subnets, Route Tables, Internet Gateway, Security Groups, EC2, and RDS.
-* Mastered CLI data extraction using AWS CLI with JMESPath queries (`--query`) for operational automation.
-* Deepened understanding of Stack Lifecycle management, automated rollbacks, and configuration Drift Detection.
-* Successfully launched a full 2-tier cloud environment via a single `aws cloudformation create-stack` command.
-* Committed `template.yaml` to the workspace repository and compiled screenshot logs verifying stack execution.
+* Supported the Backend team in completing APIs and resolving system development issues.
+* Helped Frontend call APIs, process responses, and connect business flows to Backend.
+* Implemented Frontend route protection, authentication checks, authorization, and expired-session handling.
+* Applied input validation and safer error handling before sending requests.
+* Tested integration flows, identified issues, and coordinated fixes between Backend and Frontend.
+* Completed API documentation, Frontend security guidance, and the Week 6 work summary.

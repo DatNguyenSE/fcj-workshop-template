@@ -60,6 +60,6 @@ Bài học chính là việc trở nên sẵn sàng đi làm cần thời gian. 
 ### Một số hình ảnh tại sự kiện
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.2-Event2/event2.jpg" alt="Tham gia sự kiện" style="width: 320px; height: auto; border-radius: 8px;"><p>Tham gia sự kiện</p></div>
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.2-Event2/event2.1.jpg" alt="Buổi chia sẻ kỹ thuật" style="width: 320px; height: auto; border-radius: 8px;"><p>Khoảnh khắc đáng nhớ</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/1785618100504_274883382546179364_1493962863977158991_886e6681d150416d5b5f890efc2b758d.jpg" alt="Tham gia sự kiện" style="width: 320px; height: auto; border-radius: 8px;"><p>Tham gia sự kiện</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/1785618100478_274883382546179364_1493962863977158991_3195e74d8ad1b1ae32db9f3a509aa3c0.jpg" alt="Buổi chia sẻ kỹ thuật" style="width: 320px; height: auto; border-radius: 8px;"><p>Khoảnh khắc đáng nhớ</p></div>
 </div>

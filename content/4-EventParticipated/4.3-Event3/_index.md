@@ -62,7 +62,6 @@ AI integration should start from a clear use case and a manageable data flow. I 
 ### Some event photos
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.3-Event3/event3.jpg" alt="AI From Scratch Seminar" style="width: 320px; height: auto; border-radius: 8px;"><p>Event Participation</p></div>
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.3-Event3/event3.1.jpg" alt="Technical Sharing Session" style="width: 320px; height: auto; border-radius: 8px;"><p>Technical Sharing</p></div>
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.3-Event3/event3.2.jpg" alt="Interactive Activity" style="width: 320px; height: auto; border-radius: 8px;"><p>Interactive Activity</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/Event3_2.jpg" alt="AI From Scratch Seminar" style="width: 320px; height: auto; border-radius: 8px;"><p>Event Participation</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/Even3_1.jpg" alt="Technical Sharing Session" style="width: 320px; height: auto; border-radius: 8px;"><p>Technical Sharing</p></div>
 </div>

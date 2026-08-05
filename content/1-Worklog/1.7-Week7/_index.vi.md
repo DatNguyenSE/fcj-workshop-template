@@ -8,32 +8,30 @@ pre: " <b> 1.7. </b> "
 
 ### Mục tiêu tuần 7
 
-* Thiết kế lại giao diện trang Quét hóa đơn (Receipt Scan UI) hiện đại, tiện lợi.
-* Xây dựng khu vực tải ảnh hóa đơn (Upload Drag & Drop Zone, chọn file, chụp ảnh từ Camera).
-* Bổ sung nút chuyển nhanh sang chế độ Nhập giao dịch thủ công nếu người dùng không muốn quét ảnh.
-* Thiết kế vùng Xem trước ảnh hóa đơn (Image Preview Zone) với tính năng phóng to, thu nhỏ và xoay ảnh.
-* Xây dựng hiệu ứng visual trạng thái Đang xử lý OCR (Scanning radar overlay, Progress animation, Processing indicator).
-* Thiết kế Form hiển thị kết quả trích xuất dữ liệu hóa đơn cho phép chỉnh sửa trước khi lưu.
-* Thực hành bài lab **Workshop 5.4**: Tạo Interface VPC Endpoint (AWS PrivateLink) cho Amazon S3 hỗ trợ mô phỏng truy cập an toàn từ trung tâm dữ liệu On-premises.
-* Xử lý các thông báo lỗi giao diện và cải thiện trải nghiệm trên điện thoại.
+* Chuyển database của hệ thống từ môi trường local sang Amazon RDS.
+* Tạo DB Subnet Group và triển khai RDS trong các Private Subnet thuộc nhiều Availability Zone.
+* Cấu hình Security Group cho RDS, chỉ cho phép Backend truy cập database và tắt Public Access.
+* Thực hiện migration schema, dữ liệu và cập nhật connection string của Backend.
+* Chuyển việc lưu trữ ảnh từ local sang Amazon S3 và cấu hình quyền truy cập phù hợp.
+* Kết nối Backend với RDS và S3, kiểm thử các chức năng đọc/ghi dữ liệu và upload ảnh.
+* Ghi chép kiến trúc, cấu hình và kết quả kiểm thử để làm cơ sở triển khai các phần AWS tiếp theo.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Thiết kế cấu trúc bố cục trang Quét hóa đơn (Scan Receipt Page).<br>- Xây dựng Upload Drag & Drop Zone hỗ trợ kéo thả ảnh hóa đơn, chọn file từ máy tính hoặc mở Camera chụp trực tiếp trên thiết bị di động.<br>- Bổ sung nút bấm "Nhập thủ công" chuyển hướng linh hoạt. | 22/06/2026 | 22/06/2026 | [File Upload UX](https://uxdesign.cc/) |
-| 3 | - Phát triển component Vùng xem trước ảnh hóa đơn (Image Preview Zone).<br>- Tích hợp các bộ công cụ điều khiển ảnh: Zoom In (+), Zoom Out (-), Rotate Left/Right và Reset View.<br>- Giúp người dùng dễ dàng soi chi tiết hình ảnh hóa đơn trước khi tiến hành quét. | 23/06/2026 | 23/06/2026 | [Image Viewer Components](https://react-image-crop.com/) |
-| 4 | - Thiết kế giao diện trạng thái Đang xử lý OCR (OCR Processing Overlay).<br>- Tạo hiệu ứng Scanning Radar Animation phủ trên ảnh hóa đơn kèm Progress Bar và thông báo tiến trình sinh động.<br>- Chuẩn bị state mock giả lập phản hồi kết quả OCR từ hệ thống. | 24/06/2026 | 24/06/2026 | [CSS Scanning Animations](https://codepen.io/) |
-| 5 | - **Thực hành Workshop 5 (Phần 4 - Truy cập S3 từ On-premises):**<br>&emsp; + Nghiên cứu mô hình kết nối S3 riêng tư qua AWS PrivateLink từ môi trường trung tâm dữ liệu On-premises ([Workshop S3 On-prem](5-Workshop/5.4-S3-onprem/)).<br>&emsp; + Tạo Interface VPC Endpoint cho Amazon S3, gán Subnets và Security Group.<br>&emsp; + Cấu hình Private DNS resolution và kiểm thử truy vấn hình ảnh hóa đơn lưu trên S3 qua IP nội bộ của Interface Endpoint. | 25/06/2026 | 25/06/2026 | [Workshop S3 On-prem](5-Workshop/5.4-S3-onprem/)<br>[AWS PrivateLink Interface Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html) |
-| 6 | - Thiết kế Form Kết quả trích xuất hóa đơn (Extracted OCR Results Form) gồm Tên cửa hàng, Ngày, Tổng tiền, Danh mục gợi ý và Bảng danh sách sản phẩm.<br>- Thiết kế các thông báo lỗi và trạng thái đặc biệt (File quá 10MB, lỗi định dạng).<br>- Tối ưu hóa bố cục trang Scan trên điện thoại di động; Rà soát tuần 7. | 26/06/2026 | 26/06/2026 | [OCR Form Verification UX](https://material.io/) |
+| 2 | - Rà soát kiến trúc VPC và xác định các Private Subnet dành cho database.<br>- Tạo DB Subnet Group trên nhiều Availability Zone.<br>- Chuẩn bị Security Group và quy tắc kết nối giữa Backend với RDS. | 22/06/2026 | 22/06/2026 | [Amazon RDS in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) |
+| 3 | - Tạo Amazon RDS PostgreSQL với Public Access được tắt.<br>- Cấu hình Security Group chỉ cho phép Backend Security Group truy cập cổng database.<br>- Kiểm tra kết nối từ Backend đến RDS trong Private Subnet. | 23/06/2026 | 23/06/2026 | [RDS Security](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html) |
+| 4 | - Thực hiện migration schema và dữ liệu từ database local sang RDS.<br>- Cập nhật biến môi trường và connection string của Backend.<br>- Kiểm thử các thao tác tạo, đọc, cập nhật và xóa dữ liệu trên RDS. | 24/06/2026 | 24/06/2026 | [Migrating Data to Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.html) |
+| 5 | - Tạo S3 Bucket để lưu trữ ảnh thay cho local storage.<br>- Cấu hình IAM permission cần thiết cho Backend upload và truy xuất ảnh.<br>- Cập nhật Backend và kiểm thử luồng upload, lưu đường dẫn và lấy ảnh từ S3. | 25/06/2026 | 25/06/2026 | [Amazon S3 User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
+| 6 | - Kiểm thử toàn bộ luồng Backend kết nối RDS và S3.<br>- Rà soát quyền truy cập, dữ liệu và các lỗi migration.<br>- Ghi chép kiến trúc, cấu hình đã thực hiện và tổng kết tuần 7. | 26/06/2026 | 26/06/2026 | [Amazon RDS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)<br>[Amazon S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
 
 ### Kết quả đạt được tuần 7
 
-* Hoàn thành thiết kế màn hình Quét hóa đơn ấn tượng với trải nghiệm kéo thả và chụp ảnh từ camera trực quan.
-* Tích hợp tùy chọn chuyển đổi nhanh sang Nhập thủ công thuận tiện.
-* Xây dựng Vùng xem trước ảnh hóa đơn đầy đủ tính năng Zoom và Rotate linh hoạt.
-* Tạo hiệu ứng visual Đang xử lý OCR vô cùng cuốn hút, mang lại trải nghiệm chuyên nghiệp cho người dùng.
-* Thực hành thành công bài lab Workshop 5.4: Tạo và kiểm thử thành công Interface VPC Endpoint cho Amazon S3, hiểu rõ giải pháp truy cập lưu trữ S3 riêng tư cho môi trường Hybrid Cloud.
-* Hoàn thành Form hiển thị kết quả trích xuất hóa đơn trơn tru, cho phép người dùng tùy chỉnh dữ liệu trước khi lưu.
-* Xử lý đầy đủ các thông báo lỗi giao diện và trạng thái giới hạn file ảnh.
-* Đảm bảo các thao tác chụp ảnh và kiểm tra kết quả hóa đơn mượt mà trên điện thoại di động.
+* Triển khai Amazon RDS PostgreSQL trong Private Subnets với Public Access được tắt.
+* Tạo DB Subnet Group và cấu hình Security Group chỉ cho phép Backend truy cập RDS.
+* Migration thành công schema và dữ liệu từ database local sang RDS.
+* Cập nhật Backend sử dụng RDS và kiểm thử các thao tác dữ liệu trên database mới.
+* Chuyển lưu trữ ảnh từ local sang S3 và cấu hình quyền cho Backend upload, truy xuất ảnh.
+* Kiểm thử thành công kết nối giữa Backend, RDS và S3.
+* Hoàn thiện tài liệu cấu hình AWS nền tảng để tiếp tục triển khai các thành phần khác ở những tuần sau.

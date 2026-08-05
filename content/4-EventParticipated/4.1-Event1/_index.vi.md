@@ -66,6 +66,6 @@ Mình nhận ra làm Cloud không chỉ là viết code mà còn liên quan đ�
 ### Một số hình ảnh tại sự kiện
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.1-Event1/event1.jpg" alt="Tham gia sự kiện" style="width: 320px; height: auto; border-radius: 8px;"><p>Tham gia sự kiện</p></div>
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.1-Event1/event1.2.jpg" alt="Buổi chia sẻ kỹ thuật" style="width: 320px; height: auto; border-radius: 8px;"><p>Khoảnh khắc đáng nhớ</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.1-Event1/1785618007151_274883382546179364_1493962863977158991_b23d7d79a32749782c0b0761955dd7e8.jpg" alt="Tham gia sự kiện" style="width: 320px; height: auto; border-radius: 8px;"><p>Tham gia sự kiện</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.1-Event1/1785618004319_274883382546179364_1493962863977158991_744db7ffd501331cfc057e4ce8028fc0.jpg" alt="Buổi chia sẻ kỹ thuật" style="width: 320px; height: auto; border-radius: 8px;"><p>Khoảnh khắc đáng nhớ</p></div>
 </div>

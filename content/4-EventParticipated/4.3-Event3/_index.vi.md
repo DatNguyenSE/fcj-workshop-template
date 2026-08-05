@@ -62,7 +62,6 @@ Trước khi tích hợp AI cần xác định rõ bài toán và luồng dữ l
 ### Một số hình ảnh tại sự kiện
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.3-Event3/event3.jpg" alt="Seminar AI From Scratch" style="width: 320px; height: auto; border-radius: 8px;"><p>Tham gia sự kiện</p></div>
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.3-Event3/event3.1.jpg" alt="Buổi chia sẻ kỹ thuật" style="width: 320px; height: auto; border-radius: 8px;"><p>Chia sẻ kỹ thuật</p></div>
-  <div style="text-align: center;"><img src="/images/4-EventParticipated/4.3-Event3/event3.2.jpg" alt="Hoạt động tương tác" style="width: 320px; height: auto; border-radius: 8px;"><p>Hoạt động tương tác</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/Event3_2.jpg" alt="Seminar AI From Scratch" style="width: 320px; height: auto; border-radius: 8px;"><p>Tham gia sự kiện</p></div>
+  <div style="text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/Even3_1.jpg" alt="Buổi chia sẻ kỹ thuật" style="width: 320px; height: auto; border-radius: 8px;"><p>Chia sẻ kỹ thuật</p></div>
 </div>

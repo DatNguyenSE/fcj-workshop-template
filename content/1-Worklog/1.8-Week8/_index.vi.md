@@ -8,31 +8,29 @@ pre: " <b> 1.8. </b> "
 
 ### Mục tiêu tuần 8
 
-* Thiết kế giao diện Quản lý Ví (Wallet Management UI) phân biệt rõ Ví cá nhân và Ví dùng chung gia đình.
-* Xây dựng Form Modal tạo mới, chỉnh sửa ví, lựa chọn icon và màu sắc đại diện cho từng ví.
-* Xây dựng Modal Mời thành viên tham gia ví gia đình (nhập email, phân quyền xem/chỉnh sửa, danh sách thành viên hiện tại).
-* Thiết kế giao diện Quản lý Ngân sách (Budget Management UI) với thanh tiến trình trực quan.
-* Hiển thị phần trăm ngân sách đã sử dụng với cơ chế chuyển đổi màu sắc linh hoạt (Xanh < 70%, Vàng 70-90%, Đỏ > 90%).
-* Thiết kế các banner cảnh báo trực quan khi chi tiêu tiệm cận hoặc vượt quá hạn mức ngân sách.
-* Hỗ trợ ngân sách gia đình có nhiều thành viên và thiết kế các màn hình trạng thái Chưa có dữ liệu (Empty State).
+* Chỉnh sửa thiết kế database theo các yêu cầu mới của hệ thống Snaptics.
+* Bổ sung các trường dữ liệu cần thiết và cập nhật mối quan hệ giữa các bảng.
+* Điều chỉnh database migration, model và business logic phía Backend theo thiết kế mới.
+* Kiểm tra và cập nhật các API bị ảnh hưởng sau khi thay đổi database.
+* Hỗ trợ bạn Frontend thiết kế các trang còn thiếu trong hệ thống.
+* Phối hợp thống nhất dữ liệu, API contract và giao diện giữa Backend và Frontend.
+* Kiểm thử các chức năng sau khi cập nhật database và hoàn thiện giao diện bổ sung.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Thiết kế bố cục trang Quản lý Ví (Wallet Management Page).<br>- Tạo tab chuyển đổi giữa Ví cá nhân (Personal Wallets) và Ví gia đình (Family Wallets).<br>- Xây dựng các Wallet Card hiển thị tên ví, số dư hiện tại, biểu tượng, danh sách thành viên tham gia và menu thao tác. | 29/06/2026 | 29/06/2026 | [Wallet Interface Design](https://dribbble.com/) |
-| 3 | - Xây dựng Form Modal Tạo mới / Chỉnh sửa Ví: chọn loại ví, tên ví, số dư ban đầu, loại tiền tệ và bộ chọn biểu tượng/màu sắc.<br>- Thiết kế Modal Mời thành viên tham gia ví gia đình: ô nhập email người nhận, phân quyền (Xem / Chỉnh sửa) và danh sách thành viên đã tham gia ví. | 30/06/2026 | 30/06/2026 | [Collaborative UI Patterns](https://uxdesign.cc/) |
-| 4 | - Thiết kế giao diện trang Quản lý Ngân sách (Budget Management Page).<br>- Xây dựng các Budget Card đi kèm Thanh tiến trình (Progress Bar) sinh động tự động đổi màu theo mức độ chi tiêu (Xanh: an toàn, Vàng: cảnh báo 70-90%, Đỏ: vượt ngân sách >90%).<br>- Hiển thị rõ tổng ngân sách, số tiền đã chi và số tiền còn lại. | 01/07/2026 | 01/07/2026 | [Progress Bar Indicators](https://material.io/components/progress-indicators) |
-| 5 | - Thiết kế Banner cảnh báo nguy cơ vượt ngân sách hiển thị nổi bật trên Dashboard và trang Ngân sách.<br>- Xây dựng Modal Tạo ngân sách mới (chọn hạn mức, danh mục chi tiêu áp dụng, khoảng thời gian và lựa chọn cá nhân/gia đình).<br>- Hỗ trợ hiển thị thành viên đóng góp vào ngân sách gia đình. | 02/07/2026 | 02/07/2026 | [Notification Banner UX](https://uxplanet.org/) |
-| 6 | - Thiết kế các component Trạng thái chưa có dữ liệu (Empty States) cho màn hình Ví và Ngân sách với hình minh họa dễ thương và nút "Tạo mới".<br>- Kiểm tra hiển thị responsive của giao diện Ví và Ngân sách trên các thiết bị di động.<br>- Tinh chỉnh khoảng cách padding/margin; Rà soát nội dung tuần 8. | 03/07/2026 | 03/07/2026 | [Empty State Design Patterns](https://emptystat.es/) |
+| 2 | - Rà soát database hiện tại và xác định các yêu cầu thay đổi từ hệ thống.<br>- Bổ sung các trường dữ liệu mới và cập nhật kiểu dữ liệu, khóa và mối quan hệ giữa các bảng.<br>- Trao đổi với team Backend và Frontend về ảnh hưởng của các thay đổi. | 29/06/2026 | 29/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 3 | - Cập nhật migration và các model Backend theo thiết kế database mới.<br>- Điều chỉnh business logic và các API liên quan đến những trường dữ liệu được bổ sung.<br>- Kiểm tra dữ liệu cũ để hạn chế lỗi khi áp dụng thay đổi. | 30/06/2026 | 30/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 4 | - Hỗ trợ bạn Frontend thiết kế các trang còn thiếu trong hệ thống.<br>- Thống nhất bố cục, dữ liệu cần hiển thị và trạng thái loading, empty, error cho từng trang.<br>- Đối chiếu giao diện với API và API contract đã cập nhật. | 01/07/2026 | 01/07/2026 | [Snaptics Proposal](2-Proposal/) |
+| 5 | - Kiểm thử các API và chức năng Backend sau khi thay đổi database và business logic.<br>- Phối hợp Frontend xử lý các vấn đề khi kết nối dữ liệu mới.<br>- Rà soát validation và các trường hợp lỗi phát sinh từ thiết kế database mới. | 02/07/2026 | 02/07/2026 | [Snaptics Proposal](2-Proposal/) |
+| 6 | - Kiểm tra các trang Frontend được bổ sung trên nhiều kích thước màn hình.<br>- Kiểm thử luồng tích hợp từ Frontend qua Backend với database mới.<br>- Ghi chép thay đổi, lỗi đã xử lý và tổng kết tuần 8. | 03/07/2026 | 03/07/2026 | [Snaptics Proposal](2-Proposal/) |
 
 ### Kết quả đạt được tuần 8
 
-* Hoàn thành thiết kế màn hình Quản lý Ví phân chia rõ ràng giữa Ví cá nhân và Ví dùng chung gia đình.
-* Xây dựng Form Modal Tạo/Sửa Ví sinh động với khả năng cá nhân hóa màu sắc và biểu tượng.
-* Hoàn thiện Modal Mời thành viên gia đình hỗ trợ nhập email và phân quyền minh bạch.
-* Thiết kế màn hình Quản lý Ngân sách cực kỳ trực quan với thanh tiến trình tự động đổi màu theo % đã dùng.
-* Tích hợp thành công các Banner cảnh báo vượt ngân sách thu hút sự chú ý của người dùng.
-* Hỗ trợ xem ngân sách gia đình đa thành viên rõ ràng và minh bạch.
-* Thiết kế các màn hình Empty State thân thiện thúc đẩy tương tác người dùng.
-* Đảm bảo giao diện Ví và Ngân sách tương thích responsive mượt mà trên điện thoại di động.
+* Hoàn thành việc chỉnh sửa thiết kế database theo yêu cầu mới của hệ thống.
+* Bổ sung các trường, cập nhật mối quan hệ và điều chỉnh migration, model Backend.
+* Cập nhật business logic và các API bị ảnh hưởng bởi thay đổi database.
+* Hỗ trợ bạn Frontend thiết kế và hoàn thiện các trang còn thiếu.
+* Kiểm thử kết nối giữa giao diện, API và database mới.
+* Phối hợp xử lý lỗi và thống nhất dữ liệu giữa Backend và Frontend.

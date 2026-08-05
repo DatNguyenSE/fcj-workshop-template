@@ -54,8 +54,6 @@ Mình học được cách nhìn dự án ở mức tổng thể thay vì chỉ 
 ### Một số hình ảnh tại sự kiện
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 20px;">
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.3.jpg" alt="Kiến trúc AWS" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Kiến trúc Agentic AI</p></div>
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.2.jpg" alt="Phần khai mạc" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Phần khai mạc</p></div>
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.1.jpg" alt="Người tham dự" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Người tham dự sự kiện</p></div>
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.jpg" alt="Ảnh tập thể" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Ảnh lưu niệm</p></div>
+  <div style="width: 360px; text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.4-Event4/Event4_1.jpg" alt="Người tham dự" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Người tham dự sự kiện</p></div>
+  <div style="width: 360px; text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.4-Event4/Event4_2.jpg" alt="Ảnh tập thể" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Ảnh lưu niệm</p></div>
 </div>

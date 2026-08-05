@@ -8,28 +8,30 @@ pre: " <b> 1.7. </b> "
 
 ### Week 7 Objectives
 
-* Analyze security risks and bandwidth bottlenecks associated with EC2 instances accessing Amazon S3 over the Public Internet or NAT Gateway.
-* Master the architecture of Gateway VPC Endpoints (for Amazon S3 & DynamoDB), Route Table integration mechanics, and cost benefits (Free of charge).
-* Practice creating a Gateway VPC Endpoint for Amazon S3 following Workshop Chapter 5.3 ("Accessing S3 from VPC").
-* Update Private Subnet Route Tables to route all Amazon S3 traffic directly over AWS private backbone network.
-* Verify connectivity from an isolated EC2 instance in a Private Subnet without Internet Gateway or NAT Gateway.
+* Migrate the system database from local storage to Amazon RDS.
+* Create a DB Subnet Group and deploy RDS in Private Subnets across multiple Availability Zones.
+* Configure the RDS Security Group to allow access only from the Backend and disable Public Access.
+* Migrate the schema and data, then update the Backend connection string.
+* Replace local image storage with Amazon S3 and configure the required permissions.
+* Connect the Backend to RDS and S3 and test database and image operations.
+* Document the AWS foundation for the remaining cloud deployment work in later weeks.
 
 ### Tasks Completed During the Week
 
 | Day | Tasks | Start Date | Completion Date | Learning Resources |
 | --- | --- | --- | --- | --- |
-| Monday | - Explore VPC Endpoints concept and private connectivity solutions for AWS services.<br>- Compare Gateway VPC Endpoints vs Interface VPC Endpoints (AWS PrivateLink).<br>- Analyze private S3 access patterns without requiring Public IPs or NAT Gateways. | 29/06/2026 | 29/06/2026 | [VPC Endpoints Guide](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html)<br>[Gateway Endpoints for S3](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html) |
-| Tuesday | - Set up workshop lab environment according to Chapter 5.2 ("Prerequisites").<br>- Provision test VPC, Public Subnet, Private Subnet, and an isolated EC2 instance in Private Subnet without Internet access.<br>- Test `aws s3 ls` from private EC2 instance and confirm connection timeout due to missing internet route. | 30/06/2026 | 30/06/2026 | [Workshop Prerequisites](5.2-Prerequiste/)<br>[AWS S3 CLI Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html) |
-| Wednesday | - Practice creating a Gateway VPC Endpoint for service `com.amazonaws.ap-southeast-1.s3` via AWS Console.<br>- Select target VPC and associate the Gateway Endpoint with the Private Subnet Route Table.<br>- Observe Route Table modifications: addition of a new prefix list route (`pl-xxxxxx`) pointing to the Endpoint ID (`vpce-xxxxxx`). | 01/07/2026 | 01/07/2026 | [Workshop S3 from VPC](5.3-S3-vpc/)<br>[Modifying Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) |
-| Thursday | - **Connectivity Verification Testing:**<br>- Re-connect to the private EC2 instance and re-execute `aws s3 ls` and `aws s3 cp` commands.<br>- Verify immediate successful connection with low latency, ensuring traffic never traverses the public internet.<br>- Inspect resolved IP routes to confirm traffic routes exclusively over AWS private internal networks. | 02/07/2026 | 02/07/2026 | [Workshop S3 from VPC](5.3-S3-vpc/)<br>[Testing S3 Endpoint Connectivity](https://docs.aws.amazon.com/vpc/latest/privatelink/test-endpoints.html) |
-| Friday | - Compare performance and cost efficiency of NAT Gateway vs Gateway VPC Endpoint for S3 workloads.<br>- Compile lab results, extract CLI output logs, and capture screenshot evidence for Workshop Chapter 5.3 report.<br>- Document hands-on exercises and prepare for Interface VPC Endpoint concepts. | 03/07/2026 | 03/07/2026 | [Workshop Overview](5.1-Workshop-overview/)<br>[AWS PrivateLink Pricing](https://aws.amazon.com/privatelink/pricing/) |
+| Monday | - Review the VPC architecture and identify Private Subnets for the database.<br>- Create a DB Subnet Group across multiple Availability Zones.<br>- Prepare Security Group rules for Backend-to-RDS connectivity. | 22/06/2026 | 22/06/2026 | [Amazon RDS in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) |
+| Tuesday | - Create an Amazon RDS PostgreSQL instance with Public Access disabled.<br>- Configure the Security Group to allow database access only from the Backend Security Group.<br>- Test the Backend connection to RDS in the Private Subnet. | 23/06/2026 | 23/06/2026 | [RDS Security](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html) |
+| Wednesday | - Migrate the schema and data from the local database to RDS.<br>- Update Backend environment variables and the connection string.<br>- Test create, read, update, and delete operations on RDS. | 24/06/2026 | 24/06/2026 | [Amazon RDS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html) |
+| Thursday | - Create an S3 Bucket to replace local image storage.<br>- Configure the IAM permissions required by Backend to upload and retrieve images.<br>- Update Backend and test image upload, path storage, and image retrieval from S3. | 25/06/2026 | 25/06/2026 | [Amazon S3 User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
+| Friday | - Test the complete Backend flow with RDS and S3.<br>- Review access permissions, data integrity, and migration errors.<br>- Document the completed AWS foundation and summarize Week 7. | 26/06/2026 | 26/06/2026 | [Amazon RDS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)<br>[Amazon S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
 
 ### Week 7 Achievements
 
-* Clearly articulated the core differences between Gateway VPC Endpoints and Interface VPC Endpoints regarding architecture, routing, and pricing.
-* Understood the routing mechanics of Gateway VPC Endpoints using Route Table Prefix Lists without altering EC2 instance IP addresses.
-* Successfully built a isolated test VPC environment featuring a Private Subnet EC2 server disconnected from the Internet.
-* Successfully created a Gateway VPC Endpoint for Amazon S3 and automatically attached the routing policy to the Private Subnet Route Table.
-* Experimentally verified that EC2 inside Private Subnet can execute `aws s3 ls` and upload files smoothly without NAT Gateway or Internet Gateway.
-* Demonstrated cost optimization advantages (saving NAT Gateway data processing charges) for high-throughput S3 data transfers.
-* Compiled complete screenshot evidence and documentation covering Chapter 5.3 of the Internship Workshop Report.
+* Deployed Amazon RDS PostgreSQL in Private Subnets with Public Access disabled.
+* Created a DB Subnet Group and configured the Security Group to allow access only from Backend.
+* Successfully migrated the schema and data from the local database to RDS.
+* Updated the Backend to use RDS and tested database operations on the new instance.
+* Replaced local image storage with S3 and configured Backend upload and retrieval permissions.
+* Successfully tested the Backend connection to both RDS and S3.
+* Documented the AWS foundation for deploying the remaining cloud components in later weeks.

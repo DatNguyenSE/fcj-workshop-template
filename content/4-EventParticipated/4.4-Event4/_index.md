@@ -54,8 +54,6 @@ I learned to think about the whole product instead of only one API or AI prompt.
 ### Some event photos
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 20px;">
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.3.jpg" alt="AWS Architecture" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Agentic AI architecture</p></div>
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.2.jpg" alt="Opening Session" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Opening session</p></div>
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.1.jpg" alt="Event Participants" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Event participants</p></div>
-  <div style="width: 360px; text-align: center;"><img src="/images/4-EventParticipated/4.4-Event4/event4.jpg" alt="Group Photo" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Group photo</p></div>
+  <div style="width: 360px; text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.4-Event4/Event4_1.jpg" alt="Event Participants" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Event participants</p></div>
+  <div style="width: 360px; text-align: center;"><img src="/fcj-workshop-template/images/4-EventParticipated/4.4-Event4/Event4_2.jpg" alt="Group Photo" style="width:100%; height:230px; object-fit:cover; border-radius:10px;"><p>Group photo</p></div>
 </div>
