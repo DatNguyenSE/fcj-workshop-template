@@ -5,23 +5,37 @@ weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
-# Secure Hybrid Access to S3 using VPC Endpoints
 
-#### Overview
 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+Welcome to the ultimate deployment guide for **Snaptics**, a smart financial core system built on **.NET 10** and Angular/Amplify. 
 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
+In this workshop, you will learn how to deploy a full-fledged, highly available, and secure production environment on AWS. We have upgraded the architecture from a basic deployment to an **Enterprise-grade** setup that aligns with the AWS Well-Architected Framework.
 
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+### Key Upgrades in this Architecture:
+- **Global Delivery & Security:** Implementation of **Route 53** (DNS), **Amazon CloudFront** (CDN) for blazing fast content delivery, and **AWS WAF** (Web Application Firewall) to protect against malicious attacks.
+- **Frontend Hosting:** Fully automated deployment of the Angular frontend using **AWS Amplify**.
+- **Serverless Compute:** Running the .NET Core backend on **Amazon ECS Fargate** behind an Application Load Balancer (ALB).
+- **Enterprise Database:** Migrating from basic SQL Server to **Amazon RDS for SQL Server** with Primary/Standby replication for High Availability (Multi-AZ).
+- **Secure Storage & Secrets:** Replacing NAT Gateway data transfers to S3 with highly secure **VPC Gateway Endpoints**. Managing sensitive keys via **AWS Systems Manager Parameter Store**.
+- **Resilient AI Messaging:** Upgrading the Amazon SQS `snaptics-ai-queue` with a **Dead Letter Queue (DLQ)** to handle failed AI processing gracefully.
+- **Fully Automated CI/CD:** Abandoning manual local scripts in favor of a professional **GitHub Actions** pipeline that automatically builds, tests, and deploys Docker images to ECR and updates the ECS cluster.
+- **Observability:** Centralized logging and alerting using **Amazon CloudWatch**, **SNS**, and **AWS Budgets**.
 
-#### Content
+---
 
-1. [Workshop overview](5.1-Workshop-overview)
-2. [Prerequiste](5.2-Prerequiste/)
-3. [Access S3 from VPC](5.3-S3-vpc/)
-4. [Access S3 from On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
-6. [Clean up](5.6-Cleanup/)
+### Workshop Structure
+
+To keep navigation simple while delivering deep technical insights, this workshop is flattened into 9 comprehensive modules. Please follow them in order:
+
+1. **Overview & Architecture:** Deep dive into the Enterprise Architecture diagram and component roles.
+2. **Prerequisites:** Setting up GitHub, AWS IAM Users, and API Keys for Google Gemini / Azure OCR.
+3. **Networking & Security:** Creating the Multi-Tier VPC, CloudFront, Route 53, WAF, and VPC Endpoints.
+4. **Database, Storage & Secrets:** Deploying RDS SQL Server, S3 Buckets, and AWS Systems Manager Parameter Store.
+5. **Messaging & AI Integration:** Configuring the SQS `snaptics-ai-queue` with DLQ and integrating AI APIs.
+6. **Compute & Backend (ECS):** Building the Docker image and orchestrating Fargate tasks via ALB.
+7. **CI/CD Pipeline (GitHub Actions):** Writing YAML workflows to automate Deployments for both Amplify and ECS.
+8. **System-Wide E2E Testing:** Validating API flows and Real-time WebSocket (SignalR) connections through CloudFront.
+9. **Resources Cleanup:** A crucial step-by-step guide to tearing down the infrastructure and avoiding unwanted AWS charges.
+
+> [!NOTE]  
+> This workshop assumes you have a basic understanding of AWS Console navigation. Grab a cup of coffee, and let's start building a production-ready system!

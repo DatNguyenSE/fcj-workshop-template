@@ -6,23 +6,36 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
 
-#### Tổng quan
+Chào mừng bạn đến với hướng dẫn triển khai toàn diện dự án **Snaptics** - một hệ thống lõi tài chính thông minh được xây dựng bằng **.NET 10** và Frontend Angular/Amplify.
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+Trong workshop này, bạn sẽ học cách triển khai một môi trường Production thực thụ, có tính khả dụng cao và bảo mật tuyệt đối trên AWS. Kiến trúc đã được nâng cấp mạnh mẽ từ mức cơ bản lên chuẩn **Enterprise (Doanh nghiệp)**, tuân thủ nghiêm ngặt khung AWS Well-Architected Framework.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+### Những Điểm Nâng cấp Đáng giá trong Kiến trúc này:
+- **Phân phối Toàn cầu & Bảo mật:** Triển khai **Route 53** (Quản lý DNS), **Amazon CloudFront** (Mạng phân phối nội dung CDN) để tăng tốc độ truy cập, kết hợp **AWS WAF** (Tường lửa Web) để chặn đứng các cuộc tấn công DDoS/Botnet.
+- **Hosting Frontend:** Tự động hóa hoàn toàn việc hosting ứng dụng Frontend thông qua **AWS Amplify**.
+- **Serverless Compute:** Vận hành Backend .NET Core trên **Amazon ECS Fargate** thông qua Application Load Balancer (ALB) trong mạng Private.
+- **Database Chuẩn Doanh nghiệp:** Chuyển đổi từ SQL Server thông thường sang **Amazon RDS for SQL Server** với cơ chế sao chép Primary/Standby (Multi-AZ) để đảm bảo High Availability.
+- **Bảo mật Storage & Bí mật:** Loại bỏ việc gọi file S3 qua NAT Gateway đắt đỏ, thay bằng **VPC Gateway Endpoint** siêu bảo mật. Quản lý chuỗi kết nối an toàn với **AWS Systems Manager Parameter Store**.
+- **Hàng đợi AI Bền bỉ:** Nâng cấp hàng đợi Amazon SQS `snaptics-ai-queue` bằng cách gắn thêm **Dead Letter Queue (DLQ)**, giúp hứng và xử lý lại các message lỗi khi gọi AI.
+- **Tự động hóa CI/CD 100%:** Xóa bỏ việc chạy script thủ công ở máy cá nhân. Chúng ta sẽ dùng **GitHub Actions** để tự động Build Docker, đẩy lên ECR và cập nhật cụm ECS mỗi khi có code mới.
+- **Giám sát (Observability):** Tập trung log và cảnh báo hệ thống thông qua **Amazon CloudWatch**, **SNS**, và **AWS Budgets**.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+---
 
-#### Nội dung
+### Cấu trúc Workshop (Đã được tinh gọn)
 
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+Để việc theo dõi menu bên trái được gọn gàng nhất nhưng nội dung bên trong vẫn giữ nguyên độ sâu và chi tiết khổng lồ, workshop được chia thành 9 phân hệ chính. Vui lòng làm theo đúng thứ tự:
+
+1. **Tổng quan & Kiến trúc:** Phân tích chuyên sâu sơ đồ hệ thống Enterprise và luồng dữ liệu.
+2. **Chuẩn bị (Prerequisites):** Thiết lập tài khoản GitHub, IAM Users và lấy API Key cho AI (Gemini / Azure).
+3. **Mạng & Bảo mật:** Khởi tạo Multi-Tier VPC, cấu hình Route 53, CloudFront, WAF và VPC Endpoints.
+4. **Database, Storage & Secrets:** Triển khai RDS SQL Server, S3 Bucket và khởi tạo kho khóa Parameter Store.
+5. **AI & Tác vụ nền (Messaging):** Cấu hình SQS `snaptics-ai-queue` kèm DLQ, tích hợp các API Trí tuệ nhân tạo.
+6. **Compute & Backend (ECS):** Đóng gói Docker và điều phối các task Fargate ẩn sau lớp ALB.
+7. **CI/CD Pipeline (GitHub Actions):** Viết script YAML để tự động hóa toàn bộ quy trình Deploy cho cả Frontend lẫn Backend.
+8. **Kiểm thử Toàn hệ thống (E2E Testing):** Xác thực luồng API và kết nối WebSocket (SignalR) xuyên qua CloudFront.
+9. **Dọn dẹp Tài nguyên:** Bước cực kỳ quan trọng để xóa sạch hạ tầng, tránh bị AWS trừ tiền thẻ tín dụng.
+
+> [!NOTE]  
+> Hướng dẫn này được viết cực kỳ chi tiết từ A đến Z, bạn chỉ cần đọc chậm rãi và copy/paste cấu hình chính xác. Hãy chuẩn bị một ly cà phê và bắt tay vào xây dựng hệ thống tỷ đô của riêng bạn nào!
