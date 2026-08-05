@@ -1,6 +1,6 @@
 ---
 title: "Week 5 Worklog"
-date: 2026-06-15
+date: 2026-06-08
 weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
@@ -8,31 +8,31 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Objectives
 
-* Collaborate with the Backend team to build core components of the Snaptics system.
-* Analyze requirements and align data flows and API structures between Backend and Frontend.
-* Support the design of Backend modules, business logic, and source code conventions.
-* Design the database by defining the required tables, relationships, and data structures.
-* Help build and test APIs for the system's main features.
-* Verify integration between Backend APIs and the Frontend interface.
-* Coordinate issue resolution, requirements, and progress between the Backend and Frontend teams.
-* Document technical work and implementation results for continued development.
+* Coordinate with the Backend team to build core components for the Snaptics system.
+* Analyze requirements and unify data flows and API structures between Backend and Frontend.
+* Support designing modules, business logic, and Backend source code organization conventions.
+* Design the database, identifying required tables, relationships, and data for the system.
+* Support building and testing APIs serving the system's main functions.
+* Verify the integration between Backend APIs and Frontend UI.
+* Coordinate bug fixing, requirement discussions, and progress updates between Backend and Frontend teams.
+* Document technical specifications and deployment results so the team can continue developing the system.
 
 ### Tasks Completed During the Week
 
-| Day | Tasks | Start Date | Completion Date | Learning Resources |
+| Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Discuss the system architecture and required features with the Backend team.<br>- Analyze requirements, data flows, and responsibilities between Backend and Frontend.<br>- Align source code, API, and collaboration conventions. | 08/06/2026 | 08/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| Tuesday | - Design the database by defining the required tables, fields, keys, and relationships.<br>- Support the Backend team in mapping the corresponding data models.<br>- Discuss request/response structures and standardize the API contract for Frontend integration. | 09/06/2026 | 09/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| Wednesday | - Help build and test APIs for authentication, registration, and account management.<br>- Check input data, response codes, and API error cases.<br>- Coordinate with Frontend to align integration and Backend responses. | 10/06/2026 | 10/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| Thursday | - Collaborate on API testing with real-world data and scenarios.<br>- Support the Backend team in fixing business logic issues and completing missing endpoints.<br>- Sync API changes with Frontend and propose solutions for integration issues. | 11/06/2026 | 11/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| Friday | - Recheck Backend flows after changes and coordinate with Frontend to verify integration results.<br>- Summarize resolved issues, completed APIs, and tasks for the following week.<br>- Update technical documentation and review the week's work. | 12/06/2026 | 12/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| Monday | - Discussed system architecture and functional scopes with the Backend team.<br>- Analyzed requirements, data flows, and responsibility separation between Backend and Frontend.<br>- Unified source code organization, APIs, and coordination workflows during development. | 08/06/2026 | 08/06/2026 | [Proposal Snaptics](2-Proposal/) |
+| Tuesday | - Designed the database and identified required tables, data fields, keys, and relationships.<br>- Supported the Backend team in analyzing corresponding data models.<br>- Discussed request/response structures and standardized API contracts for easy Frontend integration. | 09/06/2026 | 09/06/2026 | [Proposal Snaptics](2-Proposal/) |
+| Wednesday | - Supported building and testing APIs for login, registration, and account management.<br>- Checked input data, response codes, and API error scenarios.<br>- Discussed with Frontend to agree on integration methods and handling Backend responses. | 10/06/2026 | 10/06/2026 | [Proposal Snaptics](2-Proposal/) |
+| Thursday | - Coordinated API testing using real-world data and scenarios.<br>- Supported the Backend team in fixing business logic bugs and completing missing endpoints.<br>- Synchronized API changes with Frontend, recorded integration issues, and proposed solutions. | 11/06/2026 | 11/06/2026 | [Proposal Snaptics](2-Proposal/) |
+| Friday | - Re-tested Backend flows after modifications and coordinated with Frontend to confirm integration results.<br>- Summarized fixed bugs, completed APIs, and tasks to continue next week.<br>- Updated technical documentation and summarized Week 5 work. | 12/06/2026 | 12/06/2026 | [Proposal Snaptics](2-Proposal/) |
 
 ### Week 5 Achievements
 
-* Supported the Backend team in building and completing core components of the Snaptics system.
-* Aligned data flows, API contracts, and collaboration practices between Backend and Frontend.
-* Completed the database design and supported the implementation of related data models.
-* Supported business logic and validation rule analysis.
-* Tested APIs, identified issues, and coordinated fixes during integration.
-* Acted as a communication bridge for requirements, progress, and technical issues between both teams.
-* Completed technical documentation and summarized the next development tasks.
+* Supported the Backend team in building and finalizing core components of the Snaptics system.
+* Unified data flows, API contracts, and coordination workflows between Backend and Frontend.
+* Completed database design and supported building data models for the system.
+* Supported analyzing business logic and validation rules for the system.
+* Tested APIs, detected bugs, and coordinated to resolve issues during integration.
+* Acted as a bridge for discussing requirements, progress, and technical issues between Backend and Frontend teams.
+* Finalized technical documentation and summarized tasks for continuous development.
