@@ -8,10 +8,10 @@ pre: " <b> 1.1. </b> "
 
 ### Mục tiêu tuần 1
 
-* Làm quen với chương trình First Cloud Journey (FCJ Workforce) và các thành viên trong nhóm.
+* Làm quen với chương trình First Cloud Journey (FCJ Workforce).
 * Tìm hiểu quy định, lộ trình và yêu cầu đánh giá của chương trình thực tập.
 * Tìm hiểu tổng quan về Điện toán đám mây (Cloud Computing) và hạ tầng toàn cầu AWS (Regions, Availability Zones, Edge Locations).
-* Tạo tài khoản AWS Free Tier và thiết lập bảo mật cấp cao với Multi-Factor Authentication (MFA).
+* Tạo tài khoản AWS Free Tier và thiết lập bảo mật với Multi-Factor Authentication (MFA).
 * Nghiên cứu dịch vụ AWS IAM (Users, Groups, Policies, Roles) và áp dụng nguyên tắc đặc quyền tối thiểu (Least Privilege).
 * Cài đặt, cấu hình AWS CLI trên máy tính cá nhân và kiểm tra các câu lệnh quản trị cơ bản.
 
@@ -28,7 +28,7 @@ pre: " <b> 1.1. </b> "
 ### Kết quả đạt được tuần 1
 
 * Nắm rõ quy định, lộ trình 13 tuần thực tập và hoàn thành các thủ tục tham gia chương trình FCJ Workforce.
-* Hiểu sâu về khái niệm Điện toán đám mây, các mô hình Cloud và kiến trúc hạ tầng toàn cầu của AWS.
+* Tìm hiểu khái niệm Điện toán đám mây, các mô hình Cloud và kiến trúc hạ tầng toàn cầu của AWS.
 * Khởi tạo thành công tài khoản AWS Free Tier và kích hoạt bảo mật MFA cho Root Account.
 * Nắm vững kiến thức cốt lõi về AWS IAM và tạo IAM User quản trị hàng ngày tuân thủ quy tắc Least Privilege.
 * Cài đặt và cấu hình thành công AWS CLI v2 trên máy cá nhân với cấu hình Region và credentials chuẩn xác.

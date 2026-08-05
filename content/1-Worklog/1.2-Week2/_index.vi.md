@@ -27,7 +27,7 @@ pre: " <b> 1.2. </b> "
 
 ### Kết quả đạt được tuần 2
 
-* Hiểu sâu về cấu trúc Amazon VPC, cách tính toán dải IP CIDR và phân chia Subnet chuẩn kiến trúc AWS.
+* Hiểu về cấu trúc Amazon VPC, cách tính toán dải IP CIDR và phân chia Subnet chuẩn kiến trúc AWS.
 * Khởi tạo thành công VPC custom tích hợp đầy đủ Public Subnet và Private Subnet trên nhiều Availability Zones.
 * Cấu hình bảng định tuyến Route Table kết nối Internet Gateway cho Public Subnet hoạt động ổn định.
 * Triển khai thành công NAT Gateway kèm Elastic IP, hỗ trợ các tài nguyên Private truy cập Internet an toàn chiều đi ra.

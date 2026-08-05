@@ -11,7 +11,7 @@ chapter: false
 ### Student Information:
 &emsp; **Full Name:** Nguyen Thanh Dat
 
-&emsp; **Phone Number:** 0918882942
+&emsp; **Phone Number:** 0918882492
 
 &emsp; **Email:** datnt05se@gmail.com
 
@@ -25,7 +25,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 18/05/2026 to 18/08/2026
 
-![Your profile picture](fcj-workshop-template/images/avatar.png)
+![Your profile picture](fcj-workshop-template/images/avatar.jpg)
 
 ### Report Content
 

@@ -9,7 +9,7 @@ chapter: false
 ### Thông tin sinh viên:
 &emsp; **Họ và tên:** Nguyễn Thành Đạt
 
-&emsp; **Số điện thoại:** 0918882942
+&emsp; **Số điện thoại:** 0918882492
 
 &emsp; **Email:** datnt05se@gmail.com
 
@@ -23,7 +23,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 18/05/2026 đến ngày 18/08/2026
 
-![Ảnh đại diện của bạn](/fcj-workshop-template/images/avatar.png)
+![Ảnh đại diện của bạn](/fcj-workshop-template/images/avatar.jpg)
 
 ### Nội dung báo cáo
 
