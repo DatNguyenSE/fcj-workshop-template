@@ -11,7 +11,7 @@ Hệ thống Backend của Snaptics hoạt động trên nền tảng Serverless
 
 ## 1. Application Load Balancer
 
-Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ CloudFront và chia đều tải vào trong.
+Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ Internet và chia đều tải vào trong.
 
 ### A. Khởi tạo Target Group
 - Vào **EC2 ➔ Target Groups ➔ Create target group**.
@@ -21,25 +21,25 @@ Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con
 - **VPC:** `snaptics-vpc`.
 - Ở bước chọn Target, cứ bỏ trống (Lát nữa ECS sẽ tự động bơm IP vào đây) và bấm Create.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create_2.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create_2.png" >
   </div>
 
 ### B. Khởi tạo ALB
 - Vào **EC2 ➔ Load Balancers ➔ Create Load Balancer ➔ Application Load Balancer**.
 - **Name:** `snaptics-alb`.
-- **Scheme:** Chọn **Internet-facing** để CloudFront có thể vươn tới được.
+- **Scheme:** Chọn **Internet-facing** để Load Balancer có thể giao tiếp với Internet.
 - **Network mapping:** Chọn `snaptics-vpc` và tick vào 2 mạng **Public Subnets**.
 - **Security groups:** Chọn `snaptics-alb-sg`.
 - **Listeners and routing:** Mở cổng HTTP (80) và trỏ luồng Forward vào `snaptics-ecs-tg`.
 - Bấm Create.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.2.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.2.png" >
   </div>
 
 ## 2. Kho chứa Docker (Amazon ECR)
@@ -50,10 +50,10 @@ Trước khi cấu hình ECS, ta cần một kho chứa an toàn để GitHub Ac
 - **Repository name:** `snaptics-api`.
 - Bấm Create. Copy lại chuỗi **URI** (Ví dụ: `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/snaptics-api`).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.2.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.2.png" >
   </div>
 
 *(Lưu ý: Ta sẽ không push image bằng tay bằng dòng lệnh ở đây. Việc này sẽ do GitHub Actions lo trọn gói ở phần tiếp theo).*
@@ -66,7 +66,7 @@ Trước khi cấu hình ECS, ta cần một kho chứa an toàn để GitHub Ac
 - **Infrastructure:** AWS Fargate.
 - Hãy BẬT tính năng **Container Insights**. Tính năng này sẽ đẩy log cực kỳ chi tiết của hệ thống về màn hình giám sát CloudWatch (Như trong sơ đồ kiến trúc có vẽ mục Observability).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecs_cluster_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecs_cluster_create.png" >
   </div>
 
 ### B. Tạo Bản thiết kế (Task Definition)
@@ -82,7 +82,7 @@ Trước khi cấu hình ECS, ta cần một kho chứa an toàn để GitHub Ac
   - Image URI: Dán chuỗi URI của ECR bạn vừa copy vào. *(Đừng lo nếu nó báo lỗi không tìm thấy image, lát GitHub Actions bơm code vào là nó tự chạy).*
   - Container port: `8080`.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/task_definition_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/task_definition_create.png" >
   </div>
 
 ### C. Khởi chạy Service
@@ -95,3 +95,4 @@ Trước khi cấu hình ECS, ta cần một kho chứa an toàn để GitHub Ac
 - Bấm Create.
 
 Lúc này Service sẽ cố gắng khởi động nhưng báo lỗi vì kho ECR đang trống không. Hãy chuyển ngay sang mục Kế tiếp để thiết lập đường ống CI/CD siêu cấp vũ trụ của GitHub Actions!
+

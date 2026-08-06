@@ -11,9 +11,9 @@ Because this is a massive Enterprise-grade architecture, keeping it running 24/7
 
 Follow this exact reverse order to prevent dependency lock errors:
 
-### 1. Frontend & CDN
+### 1. Frontend & DNS
 - **AWS Amplify:** Go to the Amplify console, select the Snaptics app, click Actions ➔ **Delete app**.
-- **CloudFront:** Go to CloudFront, select the distribution, click **Disable**. Wait ~5 minutes for it to deploy the disabled state, then click **Delete**.
+
 - **AWS WAF:** Go to WAF, Web ACLs, select `snaptics-waf-acl` and **Delete**.
 - **Route 53 (Optional):** Delete any custom records you created. Do not delete the Hosted Zone if you paid for the domain.
 

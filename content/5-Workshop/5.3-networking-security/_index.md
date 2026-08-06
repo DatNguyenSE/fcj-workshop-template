@@ -7,28 +7,17 @@ pre: " <b> 5.3. </b> "
 ---
 
 
-In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge and distribute it via CloudFront, while optimizing internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
+In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge, while optimizing internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
 
 ## 1. Custom Domain with Route 53 (Optional)
 
 If you own a domain (e.g., `snaptics.com`), you should use Route 53 to route traffic.
 - Open **Route 53 ➔ Hosted zones ➔ Create hosted zone**.
 - Enter your domain name. Update your domain registrar's Name Servers (NS) to match the ones provided by Route 53.
-- Request a free SSL certificate via **AWS Certificate Manager (ACM)** in the `us-east-1` region (Required for CloudFront).
 
-## 2. Content Delivery Network (CloudFront)
 
-Instead of exposing the Application Load Balancer (ALB) directly to the world, we hide it behind CloudFront to optimize performance and hide the real IP. *(Note: WAF is already integrated automatically when we host the Frontend with AWS Amplify, so we don't need to configure an external WAF here).*
 
-### Configure Amazon CloudFront for API
-- Open **CloudFront ➔ Create Distribution**.
-- **Origin domain:** Select your Application Load Balancer (which we will create in the Compute section).
-- **Viewer Protocol Policy:** Redirect HTTP to HTTPS.
-- **Cache key and origin requests:** Choose **Cache policy and origin request policy** ➔ CachingDisabled and AllViewer (mandatory for dynamic APIs).
-- **Custom SSL Certificate:** Attach the ACM certificate you created.
-- Click Create.
-
-## 3. Multi-Tier VPC & Subnets
+## 2. Multi-Tier VPC & Subnets
 
 Create the internal network (`snaptics-vpc`) with CIDR `10.0.0.0/16`.
 
@@ -38,7 +27,7 @@ Create 4 subnets in `ap-southeast-1`:
 3. `snaptics-private-1a`: `10.0.3.0/24` (For ECS & SQL Server)
 4. `snaptics-private-1b`: `10.0.4.0/24` (For ECS & SQL Server)
 
-## 4. Gateways & VPC Endpoints
+## 3. Gateways & VPC Endpoints
 
 ### A. Internet Gateway & NAT Gateway
 
@@ -48,7 +37,7 @@ Create 4 subnets in `ap-southeast-1`:
 - Click **Create internet gateway**.
 - Select the newly created IGW → **Actions ➔ Attach to VPC** → choose `snaptics-vpc` → **Attach internet gateway**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.png" >
   </div>
 
 **2. Create the NAT Gateway (`snaptics-nat-gw`):**
@@ -60,7 +49,7 @@ Create 4 subnets in `ap-southeast-1`:
 - Elastic IP: click **Allocate Elastic IP** to create a static public IP for the NAT Gateway.
 - Scroll down and click **Create NAT gateway**, then wait until the status changes from **Pending** to **Available**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.png" >
   </div>
 
 **3. Configure Route Tables:**
@@ -82,23 +71,26 @@ If the ECS container uploads heavy invoice images to S3 via the NAT Gateway, AWS
 - **Policy:** **Full Access**.
 - Scroll down and click **Create endpoint**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.png" >
   </div>
 
-## 5. Security Groups (Virtual Firewalls)
+## 4. Security Groups (Virtual Firewalls)
 
 Strictly control traffic flow using Security Groups:
 
 - **ALB Security Group (`snaptics-alb-sg`):** 
   - Allow HTTP (80) and HTTPS (443).
-  - *Advanced:* You can restrict the source IP to only CloudFront prefix lists, completely blocking direct internet access to the ALB!
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.jpg" >
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.png" >
   </div>
 - **ECS Security Group (`snaptics-ecs-sg`):**
   - Allow Custom TCP `8080` ONLY from `snaptics-alb-sg`.
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/fargate_sg.png" >
   </div>
 - **SQL Server Security Group (`snaptics-aurora-sg`):**
-  - Allow MySQL/SQL Server (3306) or PostgreSQL (5432) ONLY from `snaptics-ecs-sg`.
+  - Allow SQL Server (1433) ONLY from `snaptics-ecs-sg`.
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/db_sg.png" >
   </div>
+
+
+

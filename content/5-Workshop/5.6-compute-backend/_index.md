@@ -11,7 +11,7 @@ Snaptics backend operates on a Serverless Container architecture. We package the
 
 ## 1. Application Load Balancer (ALB)
 
-Since the containers run in Private Subnets, we need an ALB in the Public Subnets to act as the traffic distributor.
+Since the Fargate Servers are hidden in the Private network, we must build an ALB in the Public network to receive requests from the Internet and distribute the load.
 
 ### A. Create Target Group
 - Open **EC2 ➔ Target Groups ➔ Create target group**.
@@ -21,25 +21,25 @@ Since the containers run in Private Subnets, we need an ALB in the Public Subnet
 - **VPC:** `snaptics-vpc`.
 - Leave targets blank (ECS will auto-register them later) and click Create.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create_2.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create_2.png" >
   </div>
 
 ### B. Create ALB
 - Open **EC2 ➔ Load Balancers ➔ Create Load Balancer ➔ Application Load Balancer**.
 - **Name:** `snaptics-alb`.
-- **Scheme:** **Internal** OR **Internet-facing**. Since we have CloudFront in front of it, it can technically be Internal if configured with advanced routing, but for simplicity, we keep it **Internet-facing**.
+- **Scheme:** **Internet-facing** so the Load Balancer can communicate with the Internet.
 - **Network mapping:** Select `snaptics-vpc` and check the 2 **Public Subnets**.
 - **Security groups:** Apply `snaptics-alb-sg`.
 - **Listeners and routing:** Add HTTP (80) and forward traffic to `snaptics-ecs-tg`.
 - Click Create.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.2.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.2.png" >
   </div>
 
 ## 2. Amazon Elastic Container Registry (ECR)
@@ -50,10 +50,10 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
 - **Repository name:** `snaptics-api`.
 - Click Create. Copy the **URI** (e.g., `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/snaptics-api`).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.2.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.2.png" >
   </div>
 
 *(Note: We don't push images manually here. GitHub Actions will do this in the next section).*
@@ -66,7 +66,7 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
 - **Infrastructure:** AWS Fargate.
 - Enable **Container Insights** (This activates advanced CloudWatch monitoring as seen in the architecture diagram).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecs_cluster_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecs_cluster_create.png" >
   </div>
 
 ### B. Task Definition
@@ -82,7 +82,7 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
   - Image URI: Paste the ECR URI you copied earlier. *(It will fail to boot initially since the image doesn't exist yet, but GitHub Actions will fix this).*
   - Container port: `8080`.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/task_definition_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/task_definition_create.png" >
   </div>
 
 
@@ -96,3 +96,4 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
 - Click Create.
 
 The service will try to start tasks but will fail because the ECR repository is currently empty. Move to the next section to unleash the power of GitHub Actions CI/CD!
+

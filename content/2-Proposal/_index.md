@@ -136,8 +136,7 @@ Snaptics utilizes an AWS Cloud-Native architecture combining a Single Page Appli
 
 #### 4.4. Overall Architecture Diagram
 
-![Snaptics AWS Cloud Architecture](/images/2-Proposal/snaptics_architecture.png)
-*Figure 1. Target AWS Cloud Architecture for Snaptics System*
+![Snaptics AWS Cloud Architecture](/fcj-workshop-template/images/2-Proposal/snaptics_architecture.jpg)
 
 #### 4.5. Security, Observability & Cost Control
 * Enforce HTTPS and JWT tokens; attach AWS WAF to CloudFront for edge filtering.
