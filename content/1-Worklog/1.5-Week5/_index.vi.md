@@ -8,27 +8,24 @@ pre: " <b> 1.5. </b> "
 
 ### Mục tiêu tuần 5
 
-* Phối hợp cùng team xây dựng các thành phần cốt lõi cho hệ thống Snaptics.
-* Thiết kế Database Schema, xác định các bảng, mối quan hệ và luồng dữ liệu.
-* Xây dựng Backend API Authentication và cấu trúc Request/Response chuẩn.
-* Khởi tạo Frontend SPA bằng Angular và thiết lập Design System Tokens.
-* Tích hợp và kiểm thử API Đăng nhập/Đăng ký giữa Frontend và Backend.
-* Phối hợp xử lý các lỗi phát sinh (CORS, Token, Validation) trong quá trình kết nối.
+* Thiết kế cấu trúc cơ sở dữ liệu (Database Schema) cho dự án Snaptics.
+* Thiết lập Entity Framework Core và thực hiện quá trình Migration.
+* Xây dựng kiến trúc cơ bản cho Backend API.
+* Phát triển các API cốt lõi: Authentication, Quản lý Danh mục, Quản lý Ví.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | - **Sáng:** Thiết kế Database Schema chi tiết (Tables: Users, Wallets, Transactions, Categories).<br>- **Chiều:** Setup DBContext bằng Entity Framework Core. Bị lỗi Migration conflict khi team cùng tạo bảng, phải reset DB local, gom code và chạy lại file Migration gốc. | 08/06/2026 | 08/06/2026 | [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) |
-| 3 | - **Sáng:** Xây dựng cấu trúc API Response chuẩn (`ApiResponse<T>`) cho toàn hệ thống Backend.<br>- **Chiều:** Khởi tạo project Angular SPA. Cài đặt Tailwind CSS. Phân chia cấu trúc thư mục (core, shared, features) và tạo các Components cơ bản (Header, Sidebar). | 09/06/2026 | 09/06/2026 | [Angular Folder Structure](https://angular.io/guide/styleguide) |
-| 4 | - **Sáng:** Code Backend API cho luồng Authentication (Đăng nhập, Đăng ký) và sinh mã JWT Token.<br>- **Chiều:** Dùng Postman test API Auth thành công. Tích hợp form Đăng nhập trên Angular gọi API. Trình duyệt báo lỗi CORS đỏ chót, đã fix bằng cách cấu hình lại `builder.Services.AddCors()` ở Backend. | 10/06/2026 | 10/06/2026 | [CORS in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/cors) |
-| 5 | - **Sáng:** Thiết kế trang Main Layout của ứng dụng và Auth UI (Form Login/Register đẹp mắt).<br>- **Chiều:** Xử lý lưu JWT vào LocalStorage bên phía Frontend. Bị lỗi lấy sai payload từ Token, đã debug và viết lại hàm giải mã base64 JWT trên Angular. | 11/06/2026 | 11/06/2026 | [JWT Authentication](https://jwt.io/) |
-| 6 | - **Sáng:** Xây dựng các API cơ bản để CRUD Danh mục (Categories) và Ví cá nhân (Wallets).<br>- **Chiều:** Bàn giao task tuần. Xử lý nốt API Quên mật khẩu. Cập nhật tài liệu API Auth lên Swagger để cả nhóm có thể test chéo. | 12/06/2026 | 12/06/2026 | [Swagger/OpenAPI](https://swagger.io/) |
+|------|-----------|-------------|----------------|---------------|
+| 2 | **Thiết kế Cơ sở dữ liệu:** <br> - Phân tích yêu cầu dự án Snaptics <br> - Thiết kế các bảng: Users, Wallets, Transactions, Categories <br> - Vẽ sơ đồ quan hệ thực thể (ERD) | 08/06/2026 | 08/06/2026 | |
+| 3 | **Cấu hình Entity Framework Core:** <br> - Khởi tạo DbContext <br> - Tạo các Entity Models tương ứng với bảng <br> - Thực hiện Migration và tạo Database | 09/06/2026 | 09/06/2026 | |
+| 4 | **Kiến trúc Backend API:** <br> - Xây dựng cấu trúc thư mục dự án <br> - Định nghĩa chuẩn API Response chung <br> - Cấu hình Dependency Injection | 10/06/2026 | 10/06/2026 | |
+| 5 | **Phát triển API Authentication:** <br> - Xây dựng luồng Đăng ký tài khoản <br> - Xây dựng luồng Đăng nhập <br> - Tích hợp tạo và mã hóa JWT Token | 11/06/2026 | 11/06/2026 | |
+| 6 | **Xây dựng API Cốt lõi:** <br> - Phát triển API quản lý Danh mục (Categories) <br> - Phát triển API quản lý Ví cá nhân (Wallets) <br> - Kiểm thử API thông qua Swagger/Postman | 12/06/2026 | 12/06/2026 | |
 
 ### Kết quả đạt được tuần 5
 
-* Hoàn thành thiết kế Database và triển khai thành công Entity Framework Core.
-* Khởi tạo thành công project Angular, thiết lập kiến trúc thư mục chuẩn và tích hợp Tailwind CSS.
-* Xây dựng xong luồng xác thực JWT Authentication cho Backend.
-* Vượt qua các lỗi kinh điển khi tích hợp hệ thống: lỗi CORS Policy, lỗi parse JWT, và migration conflict.
-* Hoàn thiện giao diện Auth UI và Main Layout, đảm bảo API kết nối thông suốt từ Client xuống Server.
+* Hoàn thành thiết kế cấu trúc dữ liệu cơ sở cho dự án.
+* Thiết lập thành công kết nối Database thông qua Entity Framework Core.
+* Hoàn thiện phân hệ Authentication (Đăng nhập/Đăng ký) tạo tiền đề cho các chức năng bảo mật.
+* Triển khai thành công các API quản lý danh mục và ví, hỗ trợ quản lý chi tiêu cá nhân.

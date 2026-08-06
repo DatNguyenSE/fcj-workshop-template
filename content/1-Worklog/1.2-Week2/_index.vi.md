@@ -1,33 +1,43 @@
 ---
 title: "Worklog Tuần 2"
-date: 2026-05-18
-weight: 2
+date: 2024-01-01
+weight: 1
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
 ### Mục tiêu tuần 2
 
-* Nắm vững các thành phần mạng cốt lõi trong Amazon VPC (IPv4 CIDR Block, Subnet, Route Table, Internet Gateway).
-* Phân biệt chi tiết giữa Public Subnet và Private Subnet dựa trên bảng định tuyến và quyền kết nối Internet.
-* Tìm hiểu nguyên lý hoạt động và triển khai NAT Gateway cho Private Subnet truy cập Internet chiều đi ra (outbound).
-* So sánh cơ chế bảo mật giữa Security Group (Stateful, instance-level) và Network ACL (Stateless, subnet-level).
-* Khởi tạo máy chủ Amazon EC2 trong VPC để kiểm tra khả năng kết nối mạng nội bộ và mạng bên ngoài.
+* Tìm hiểu kiến trúc mạng cơ bản trên AWS với Amazon VPC.
+* Hiểu các thành phần mạng quan trọng như Subnet, Route Table và Internet Gateway.
+* Nắm được cơ chế bảo mật mạng thông qua Security Group và Network ACL.
+* Thực hành triển khai Amazon EC2 trong môi trường VPC.
+* Tìm hiểu các giải pháp kết nối mạng nâng cao như NAT Gateway và Site-to-Site VPN.
+* Bắt đầu trao đổi và định hướng ý tưởng cho dự án nhóm.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | - **Sáng:** Họp Weekly Sync. Đọc tài liệu Amazon VPC, nguyên lý quy hoạch IPv4 CIDR Block và cách chia Subnet.<br>- **Chiều:** Vẽ sơ đồ kiến trúc mạng VPC bằng Draw.io. Tính toán phân bổ dải IP cho VPC `10.0.0.0/16` và chia nhỏ cho 2 Public Subnets, 2 Private Subnets. | 18/05/2026 | 18/05/2026 | [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) |
-| 3 | - **Sáng:** Thực hành tạo custom VPC trên AWS Console. Khởi tạo và gắn Internet Gateway (IGW) vào VPC.<br>- **Chiều:** Bị lỗi Overlapping CIDR khi tạo Subnet thứ 3 do tính toán trùng lấp, đọc lại tài liệu chia mạng và fix thành công. Cấu hình Route Table cho Public Subnet (trỏ `0.0.0.0/0` ra IGW). | 19/05/2026 | 19/05/2026 | [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html) |
-| 4 | - **Sáng:** Khởi tạo NAT Gateway (đặt tại Public Subnet) và cấp Elastic IP tĩnh. Cấu hình Route Table cho Private Subnet trỏ luồng ra NAT Gateway.<br>- **Chiều:** Phân tích sự khác nhau giữa Security Group (Stateful) và Network ACL (Stateless). Cấu hình Inbound rules cho phép truy cập HTTP/SSH từ các nguồn tin cậy. | 20/05/2026 | 20/05/2026 | [NAT Gateways Guide](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) |
-| 5 | - **Sáng:** Tạo 2 máy chủ Amazon EC2 (1 đặt tại Public Subnet, 1 tại Private Subnet) để kiểm tra mạng.<br>- **Chiều:** SSH vào Public EC2 và thực hiện lệnh ping sang Private EC2. Gặp lỗi ping Request Timeout, debug phát hiện do Security Group chưa mở port ICMP IPv4, đã vào Console fix lại. Test outbound internet từ Private EC2 qua NAT thành công. | 21/05/2026 | 21/05/2026 | [Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) |
-| 6 | - **Sáng:** Đọc lý thuyết Workshop 5 về VPC Endpoint và giải pháp PrivateLink (Truy cập AWS Services không qua Internet).<br>- **Chiều:** Dọn dẹp tài nguyên (Xóa NAT Gateway, Terminate EC2 instances) tránh phát sinh chi phí billing. Viết tài liệu tổng kết mạng tuần 2 và lưu sơ đồ lên Notion nhóm. | 22/05/2026 | 22/05/2026 | [AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html) |
+|------|-----------|-------------|----------------|---------------|
+| 2 | **Định hướng dự án:** <br> - Thảo luận ý tưởng dự án nhóm <br> - Tìm hiểu các dịch vụ AWS có thể áp dụng cho dự án <br> - Xác định bài toán và mục tiêu ban đầu của hệ thống | 18/05/2026 | 18/05/2026 | |
+| 3 | **Nền tảng mạng (VPC):** <br> - Tìm hiểu Amazon VPC <br> - Tìm hiểu Subnet, Route Table, Internet Gateway (IGW) <br> - Cấu hình Security Group và Network ACL (NACL) | 19/05/2026 | 19/05/2026 | https://000003.awsstudygroup.com/ |
+| 4 | **Triển khai EC2:** <br> - Tạo Amazon EC2 Instance <br> - Kiểm tra kết nối SSH <br> - Thực hành triển khai EC2 trong Public Subnet và Private Subnet | 20/05/2026 | 20/05/2026 | https://000003.awsstudygroup.com/ |
+| 5 | **Triển khai NAT Gateway:** <br> - Tìm hiểu cơ chế truy cập Internet của Private Subnet <br> - Thiết lập NAT Gateway <br> - Kiểm tra kết nối từ Private EC2 ra Internet | 21/05/2026 | 21/05/2026 | https://000003.awsstudygroup.com/|
+| 6 | **Kết nối Site-to-Site VPN:** <br> - Tìm hiểu AWS Site-to-Site VPN <br> - Tìm hiểu Virtual Private Gateway và Customer Gateway <br> - Thực hành cấu hình kết nối VPN cơ bản | 22/05/2026 | 22/05/2026 | https://000003.awsstudygroup.com/|
 
-### Kết quả đạt được tuần 2
+### Kết quả đạt được trong tuần 2
 
-* Nắm vững kỹ năng tính toán dải IP CIDR và chia Subnet không bị overlapping.
-* Khởi tạo thành công VPC custom, định tuyến Internet Gateway cho Public Subnet hoạt động ổn định.
-* Khắc phục thành công các lỗi mạng thực tế: fix lỗi overlapping CIDR, mở port ICMP trên Security Group để ping thông mạng nội bộ.
-* Triển khai thành công NAT Gateway kèm Elastic IP, hỗ trợ EC2 Private truy cập Internet an toàn.
-* Xây dựng thói quen tối ưu chi phí: luôn dọn dẹp (cleanup) các tài nguyên không dùng (đặc biệt là NAT Gateway và Elastic IP).
+* Hiểu vai trò của Amazon Virtual Private Cloud (VPC) và các thành phần mạng cốt lõi như Subnets, Route Tables và Internet Gateway.
+
+* Nắm được các cơ chế bảo mật mạng trên AWS thông qua Security Groups và Network ACLs (NACLs).
+
+* Triển khai thành công Amazon EC2 và thiết lập kết nối SSH trong môi trường VPC.
+
+* Hiểu cách NAT Gateway cho phép các tài nguyên trong Private Subnets truy cập Internet một cách an toàn.
+
+* Nắm được các kiến thức cơ bản về AWS Site-to-Site VPN và mô hình kết nối mạng lai (Hybrid Network).
+
+* Xác định phạm vi và định hướng phát triển ban đầu cho dự án nhóm Snaptics.
+
+* Hoàn thành các bài thực hành về cấu hình VPC, triển khai EC2 và các dịch vụ mạng trên AWS.
+

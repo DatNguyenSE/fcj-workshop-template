@@ -8,27 +8,24 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Objectives
 
-* Coordinate with the team to build core components for the Snaptics system.
-* Design the Database Schema, identifying tables, relationships, and data flows.
-* Build the Backend Authentication APIs and standardize Request/Response structures.
-* Initialize the Frontend SPA using Angular and configure Design System Tokens.
-* Integrate and test the Login/Register APIs between the Frontend and Backend.
-* Coordinate fixing integration bugs (CORS, Tokens, Validations).
+* Design the Database Schema for the Snaptics project.
+* Set up Entity Framework Core and execute the Migration process.
+* Build the fundamental architecture for the Backend API.
+* Develop core APIs: Authentication, Category Management, Wallet Management.
 
 ### Tasks Completed During the Week
 
 | Day | Tasks | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| Monday | - **Morning:** Detailed Database Schema design (Tables: Users, Wallets, Transactions, Categories).<br>- **Afternoon:** Setup DBContext using Entity Framework Core. Encountered a Migration conflict when the team created tables simultaneously; had to reset the local DB, consolidate code, and re-run the master Migration file. | 08/06/2026 | 08/06/2026 | [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) |
-| Tuesday | - **Morning:** Built a standard API Response structure (`ApiResponse<T>`) for the entire Backend system.<br>- **Afternoon:** Initialized the Angular SPA project. Installed Tailwind CSS. Structured directories (core, shared, features) and created basic Components (Header, Sidebar). | 09/06/2026 | 09/06/2026 | [Angular Folder Structure](https://angular.io/guide/styleguide) |
-| Wednesday | - **Morning:** Coded Backend APIs for the Authentication flow (Login, Register) and JWT Token generation.<br>- **Afternoon:** Tested Auth APIs successfully with Postman. Integrated the Login form on Angular to call the API. The browser threw a glaring red CORS error; fixed it by reconfiguring `builder.Services.AddCors()` in the Backend. | 10/06/2026 | 10/06/2026 | [CORS in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/cors) |
-| Thursday | - **Morning:** Designed the Main Layout page of the application and the Auth UI (polished Login/Register Forms).<br>- **Afternoon:** Handled storing JWTs in LocalStorage on the Frontend. Got an error extracting the wrong payload from the Token; debugged and rewrote the base64 JWT decoding logic in Angular. | 11/06/2026 | 11/06/2026 | [JWT Authentication](https://jwt.io/) |
-| Friday | - **Morning:** Built basic APIs for CRUD operations on Categories and personal Wallets.<br>- **Afternoon:** End-of-week task handover. Finished the Forgot Password API. Updated the Auth API documentation on Swagger for cross-testing by the team. | 12/06/2026 | 12/06/2026 | [Swagger/OpenAPI](https://swagger.io/) |
+|------|-----------|-------------|----------------|---------------|
+| Monday | **Database Design:** <br> - Analyze Snaptics project requirements <br> - Design tables: Users, Wallets, Transactions, Categories <br> - Draw the Entity Relationship Diagram (ERD) | 08/06/2026 | 08/06/2026 | |
+| Tuesday | **Entity Framework Core Configuration:** <br> - Initialize DbContext <br> - Create Entity Models corresponding to tables <br> - Execute Migration and create Database | 09/06/2026 | 09/06/2026 | |
+| Wednesday | **Backend API Architecture:** <br> - Build project folder structure <br> - Define standard API Response format <br> - Configure Dependency Injection | 10/06/2026 | 10/06/2026 | |
+| Thursday | **Authentication API Development:** <br> - Build the Account Registration flow <br> - Build the Login flow <br> - Integrate JWT Token generation and encryption | 11/06/2026 | 11/06/2026 | |
+| Friday | **Core API Construction:** <br> - Develop Category Management APIs <br> - Develop Wallet Management APIs <br> - Test APIs via Swagger/Postman | 12/06/2026 | 12/06/2026 | |
 
 ### Week 5 Achievements
 
-* Completed Database design and successfully deployed Entity Framework Core.
-* Successfully initialized the Angular project, established standard folder architecture, and integrated Tailwind CSS.
-* Finished building the JWT Authentication flow for the Backend.
-* Overcame classic system integration bugs: CORS Policy errors, JWT parsing errors, and migration conflicts.
-* Finalized the Auth UI and Main Layout, ensuring smooth API connectivity from the Client to the Server.
+* Completed the foundational data structure design for the project.
+* Successfully established Database connection via Entity Framework Core.
+* Finalized the Authentication module (Login/Register), laying the groundwork for security features.
+* Successfully deployed Category and Wallet management APIs, supporting personal expense management.
