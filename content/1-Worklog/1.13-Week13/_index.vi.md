@@ -8,32 +8,27 @@ pre: " <b> 1.13. </b> "
 
 ### Mục tiêu tuần 13
 
-* Tiến hành kiểm thử toàn bộ luồng người dùng (End-to-End User Flow testing) xuyên suốt từ Frontend qua Backend đến Database.
-* Khắc phục tất cả các lỗi vặt giao diện (UI/UX polishing) và tối ưu hóa hiệu năng toàn bộ hệ thống (Angular & .NET API).
-* Cấu hình triển khai hạ tầng AWS (Amplify cho Frontend, CloudFront & ALB cho Backend API) kết hợp chứng chỉ SSL/HTTPS bảo mật.
-* Thực hiện biên dịch bản Frontend Production tĩnh thành công bằng Angular CLI và cấu hình CI/CD tự động từ GitHub.
-* Đảm bảo kiến trúc CloudFront gọi tới ALB hoạt động trơn tru qua Custom Domain, xử lý chuẩn xác các Header và WebSocket (SignalR).
-* Thực hành bài lab **Workshop 5.6**: Tiến hành dọn dẹp sạch sẽ tài nguyên thử nghiệm (VPC Endpoints, EC2 test instances, IAM policies, S3 test buckets) tránh phát sinh chi phí thừa trên AWS.
-* Chụp ảnh màn hình giao diện thực tế, hoàn thiện hồ sơ tài liệu báo cáo thực tập, chuẩn bị kịch bản demo sản phẩm và nộp chính thức dự án Snaptics vào ngày **07/08/2026**.
+* Biên dịch bản ứng dụng (Build Production) cho cả Frontend và Backend.
+* Triển khai (Deploy) Frontend SPA tĩnh lên nền tảng AWS Amplify.
+* Đóng gói Backend thành Docker Container và triển khai lên kiến trúc Serverless Amazon ECS (Fargate) đằng sau Load Balancer.
+* Xử lý chứng chỉ bảo mật SSL/HTTPS bằng AWS Certificate Manager (ACM) để fix lỗi Mixed Content.
+* Cấu hình lại các thiết lập mạng, WebSocket để ứng dụng chạy ổn định trên Domain thực tế.
+* Thực hành bài lab **Workshop 5.6**: Dọn dẹp tài nguyên rác và Tổng kết dự án.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Tiến hành End-to-End Testing toàn hệ thống Fullstack:<br>&emsp; + Luồng Đăng nhập, Đăng ký, JWT Auth.<br>&emsp; + Luồng Dashboard, Giao dịch, Ví, Ngân sách lưu vào SQL Server.<br>&emsp; + Luồng Quét hóa đơn (S3 + SQS + Azure OCR), Thông báo SignalR, Chatbot AI Gemini, Support Ticket.<br>&emsp; + Luồng Quản trị Admin và Hangfire Background Jobs.<br>- Rà soát và tinh chỉnh các lỗi UI/UX, tối ưu API response time. | 03/08/2026 | 03/08/2026 | [Software Testing Best Practices](https://developer.mozilla.org/) |
-| 3 | - Kiểm tra chính xác các biến môi trường Production (`src/environments/environment.prod.ts` trỏ về API CloudFront URL).<br>- Chạy lệnh `ng build --configuration production` biên dịch bản tĩnh Production và xác nhận quá trình build hoàn tất thành công 100%.<br>- Tối ưu hóa cấu hình Parameter Store trên AWS Systems Manager cho Backend. | 04/08/2026 | 04/08/2026 | [Angular Deployment Guide](https://angular.io/guide/deployment) |
-| 4 | - Triển khai hệ thống lên Production AWS:<br>&emsp; + Host Frontend trên **AWS Amplify** kết hợp CI/CD từ GitHub.<br>&emsp; + Cấu hình **CloudFront** đứng trước ALB của Backend API, thiết lập Cache Policy `CachingDisabled` và Origin Request Policy `AllViewer`.<br>&emsp; + Trỏ tên miền Custom Domain qua Route 53 và cấu hình chứng chỉ bảo mật ACM SSL. | 05/08/2026 | 05/08/2026 | [AWS Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)<br>[CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) |
-| 5 | - **Thực hành Workshop 5 (Phần 6 - Dọn dẹp tài nguyên):**<br>&emsp; + Tiến hành dọn dẹp toàn bộ tài nguyên lab Workshop theo hướng dẫn ([Workshop Clean-up](5-Workshop/5.6-Cleanup/)).<br>&emsp; + Xóa Gateway VPC Endpoint, Interface VPC Endpoint, các EC2 test instances, S3 test buckets và giải phóng Elastic IP.<br>&emsp; + Rà soát trên AWS Cost Explorer đảm bảo không còn tài nguyên rác chạy ngầm gây phát sinh chi phí. | 06/08/2026 | 06/08/2026 | [Workshop Clean-up](5-Workshop/5.6-Cleanup/)<br>[AWS Cost Management](https://aws.amazon.com/aws-cost-management/) |
-| 6 | - **Hoàn thiện & Nộp Báo cáo Thực tập:**<br>- Thu thập ảnh chụp màn hình ứng dụng và chuẩn bị kịch bản Demo sản phẩm phục vụ buổi tổng kết.<br>- Tổng kết lại toàn bộ kiến thức Fullstack (.NET, Angular) và các dịch vụ đám mây AWS đã vận dụng kiến trúc vào Snaptics trong 13 tuần.<br>- Hoàn thiện hồ sơ báo cáo thực tập và **chính thức nộp Project Snaptics** khép lại chương trình thực tập FCJ Workforce vào ngày **07/08/2026**. | 07/08/2026 | 07/08/2026 | [FCJ Workforce Regulations](https://hcm-rules.awsfcaj.com/1-regulations/) |
+| 2 | - **Sáng:** Biên dịch bản Frontend Production bằng lệnh `ng build --configuration production`. Bị dính các lỗi Strict Type Checking lúc build (môi trường dev thì bỏ qua nhưng build prod thì báo lỗi đỏ), đã ngồi fix lại toàn bộ kiểu dữ liệu.<br>- **Chiều:** Khởi tạo `Dockerfile` cho Backend .NET. Đóng gói thành Docker Image và push thành công lên kho chứa Amazon ECR. | 03/08/2026 | 03/08/2026 | [Angular Deployment](https://angular.io/guide/deployment) |
+| 3 | - **Sáng:** Triển khai Frontend lên dịch vụ AWS Amplify. Mất khá lâu để cấu hình các luồng Rewrite/Redirect rules trên Amplify cho các route của Angular (để khi f5 trang không bị trả về lỗi 404).<br>- **Chiều:** Khởi tạo Cluster và Task Definition. Triển khai Backend chạy bằng Amazon ECS (AWS Fargate) để khỏi phải quản lý server. | 04/08/2026 | 04/08/2026 | [Deploying Angular on AWS Amplify](https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/module-1/) |
+| 4 | - **Sáng:** Tạo Application Load Balancer (ALB) làm phễu hứng request cho Backend. Test gọi API từ Frontend (trên Amplify) tới Backend (ALB).<br>- **Chiều:** Trình duyệt web báo lỗi chặn HTTPS Mixed Content (Do Frontend HTTPS cố gọi Backend HTTP). Đăng ký chứng chỉ SSL miễn phí từ AWS Certificate Manager (ACM) và gắn vào ALB. Thiết lập cấu hình trỏ Domain từ Route53 về ALB. | 05/08/2026 | 05/08/2026 | [ALB and HTTPS](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html) |
+| 5 | - **Sáng:** Gặp sự cố tính năng Notification không nhảy. Debug phát hiện ALB đang không định tuyến đúng chuẩn WebSocket. Cấu hình lại Header trên ALB, cho phép giao thức `ws://` và `wss://` hoạt động thông qua Custom Domain.<br>- **Chiều:** Thực hành lab Workshop 5.6: Rà soát và dọn dẹp sạch sẽ tài nguyên rác (VPC Endpoints, Test EC2, Test Buckets) trên AWS Console để tránh bị AWS "cắn" tiền sau khi kết thúc chương trình. | 06/08/2026 | 06/08/2026 | [WebSockets on ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html) |
+| 6 | - **Sáng:** Dự án đã chạy Live trên Domain thực tế. Chụp ảnh màn hình giao diện hệ thống. Hoàn thiện bộ hồ sơ tài liệu báo cáo thực tập kiến trúc Snaptics.<br>- **Chiều:** Demo sản phẩm lần cuối với cả nhóm để xem xét các luồng. Nộp chính thức dự án và kết thúc tốt đẹp chương trình FCJ Workforce 13 tuần. | 07/08/2026 | 07/08/2026 | [Project Submission Guidelines](#) |
 
 ### Kết quả đạt được tuần 13
 
-* Thực hiện kiểm thử End-to-End thành công, đảm bảo toàn bộ hệ thống Fullstack từ Frontend đến Database vận hành trơn tru.
-* Tối ưu hóa dung lượng ứng dụng Angular và hiệu suất API Backend, nâng cao tốc độ phản hồi hệ thống.
-* Thực hiện biên dịch bản Build Angular Production thành công 100% không gặp bất kỳ lỗi syntax nào.
-* Triển khai hạ tầng Production AWS thành công: Frontend chạy siêu tốc trên Amplify, Backend API được bảo vệ an toàn sau CloudFront & ALB.
-* Cấu hình tên miền hoàn chỉnh qua Route 53 kèm chứng chỉ bảo mật HTTPS cho cả Frontend và API Backend.
-* Thực hành dọn dẹp thành công 100% tài nguyên bài lab Workshop 5 (Clean-up), đảm bảo tối ưu chi phí AWS.
-* Chuẩn bị đầy đủ kịch bản Demo sản phẩm và nội dung bảo vệ tổng kết chất lượng cao.
-* Đúc kết được nhiều kinh nghiệm thực chiến giá trị về Fullstack Web Development, kiến trúc Serverless/Container và dịch vụ AWS.
-* Hoàn thành và nộp chính thức Báo cáo thực tập & Project Snaptics đúng thời hạn vào ngày **07/08/2026**.
+* Vượt qua các quy định kiểm tra khắt khe khi Build Production, đóng gói chuẩn chỉnh cả Frontend lẫn Backend.
+* Hoàn thành triển khai hệ thống Cloud-native thực thụ: Frontend Serverless (Amplify) và Backend Containerized (ECS Fargate).
+* Xử lý dứt điểm các lỗi đặc thù khi lên môi trường thật: Lỗi 404 F5 trên SPA, lỗi HTTPS Mixed Content, lỗi chặn WebSocket.
+* Áp dụng nguyên tắc dọn dẹp (Cleanup resources) theo bài lab cuối để làm chủ việc quản lý chi phí đám mây.
+* Nghiệm thu và bàn giao xuất sắc đồ án Snaptics - kết tinh kiến thức Fullstack & AWS Cloud sau 13 tuần nỗ lực.

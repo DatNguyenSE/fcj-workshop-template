@@ -6,42 +6,40 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# HARD-EARNED AWS LESSONS AND THE CLOUD-NATIVE MINDSET FROM A REAL-WORLD PROJECT
+# LESSONS ON CLOUD-NATIVE MINDSET FROM A REAL-WORLD PROJECT
 
-13 weeks of interning and grinding on the Snaptics project has truly completely transformed my programming mindset. "Works on my machine" becomes utterly meaningless the moment you step into the Cloud environment!
+The 13-week journey of interning and working on the Snaptics project has brought me valuable practical experience. Integrating infrastructure services in a Cloud environment requires a significant shift in software development mindset, moving beyond the limits of conventional programming on a personal machine.
 
-Specifically, manually integrating Amazon S3 into the .NET Backend to build the Invoice Scanning flow provided me with some "hard-earned" but incredibly valuable lessons about the Cloud-Native mindset.
+Specifically, the process of integrating the Amazon S3 storage service into the .NET Backend for the Invoice Scanning feature flow noticeably strengthened my grasp of Cloud-Native design principles.
 
-### The Most Memorable "Aha Moments"
+### Key Technical Highlights
 
 - **Decoupling Compute and Storage**
-  - Previously, whenever I built an image upload form, I would save the file straight into the `/wwwroot` folder of the server. Moving to the Cloud, I realized doing that is suicidal! The server bloats, and backups become difficult.
-  - I learned how to push all invoice image files up to Amazon S3, and the Backend Database only saves a lightweight URL. The processing logic is separate, the storage repository is separate—it's incredibly unburdening!
+  - In legacy models, uploaded files are often stored locally right on the application server (e.g., the `/wwwroot` folder). When the system scales, this makes capacity management and backups difficult.
+  - Applying a Cloud-Native mindset, I used Amazon S3 to store invoice files, while the Backend Database only saves the mapped URL. Separating the processing logic from the storage repository makes the application lightweight, easily scalable, and optimizes resources.
 
-- **Wrestling with AWS SDK for .NET**
-  - The feeling of writing C# code to successfully call an API and push a file directly into an S3 bucket for the first time was truly fantastic. I started getting used to interacting with infrastructure via code instead of clicking around the Management Console.
+- **Interacting with Infrastructure via AWS SDK for .NET**
+  - This process familiarized me with configuring and controlling AWS services entirely through source code instead of manual operations on the Management Console, serving as an initial step into system administration automation.
 
-- **The Magic of Pre-signed URLs**
-  - This was my biggest "Aha Moment"! Initially, I had a huge headache: *"How do I keep my S3 Bucket completely Private (no public access), but still allow the user's Angular Frontend to load the invoice images to view?"*
-  - The answer was **Pre-signed URLs**. My Backend code silently uses an Access/Secret key pair to generate a temporary link that lives for exactly 15 minutes, then tosses it to the Frontend. It's 100% secure and convenient—no need to download the image to the server and then stream it to the Frontend!
+- **Ensuring Security with Pre-signed URLs**
+  - A requirement arose: How to keep the S3 Bucket completely Private for security, yet allow the Angular Frontend to download and display invoice images to the user?
+  - The optimal solution was using **Pre-signed URLs**. The Backend application uses an Access/Secret key pair to generate a time-limited access link (e.g., 15 minutes). As a result, images are distributed safely, ensuring absolute data security, and eliminating the need to download data to the Server before transmitting it to the Frontend.
 
-- **Learning IAM and "Least Privilege" the Hard Way**
-  - At first, out of convenience, I just granted `S3FullAccess` permissions to the IAM User used in the code. As a result, the code review caught it and forced me to tear it down and redo it.
-  - I had to sit down and tightly configure a JSON Policy: Only allowing `PutObject` and `GetObject` permissions specifically for the `snaptics-invoices-xyz` Bucket. It was a bit tedious initially, but I slept very soundly knowing the system was incredibly secure.
+- **Applying the Least Privilege Principle with IAM**
+  - Initially, I tended to grant broad permissions (e.g., `S3FullAccess`) to the IAM User for programming convenience. The cross-review process revealed this as a major security risk.
+  - I practiced tightening the JSON Policy, granting `PutObject` and `GetObject` permissions strictly for a specific S3 Bucket (`snaptics-invoices-xyz`). This operation keeps the system secure and minimizes the risk of data leakage.
 
-- **Stumbling over CORS (Cross-Origin Resource Sharing)**
-  - After finishing the code, the Frontend called the image URL and got slapped in the face by the browser with a glaring red CORS error. I learned the hard way that Cloud security doesn't just reside in the Backend; you also have to set up CORS Policies right on the S3 Bucket so the browser "recognizes" the Frontend's domain name.
+- **Resolving CORS Security Issues**
+  - During deployment, the image retrieval flow using Pre-signed URLs was blocked by the browser due to a CORS error. I realized that Cloud security requires synchronized configuration across all layers. Properly setting up the CORS Policy on the S3 Bucket resolved the issue, allowing secure communication between independent domains.
 
-- **The Cost Optimization Problem**
-  - Invoice data generates a lot of garbage (blurry images, failed upload images). If left alone, S3 will charge for permanent storage. I had to immediately set up S3 Lifecycle Policies to automatically "take out the trash," deleting temporary images after 7 days.
+- **Data Lifecycle Management and Cost Optimization**
+  - Garbage data (blurry images, upload errors) is continuously generated. If unmanaged, S3 will incur wasteful storage costs. I configured S3 Lifecycle Policies to automatically delete temporary image files after 7 days, a small operation that brings long-term operational value.
 
 ### Summarizing the Journey
 
-This internship didn't just teach me how to use a few AWS services. It tore down and rebuilt my mindset.
+The internship not only helped me improve my skills in using AWS tools but, more importantly, reshaped my system design thinking.
 
-I realized Cloud Computing isn't just about renting a virtual machine and dumping old code onto it to run. Cloud-Native is an art of design: security from its inception (IAM), cost optimization from the start (Lifecycle), decoupling functionalities (S3 + EC2 + SQS), and secure sharing (Pre-signed URLs).
-
-These practical combat experiences are priceless baggage, creating massive momentum for me to continue pursuing the path to becoming a professional Fullstack / Cloud Engineer!
+Cloud-Native is a comprehensive approach: prioritizing security by design (IAM), cost optimization (Lifecycle), decoupled modular design (S3 + EC2 + SQS), and secure resource sharing (Pre-signed URLs). These practical knowledge and experiences will form a solid foundation for me to continue developing on the path to becoming a professional Cloud / Fullstack Engineer.
 
 ### Illustration
 
@@ -62,11 +60,3 @@ These practical combat experiences are priceless baggage, creating massive momen
   </div>
 
 </div>
-
-### References
-
-The knowledge summarized in this article was learned from:
-
-- Participation in a real-world project during the internship.
-- AWS Official Documentation  
-  https://docs.aws.amazon.com/

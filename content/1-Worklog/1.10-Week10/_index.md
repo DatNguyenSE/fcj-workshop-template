@@ -8,29 +8,25 @@ pre: " <b> 1.10. </b> "
 
 ### Week 10 Objectives
 
-* Build the Fullstack Notification Center and Header Dropdown Menu feature.
-* Integrate SignalR to push real-time notifications from the .NET Backend to the Angular Frontend.
-* Set up APIs and classify notifications: Invoice Scans, Budget Alerts, AI Suggestions, Family Wallet Invitations.
-* Build the Fullstack Support Ticket feature including Ticket management APIs, Ticket creation form UI, and discussion threads.
-* Practice **Workshop 5.5** lab: Configure VPC Endpoint IAM Policies to tighten security and restrict Amazon S3 resource access.
-* Build the User Account Settings UI and integrate profile update APIs.
+* Build the Fullstack Notification Center feature with a Realtime bell.
+* Apply WebSockets (SignalR) to maintain a continuous, stable connection between Server and Client.
+* Build the Support Ticket system allowing Users to send help requests to Admins.
+* Practice **Workshop 5.5** lab: Detail IAM Policy configuration for VPC Endpoints to tighten S3 connectivity security.
+* Build the User Account Settings UI (Change avatar, Update personal profile).
 
 ### Tasks Completed During the Week
 
-| Day | Tasks | Start Date | Completion Date | Learning Resources |
+| Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Designed Database schema for Notifications and Support Tickets.<br>- Wrote APIs to fetch notification lists and mark them as read.<br>- Designed Notification Dropdown Menu UI on the Top Header and the Notification Bell icon with an unread badge. | 13/07/2026 | 13/07/2026 | [Notification System UX](https://uxdesign.cc/) |
-| Tuesday | - Integrated SignalR WebSockets into the .NET Backend and Angular Frontend for real-time notifications.<br>- Classified UI designs for notification types: Invoice Scans, Budget Alerts, Financial AI Insights, Wallet Invitations.<br>- Tested notification flows upon new transactions. | 14/07/2026 | 14/07/2026 | [SignalR with Angular](https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client) |
-| Wednesday | - Built CRUD APIs for Support Tickets and message discussion threads.<br>- Designed the Support Ticket Page layout on Angular.<br>- Built the Submitted Tickets Data Table and the New Support Ticket Form with validation. | 15/07/2026 | 15/07/2026 | [Helpdesk UI Patterns](https://dribbble.com/) |
-| Thursday | - **Practice Workshop 5 (Part 5 - VPC Endpoint Policies):**<br>&emsp; + Learned about layered security using VPC Endpoint IAM Policies ([Workshop VPC Endpoint Policies](5-Workshop/5.5-Policy/)).<br>&emsp; + Drafted a JSON Endpoint Policy attached to the VPC Endpoint to exclusively allow access to the Snaptics project S3 Bucket.<br>&emsp; + Executed Access Denied tests by querying S3 Buckets outside the permitted list. | 16/07/2026 | 16/07/2026 | [Workshop VPC Endpoint Policies](5-Workshop/5.5-Policy/)<br>[VPC Endpoint Policy Reference](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) |
-| Friday | - Integrated APIs and designed the Ticket Detail & Discussion Thread UI.<br>- Built the User Account Settings Page and integrated APIs for updating personal info and changing passwords.<br>- Checked form validation errors and optimized responsiveness for Week 10. | 17/07/2026 | 17/07/2026 | [Account Settings Layout](https://refactoringui.com/) |
+| Monday | - **Morning:** Analyzed the Notification system business logic. Designed the `Notifications` table in the DB supporting multiple types (Budget warnings, AI, System, Invoice scanning).<br>- **Afternoon:** Built CRUD APIs for Notifications. Configured and extended the SignalR Hub so that whenever a new Notification event is created in the DB, the Server pushes the JSON data straight to online Users. | 13/07/2026 | 13/07/2026 | [Real-time apps with SignalR](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction) |
+| Tuesday | - **Morning:** Coded the Notification Bell Dropdown Menu UI on the Angular Header. Implemented the unread notification badge counter effect.<br>- **Afternoon:** Tested the Realtime Notification flow. Got continuous WebSocket connection drop errors when the machine was idle for over 1 minute; debugged and added the `keepAliveIntervalInMilliseconds` config for the SignalR client to fix it. | 14/07/2026 | 14/07/2026 | [SignalR Configuration](https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration) |
+| Wednesday | - **Morning:** Designed the Support Ticket business flow. Initialized `Tickets` and `TicketMessages` tables (Storing support chat history). Wrote the API to create Tickets.<br>- **Afternoon:** Coded the Ticket creation Form UI on the Frontend and built the back-and-forth chat screen between User and Admin. Tested sending error attachments to S3 via the Pre-signed URL flow built in Week 7. | 15/07/2026 | 15/07/2026 | [Customer Support UX Patterns](https://uxdesign.cc/customer-support-ux-best-practices-28c0b561b369) |
+| Thursday | - **Morning:** Practiced Workshop 5.5 lab: Tightened security for the S3 Gateway VPC Endpoint. It defaulted to Full Access, needed to change to a Custom Policy.<br>- **Afternoon:** Configured the Policy allowing Get/Put operations exactly on 1 Bucket `snaptics-invoices-dev`. Tried running the API and got thrown a "403 Access Denied" error. Checked AWS CloudTrail logs, found incorrect ARN syntax, fixed it to `arn:aws:s3:::snaptics-invoices-dev/*` and ran successfully. | 16/07/2026 | 16/07/2026 | [VPC Endpoint Policies](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) |
+| Friday | - **Morning:** Built the Account Settings UI page (Account configuration interface, changing personal info).<br>- **Afternoon:** Integrated the profile update API. End-of-week team sync, Merged everyone's feature branches into the `develop` branch. Encountered a conflict in the `app.module.ts` file (since everyone declared new Components); the whole team sat together, resolved the conflict, and rebuilt successfully. | 17/07/2026 | 17/07/2026 | [Resolving Git Conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line) |
 
 ### Week 10 Achievements
 
-* Completed the Fullstack Notification Center, successfully integrating SignalR for smooth real-time notification pushes.
-* Classified and visually designed 4+ core notification groups, ensuring data synchronization with the Backend.
-* Completed the professional Support Ticket Management feature from API to User Interface.
-* Successfully practiced Workshop 5.5: Drafted and attached VPC Endpoint Policies, blocking unauthorized access to non-project S3 Buckets.
-* Successfully integrated detailed discussion flows in Tickets between Users and the Support Team.
-* Completed a clean, secure User Account Settings page and successfully invoked password change APIs.
-* Ensured aesthetic consistency and smooth responsiveness across all screen sizes.
+* Perfected a top-notch Realtime Notification feature, thoroughly handling WebSocket drop errors using Ping/Pong (Keep-alive) mechanisms.
+* Completed the core framework for the Support Ticket feature, ready for the Admin Panel next week.
+* Enhanced AWS security skills (SecOps) by precisely configuring VPC Endpoint IAM Policies, preventing data leakage risks to out-of-project Buckets.
+* Practiced real-world teamwork skills by resolving "tough" Git Conflicts during collaborative code merging.

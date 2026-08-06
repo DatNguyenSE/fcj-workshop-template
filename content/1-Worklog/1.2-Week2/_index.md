@@ -12,26 +12,22 @@ pre: " <b> 1.2. </b> "
 * Distinguish clearly between Public Subnet and Private Subnet based on routing tables and Internet connectivity permissions.
 * Understand the operating principles and deploy a NAT Gateway for Private Subnet outbound Internet access.
 * Compare security mechanisms between Security Group (Stateful, instance-level) and Network ACL (Stateless, subnet-level).
-* Provision an Amazon EC2 instance within the VPC to test internal and external network connectivity.
-* Get an overview of the **Workshop 5** lab regarding the AWS PrivateLink private connectivity solution and prepare the Prerequisite environment.
+* Provision Amazon EC2 instances within the VPC to test internal and external network connectivity.
 
 ### Tasks Completed During the Week
 
 | Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Explored the Amazon VPC service overview and IP addressing space planning principles (IPv4 CIDR Block).<br>- Analyzed the concepts of Public Subnet and Private Subnet in cloud network infrastructure design. | 18/05/2026 | 18/05/2026 | [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)<br>[VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html) |
-| Tuesday | - Provisioned a custom Amazon VPC with the CIDR block `10.0.0.0/16`.<br>- Created Public Subnets and Private Subnets across 2 different Availability Zones.<br>- Provisioned an Internet Gateway (IGW) and attached it to the custom VPC. | 19/05/2026 | 19/05/2026 | [VPC Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html)<br>[Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) |
-| Wednesday | - Created a Route Table for the Public Subnet and added a route pointing `0.0.0.0/0` to the Internet Gateway.<br>- Provisioned a NAT Gateway in the Public Subnet and assigned a static Elastic IP.<br>- Configured the Route Table for the Private Subnet to route Internet traffic through the NAT Gateway. | 20/05/2026 | 20/05/2026 | [NAT Gateways Guide](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) |
-| Thursday | - Detailed comparison of Security Group (Stateful, server-level filtering) and Network ACL (Stateless, subnet-level filtering).<br>- Configured Inbound/Outbound rules for the Security Group (allowing HTTP/SSH) and Network ACL.<br>- Launched Amazon EC2 instances into the Public Subnet and Private Subnet for connectivity testing. | 21/05/2026 | 21/05/2026 | [Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html)<br>[Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html) |
-| Friday | - **Practice Workshop 5 (Parts 1 & 2):**<br>&emsp; + Explored the overview of the "Secure Hybrid Access to S3 using VPC Endpoints" lab ([Workshop Overview](5-Workshop/5.1-Workshop-overview/)).<br>&emsp; + Prepared the Prerequisite environment (creating test VPC, Subnets, EC2 Server, and sample S3 Bucket) ([Workshop Prerequisite](5-Workshop/5.2-Prerequiste/)).<br>- Tested connectivity from the Public EC2 to the Private EC2 and captured evidence screenshots. | 22/05/2026 | 22/05/2026 | [AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)<br>[Workshop Overview](5-Workshop/5.1-Workshop-overview/) |
+| Monday | - **Morning:** Weekly Sync meeting. Explored Amazon VPC service overview, IP addressing space planning principles (IPv4 CIDR Block), and subnetting.<br>- **Afternoon:** Drew VPC network architecture diagram using Draw.io. Calculated IP range allocation for `10.0.0.0/16` VPC and divided it into 2 Public Subnets and 2 Private Subnets. | 18/05/2026 | 18/05/2026 | [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) |
+| Tuesday | - **Morning:** Practiced creating a custom Amazon VPC on the AWS Console. Provisioned and attached an Internet Gateway (IGW) to the VPC.<br>- **Afternoon:** Got an Overlapping CIDR error when creating the 3rd Subnet due to calculation mistakes; re-read the subnetting guide and successfully fixed it. Configured the Route Table for the Public Subnet (routing `0.0.0.0/0` to IGW). | 19/05/2026 | 19/05/2026 | [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html) |
+| Wednesday | - **Morning:** Provisioned a NAT Gateway (placed in the Public Subnet) and assigned a static Elastic IP. Configured the Private Subnet Route Table to direct traffic out to the NAT Gateway.<br>- **Afternoon:** Analyzed the differences between Security Group (Stateful) and Network ACL (Stateless). Configured Inbound rules to allow HTTP/SSH access from trusted sources. | 20/05/2026 | 20/05/2026 | [NAT Gateways Guide](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) |
+| Thursday | - **Morning:** Launched 2 Amazon EC2 instances (1 in Public Subnet, 1 in Private Subnet) to test the network.<br>- **Afternoon:** SSH-ed into the Public EC2 and pinged the Private EC2. Encountered a ping Request Timeout error, debugged and found that the Security Group hadn't opened the ICMP IPv4 port; went to the Console and fixed it. Successfully tested outbound internet from the Private EC2 via NAT. | 21/05/2026 | 21/05/2026 | [Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html) |
+| Friday | - **Morning:** Explored the theory of Workshop 5 regarding VPC Endpoints and the PrivateLink solution (accessing AWS Services without going over the Internet).<br>- **Afternoon:** Cleaned up resources (Deleted NAT Gateway, Terminated EC2 instances) to prevent billing charges. Wrote the Week 2 network summary document and saved the diagram to the team Notion. | 22/05/2026 | 22/05/2026 | [AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html) |
 
 ### Week 2 Achievements
 
-* Understood Amazon VPC structure, how to calculate IP CIDR ranges, and subnetting best practices on AWS.
-* Successfully provisioned a custom VPC fully integrated with Public and Private Subnets across multiple Availability Zones.
-* Configured the Route Table connecting the Internet Gateway for the Public Subnet to operate stably.
-* Successfully deployed a NAT Gateway with an Elastic IP, enabling Private resources to safely access the Internet outbound.
-* Mastered multi-layer firewall configuration skills combining Security Groups and Network ACLs.
-* Successfully tested and verified connectivity between the Public EC2 and Private EC2 instances.
-* Grasped the overview knowledge of Workshop 5 and successfully prepared the Prerequisite infrastructure for the VPC Endpoint lab.
-* Saved architecture diagram images and VPC network configurations for reporting purposes.
+* Mastered the skills of calculating IP CIDR ranges and subnetting without overlapping.
+* Successfully provisioned a custom VPC, configuring the Internet Gateway for stable Public Subnet operation.
+* Successfully troubleshot real-world network errors: fixed overlapping CIDR bugs, opened ICMP ports on Security Groups for internal pinging.
+* Successfully deployed a NAT Gateway with an Elastic IP, safely enabling Private EC2 instances to access the Internet.
+* Built a cost-optimization habit: always cleaning up unused resources (especially NAT Gateways and Elastic IPs).

@@ -8,28 +8,26 @@ pre: " <b> 1.8. </b> "
 
 ### Mục tiêu tuần 8
 
-* Khởi tạo và cấu hình các dịch vụ AWS cốt lõi cho Backend: Amazon S3 (lưu trữ ảnh hóa đơn), Amazon SQS (hàng đợi xử lý bất đồng bộ).
-* Cấu hình AWS Systems Manager Parameter Store để lưu trữ bảo mật các API Keys (Azure, Gemini) và chuỗi kết nối Database.
-* Tích hợp dịch vụ Azure Document Intelligence vào Backend .NET để tự động trích xuất thông tin (Merchant, Total) từ ảnh hóa đơn.
-* Xây dựng API `scan-bill` (Quét hóa đơn) phía Backend, xử lý luồng upload ảnh pre-signed URL S3, đẩy tin nhắn vào SQS và gọi Azure OCR.
-* Tích hợp tính năng Quét hóa đơn lên Frontend Angular, cho phép người dùng tải ảnh lên và nhận kết quả bóc tách dữ liệu theo thời gian thực.
-* Thiết lập Database RDS SQL Server và điều chỉnh kiến trúc Backend để kết nối an toàn trong VPC.
+* Thiết kế kiến trúc xử lý bất đồng bộ (Asynchronous processing) dùng hàng đợi tin nhắn Amazon SQS.
+* Tích hợp AI Azure Document Intelligence (Azure OCR) để tự động bóc tách thông tin hóa đơn (Merchant, Total, Date).
+* Sử dụng AWS Systems Manager Parameter Store để lưu trữ các API Key của bên thứ 3 một cách an toàn.
+* Xây dựng Background Worker (Hosted Service) trên .NET Backend để liên tục kéo (pull) tin nhắn từ SQS và xử lý hình ảnh.
+* Tích hợp SignalR WebSocket để đẩy thông báo kết quả thời gian thực (Real-time) về cho người dùng trên Frontend.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Khởi tạo Amazon S3 Bucket với chính sách bảo mật (Block Public Access) phục vụ lưu trữ hóa đơn riêng tư.<br>- Khởi tạo Amazon SQS Queue (kèm Dead Letter Queue) để xử lý hàng đợi phân tích hóa đơn bất đồng bộ.<br>- Cấu hình AWS Systems Manager Parameter Store lưu trữ AzureKey, GeminiKey và ConnectionStrings. | 29/06/2026 | 29/06/2026 | [Snaptics Proposal](2-Proposal/)<br>[AWS S3 & SQS Guide](https://aws.amazon.com/s3/) |
-| 3 | - Thiết lập Amazon RDS for SQL Server trong Private Subnet và cấu hình Security Group.<br>- Viết code Backend .NET đọc cấu hình bảo mật từ Parameter Store thay vì `appsettings.json`.<br>- Cài đặt SDK AWS để Backend có thể giao tiếp với S3 (tạo Pre-signed URL) và SQS (gửi/nhận messages). | 30/06/2026 | 30/06/2026 | [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) |
-| 4 | - Đăng ký Azure Document Intelligence, lấy Endpoint và Key lưu vào AWS Parameter Store.<br>- Tích hợp SDK Azure Document Analysis Client vào Backend .NET.<br>- Xây dựng API `scan-bill`: Nhận yêu cầu quét, đẩy ảnh vào S3, truyền URI sang Azure OCR để trích xuất Merchant Name và Total Amount. | 01/07/2026 | 01/07/2026 | [Azure Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) |
-| 5 | - Tích hợp Frontend Angular gọi API `scan-bill`.<br>- Thiết kế giao diện upload hóa đơn (Drag & Drop box), hiển thị trạng thái loading chờ xử lý.<br>- Xử lý dữ liệu trả về từ API và tự động điền (auto-fill) vào form nhập liệu Giao dịch mới trên giao diện. | 02/07/2026 | 02/07/2026 | [Angular File Upload](https://angular.io/guide/file-uploads) |
-| 6 | - Kiểm thử toàn trình luồng Quét hóa đơn: Upload ảnh từ Angular -> S3 -> SQS -> Worker xử lý gọi Azure OCR -> Trả kết quả về Frontend.<br>- Xử lý các trường hợp ảnh mờ, sai định dạng hoặc OCR không nhận diện được.<br>- Ghi chép tài liệu API, sửa lỗi cấu hình AWS và tổng kết tuần 8. | 03/07/2026 | 03/07/2026 | [Postman API Testing](https://www.postman.com/) |
+| 2 | - **Sáng:** Khởi tạo hàng đợi Amazon SQS (Standard Queue) trên AWS Console.<br>- **Chiều:** Đăng ký tài khoản Microsoft Azure, khởi tạo dịch vụ Document Intelligence (OCR) và lấy API Key, Endpoint. Đưa 2 Key này vào lưu trữ bảo mật tại AWS Systems Manager Parameter Store thay vì để trong file config. | 29/06/2026 | 29/06/2026 | [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) |
+| 3 | - **Sáng:** Code tính năng gửi (Publish) message chứa S3 Image URI vào SQS mỗi khi người dùng upload hóa đơn xong.<br>- **Chiều:** Code Background Worker (`IHostedService`) trên .NET để pull message từ SQS. Bị lỗi worker kéo chung 1 message nhiều lần, tìm hiểu và nâng cấu hình `Visibility Timeout` của SQS lên 30s vì quá trình AI phân tích ảnh tốn nhiều thời gian. | 30/06/2026 | 30/06/2026 | [Amazon SQS Visibility Timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html) |
+| 4 | - **Sáng:** Viết Service gọi API Azure OCR trong Background Worker. Truyền URI ảnh S3 sang Azure phân tích.<br>- **Chiều:** Parse dữ liệu JSON từ Azure trả về, mapping các trường Merchant Name, Total Amount, Transaction Date sang Object C# và lưu bản nháp vào RDS. | 01/07/2026 | 01/07/2026 | [Azure Document Intelligence REST API](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) |
+| 5 | - **Sáng:** Bị lỗi Exception sập worker do JSON từ Azure trả về bị Null một số trường (do test bằng hình hóa đơn mờ/rách). Debug, viết thêm các câu lệnh check Null an toàn (Null-conditional operators).<br>- **Chiều:** Cấu hình thư viện SignalR trên Backend .NET. Đẩy thông báo báo hiệu trạng thái quét "Thành công/Thất bại" realtime về Frontend Angular. | 02/07/2026 | 02/07/2026 | [SignalR in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction) |
+| 6 | - **Sáng:** Code giao diện Frontend (Review Invoice Form) cho phép User xem lại và xác nhận (hoặc chỉnh sửa) các thông tin mà AI vừa bóc tách ra.<br>- **Chiều:** Test chịu tải nhẹ hệ thống: Nhấn nút upload cùng lúc 10 ảnh hóa đơn. Kiểm tra AWS SQS Queue và quan sát Worker rút từng message ra xử lý tuần tự, không bị rớt cái nào. Vẽ sơ đồ luồng dữ liệu SQS -> Azure lên Draw.io. | 03/07/2026 | 03/07/2026 | [Design Patterns: Queue-Based Load Leveling](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling) |
 
 ### Kết quả đạt được tuần 8
 
-* Triển khai thành công các dịch vụ hạ tầng AWS cốt lõi (S3, SQS, RDS, Parameter Store) phục vụ hệ thống Snaptics.
-* Bảo mật toàn bộ thông tin nhạy cảm (API Keys, Database Passwords) trên AWS Systems Manager Parameter Store.
-* Tích hợp thành công Azure Document Intelligence vào Backend .NET, bóc tách chính xác dữ liệu từ hóa đơn.
-* Hoàn thành API `scan-bill` xử lý luồng nghiệp vụ phức tạp kết hợp S3, SQS và AI OCR.
-* Hoàn thiện giao diện Frontend cho phép người dùng upload ảnh hóa đơn và trải nghiệm tính năng bóc tách tự động mượt mà.
-* Kiểm thử thành công luồng dữ liệu thông suốt từ Client đến Cloud Services (AWS & Azure).
+* Triển khai thành công kiến trúc xử lý bất đồng bộ bằng Amazon SQS, giúp Frontend không bị treo khi chờ xử lý ảnh lâu.
+* Tích hợp thành công giải pháp AI Azure OCR, bóc tách chính xác thông tin hóa đơn tiếng Việt/tiếng Anh.
+* Hiểu sâu về cơ chế Visibility Timeout của hàng đợi tin nhắn và xử lý lỗi duplicate processing.
+* Quản lý API keys an toàn tuyệt đối với AWS Parameter Store.
+* Tích hợp SignalR WebSocket hoàn hảo, mang lại trải nghiệm Real-time mượt mà cho người dùng (Upload xong đi làm việc khác, máy tự báo khi xong).

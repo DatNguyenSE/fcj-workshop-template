@@ -8,29 +8,27 @@ pre: " <b> 1.6. </b> "
 
 ### Mục tiêu tuần 6
 
-* Tiếp tục hỗ trợ team Backend xây dựng và hoàn thiện các API của hệ thống Snaptics.
-* Hỗ trợ Frontend kết nối và gọi API, xử lý dữ liệu trả về và các trạng thái lỗi.
-* Phối hợp kiểm tra tính khớp nối giữa API Backend và các màn hình Frontend.
-* Thiết lập bảo mật phía Frontend: bảo vệ route, kiểm tra trạng thái đăng nhập và phân quyền người dùng.
-* Xử lý an toàn token, validation dữ liệu đầu vào và các trường hợp phiên đăng nhập hết hạn.
-* Kiểm thử các luồng nghiệp vụ từ Frontend qua Backend và ghi nhận lỗi tích hợp.
-* Cập nhật tài liệu API và thống nhất cách trao đổi dữ liệu giữa hai nhóm.
+* Xây dựng Backend API CRUD cho nghiệp vụ cốt lõi: Giao dịch (Transactions).
+* Thiết kế và code giao diện Overview Dashboard hiển thị tổng số dư và biểu đồ sơ bộ.
+* Tích hợp Frontend gọi API và hiển thị danh sách giao dịch có phân trang (Pagination).
+* Thiết lập bảo vệ Route trên Frontend (Angular AuthGuard), chỉ cho người dùng đã đăng nhập truy cập.
+* Viết HttpInterceptor tự động đính kèm Token và xử lý lỗi 401 Unauthorized.
+* Bắt lỗi validation dữ liệu kỹ càng từ Frontend xuống tới Backend.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Hỗ trợ team Backend hoàn thiện các API cho Dashboard và giao dịch.<br>- Kiểm tra request/response, mã trạng thái và dữ liệu trả về.<br>- Trao đổi với Frontend để thống nhất cách gọi API và hiển thị dữ liệu. | 15/06/2026 | 15/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| 3 | - Hỗ trợ Frontend kết nối API danh sách giao dịch, thêm, sửa và xóa giao dịch.<br>- Kiểm tra các trường hợp dữ liệu rỗng, lỗi mạng và lỗi validation.<br>- Phối hợp Backend điều chỉnh API khi phát hiện vấn đề tích hợp. | 16/06/2026 | 16/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| 4 | - Cài đặt bảo vệ route phía Frontend dựa trên trạng thái đăng nhập và quyền người dùng.<br>- Hỗ trợ xử lý token, phiên đăng nhập hết hạn và chuyển hướng an toàn.<br>- Kiểm tra validation dữ liệu đầu vào trước khi gửi request lên Backend. | 17/06/2026 | 17/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| 5 | - Kiểm thử các luồng gọi API từ Frontend đến Backend trong các chức năng chính.<br>- Rà soát quyền truy cập, dữ liệu nhạy cảm và cách xử lý lỗi phía Frontend.<br>- Ghi nhận, phân loại và phối hợp sửa các lỗi kết nối giữa hai nhóm. | 18/06/2026 | 18/06/2026 | [Snaptics Proposal](2-Proposal/) |
-| 6 | - Kiểm tra toàn bộ luồng nghiệp vụ sau khi tích hợp Backend và Frontend.<br>- Cập nhật tài liệu API, hướng dẫn bảo mật phía Frontend và kết quả kiểm thử.<br>- Tổng kết các phần đã hoàn thành và kế hoạch tiếp tục phát triển hệ thống. | 19/06/2026 | 19/06/2026 | [Snaptics Proposal](2-Proposal/) |
+| 2 | - **Sáng:** Xây dựng Backend API (Create, Read, Update, Delete) cho bảng Giao dịch.<br>- **Chiều:** Viết câu truy vấn LINQ tối ưu để lấy danh sách Giao dịch có phân trang (Pagination) và lọc theo Ví, đảm bảo API trả về nhanh chóng với lượng data lớn. | 15/06/2026 | 15/06/2026 | [EF Core LINQ](https://learn.microsoft.com/en-us/ef/core/querying/) |
+| 3 | - **Sáng:** Thiết kế giao diện Overview Dashboard (hiển thị thẻ Số dư tổng, chi tiêu tháng) trên Angular.<br>- **Chiều:** Tích hợp gọi API danh sách Giao dịch. Bị lỗi hiển thị sai định dạng ngày tháng và tiền tệ, đã fix triệt để bằng cách dùng Angular Pipes (`DatePipe`, `CurrencyPipe`). | 16/06/2026 | 16/06/2026 | [Angular Pipes](https://angular.io/guide/pipes) |
+| 4 | - **Sáng:** Cài đặt tính năng bảo vệ Route (`AuthGuard`) trên Angular, chặn user chưa đăng nhập vào xem Dashboard.<br>- **Chiều:** Viết `HttpInterceptor` để tự động kẹp `Bearer Token` vào Header HTTP. Xử lý logic tự động đá văng về trang Login (Logout) khi API trả về mã lỗi `401 Unauthorized` (Token hết hạn). | 17/06/2026 | 17/06/2026 | [Angular Interceptors](https://angular.io/api/common/http/HttpInterceptor) |
+| 5 | - **Sáng:** Code giao diện Form Thêm/Sửa/Xóa giao dịch. Bắt validation các trường bắt buộc (Số tiền phải lớn hơn 0, Danh mục không được bỏ trống).<br>- **Chiều:** Test luồng tạo Giao dịch từ Frontend xuyên suốt tới DB. Phát hiện user có thể bypass truyền số tiền âm qua API, lập tức bổ sung thêm check validation chặt chẽ ở phía Backend. | 18/06/2026 | 18/06/2026 | [Angular Reactive Forms](https://angular.io/guide/reactive-forms) |
+| 6 | - **Sáng:** Làm giao diện quản lý Danh mục chi tiêu (chọn Icon, chọn Mã màu hiển thị).<br>- **Chiều:** Chạy thiết bị ảo test UI, fix các bug giao diện vỡ lề trên màn hình điện thoại (Responsive Mobile). Gom commit gọn gàng và push lên nhánh `develop`. Đóng Sprint 2. | 19/06/2026 | 19/06/2026 | [Tailwind Responsive](https://tailwindcss.com/docs/responsive-design) |
 
 ### Kết quả đạt được tuần 6
 
-* Hỗ trợ team Backend hoàn thiện các API và xử lý các vấn đề trong quá trình xây dựng hệ thống.
-* Hỗ trợ Frontend gọi API, xử lý dữ liệu trả về và kết nối các luồng nghiệp vụ với Backend.
-* Thiết lập bảo vệ route, kiểm tra đăng nhập, phân quyền và xử lý phiên hết hạn phía Frontend.
-* Áp dụng validation dữ liệu đầu vào và cách xử lý lỗi an toàn trước khi gửi request.
-* Kiểm thử các luồng tích hợp, phát hiện và phối hợp xử lý lỗi giữa Backend và Frontend.
-* Hoàn thiện tài liệu API, tài liệu bảo mật Frontend và tổng kết kết quả tuần 6.
+* Xây dựng và hoàn thiện API cốt lõi nhất của dự án là Quản lý Giao dịch.
+* Khắc phục các lỗi hiển thị dữ liệu (Date, Currency) phía Frontend.
+* Thiết lập thành công tường lửa bảo vệ bên trong ứng dụng Angular bằng `AuthGuard` và `HttpInterceptor`.
+* Đồng bộ logic bắt lỗi Validation ở cả hai chiều (Frontend Form và Backend API), chặn đứng dữ liệu rác.
+* Đảm bảo giao diện Dashboard và Form Giao dịch tương thích hoàn toàn (Responsive) trên màn hình thiết bị di động.

@@ -1,6 +1,6 @@
 ---
 title: "Week 7 Worklog"
-date: 2026-06-29
+date: 2026-06-22
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -8,30 +8,26 @@ pre: " <b> 1.7. </b> "
 
 ### Week 7 Objectives
 
-* Migrate the system database from local storage to Amazon RDS.
-* Create a DB Subnet Group and deploy RDS in Private Subnets across multiple Availability Zones.
-* Configure the RDS Security Group to allow access only from the Backend and disable Public Access.
-* Migrate the schema and data, then update the Backend connection string.
-* Replace local image storage with Amazon S3 and configure the required permissions.
-* Connect the Backend to RDS and S3 and test database and image operations.
-* Document the AWS foundation for the remaining cloud deployment work in later weeks.
+* Database Environment Transition: Migrate all data from Local SQL Server to Amazon RDS.
+* Apply security principles by placing Amazon RDS entirely within a Private Subnet network.
+* Establish a static storage system: Move invoice image storage from local hard drives to Amazon S3.
+* Write C# Backend code (.NET SDK for AWS) to interact with S3 to upload images and generate `Pre-signed URLs`.
+* Test the integration flow: Frontend uploads images directly and securely to S3 without choking the Backend's bandwidth.
 
 ### Tasks Completed During the Week
 
-| Day | Tasks | Start Date | Completion Date | Learning Resources |
+| Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Review the VPC architecture and identify Private Subnets for the database.<br>- Create a DB Subnet Group across multiple Availability Zones.<br>- Prepare Security Group rules for Backend-to-RDS connectivity. | 22/06/2026 | 22/06/2026 | [Amazon RDS in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) |
-| Tuesday | - Create an Amazon RDS Microsoft SQL Server instance with Public Access disabled.<br>- Configure the Security Group to allow SQL Server traffic on port 1433 only from the Backend Security Group.<br>- Test the Backend connection to RDS in the Private Subnet. | 23/06/2026 | 23/06/2026 | [RDS Security](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html) |
-| Wednesday | - Migrate the schema and data from the local database to RDS.<br>- Update Backend environment variables and the connection string.<br>- Test create, read, update, and delete operations on RDS. | 24/06/2026 | 24/06/2026 | [Amazon RDS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html) |
-| Thursday | - Create an S3 Bucket to replace local image storage.<br>- Configure the IAM permissions required by Backend to upload and retrieve images.<br>- Update Backend and test image upload, path storage, and image retrieval from S3. | 25/06/2026 | 25/06/2026 | [Amazon S3 User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
-| Friday | - Test the complete Backend flow with RDS and S3.<br>- Review access permissions, data integrity, and migration errors.<br>- Document the completed AWS foundation and summarize Week 7. | 26/06/2026 | 26/06/2026 | [Amazon RDS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)<br>[Amazon S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
+| Monday | - **Morning:** Re-evaluated the VPC architecture and provisioned a DB Subnet Group.<br>- **Afternoon:** Provisioned an Amazon RDS SQL Server in the Private Subnet. Configured the Security Group to only allow IPs from the Backend to access port 1433. | 22/06/2026 | 22/06/2026 | [Amazon RDS in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html) |
+| Tuesday | - **Morning:** Exported data from the Local SQL Server, generating a `.sql` script.<br>- **Afternoon:** Ran the script to migrate schema and data to RDS. Updated the Connection String in the Backend's `appsettings.json` to point to the RDS Endpoint. | 23/06/2026 | 23/06/2026 | [Migrating Data to Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.html) |
+| Wednesday | - **Morning:** Tested the API connecting to RDS. Got an error: `"SSL Provider... connection was successfully established... error occurred during login process"`. Debugged and added `TrustServerCertificate=True` to the connection string to fix it.<br>- **Afternoon:** Created an Amazon S3 Bucket named `snaptics-invoices-dev`. Completely Blocked All Public Access. | 24/06/2026 | 24/06/2026 | [SQL Server SSL error](https://learn.microsoft.com/en-us/troubleshoot/sql/database-engine/connect/tls-ssl-issues) |
+| Thursday | - **Morning:** Installed `AWSSDK.S3` for the Backend. Wrote a Service to upload images and generate a `Pre-signed URL` (living for 15 minutes) to return to the Frontend.<br>- **Afternoon:** Frontend used the Pre-signed URL to load the image. The browser threw a CORS Policy error blocking the image request. Accessed the AWS Console, rewrote the JSON CORS Policy on the S3 Bucket (allowed Origin `http://localhost:4200`), and fixed it successfully. | 25/06/2026 | 25/06/2026 | [S3 Pre-signed URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) |
+| Friday | - **Morning:** Tested the E2E User image upload flow: Frontend calls Backend to get the upload URL -> Uploads the image file directly from the browser to S3 (saving Backend server bandwidth).<br>- **Afternoon:** Moved sensitive information (AWS Access Key, Secret Key) into local Environment Variables, strictly avoiding hard-coding them on Github. Weekly team sync meeting. | 26/06/2026 | 26/06/2026 | [Environment variables in .NET](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments) |
 
 ### Week 7 Achievements
 
-* Deployed Amazon RDS Microsoft SQL Server in Private Subnets with Public Access disabled.
-* Created a DB Subnet Group and configured the Security Group to allow access only from Backend.
-* Successfully migrated the schema and data from the local database to RDS.
-* Updated the Backend to use RDS and tested database operations on the new instance.
-* Replaced local image storage with S3 and configured Backend upload and retrieval permissions.
-* Successfully tested the Backend connection to both RDS and S3.
-* Documented the AWS foundation for deploying the remaining cloud components in later weeks.
+* Successfully migrated the database from a local personal machine to the Cloud environment (Amazon RDS) safely inside a Private Subnet.
+* Successfully fixed the common SSL Provider error when .NET connects to an RDS SQL Server.
+* Finalized an extremely optimized and secure image storage flow using Amazon S3 combined with **Pre-signed URLs**.
+* Thoroughly resolved the S3 CORS Policy issue blocking external domains.
+* Practically applied credential security principles, storing keys safely in local environment variables instead of pushing to Git.

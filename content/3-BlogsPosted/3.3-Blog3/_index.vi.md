@@ -6,42 +6,40 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# NHỮNG BÀI HỌC "TRẦY DA TRÓC VẨY" VỀ AWS VÀ TƯ DUY CLOUD-NATIVE TỪ DỰ ÁN THỰC TẾ
+# NHỮNG BÀI HỌC VỀ TƯ DUY CLOUD-NATIVE TỪ DỰ ÁN THỰC TẾ
 
-13 tuần thực tập và cày cuốc với dự án Snaptics đã thực sự làm thay đổi hoàn toàn tư duy lập trình của mình. "Works on my machine" (Chạy ngon trên máy tôi) trở nên hoàn toàn vô nghĩa khi bước lên môi trường Cloud! 
+Hành trình 13 tuần thực tập và làm việc với dự án Snaptics đã mang lại cho mình nhiều kinh nghiệm thực tiễn quý báu. Việc tích hợp các dịch vụ hạ tầng trên môi trường Cloud đòi hỏi sự thay đổi lớn trong tư duy phát triển phần mềm, vượt ra khỏi giới hạn của việc lập trình thông thường trên máy cá nhân.
 
-Đặc biệt, việc phải tự tay tích hợp Amazon S3 vào Backend .NET để làm luồng Quét Hóa Đơn đã mang đến cho mình những bài học "trầy da tróc vẩy" nhưng cực kỳ đáng giá về tư duy Cloud-Native.
+Đặc biệt, quá trình tích hợp dịch vụ lưu trữ Amazon S3 vào Backend .NET cho luồng tính năng Quét Hóa Đơn đã giúp mình củng cố rõ rệt các nguyên tắc thiết kế Cloud-Native.
 
-### Những "Aha Moments" Đáng Nhớ Nhất
+### Những điểm nhấn kỹ thuật quan trọng
 
 - **Tách biệt Compute và Storage (Decoupling)**
-  - Hồi trước, cứ làm form upload ảnh là mình lưu thẳng file vào thư mục `/wwwroot` của server. Lên Cloud rồi mới thấy làm thế là tự sát! Server phình to, back-up khó khăn.
-  - Mình học được cách đẩy toàn bộ file hình hóa đơn lên Amazon S3, và Backend Database chỉ lưu lại một đoạn URL mỏng nhẹ. Logic xử lý riêng, kho lưu trữ riêng, nhẹ gánh cực kỳ!
+  - Trong các mô hình cũ, file tải lên thường được lưu trữ cục bộ ngay trên máy chủ ứng dụng (ví dụ: thư mục `/wwwroot`). Khi hệ thống mở rộng, điều này gây khó khăn trong việc quản lý dung lượng và sao lưu.
+  - Áp dụng tư duy Cloud-Native, mình đã sử dụng Amazon S3 để lưu trữ file hóa đơn, trong khi Backend Database chỉ lưu lại URL ánh xạ. Việc tách biệt logic xử lý và kho lưu trữ giúp ứng dụng nhẹ nhàng, dễ dàng mở rộng và tối ưu hóa tài nguyên.
 
-- **Vật lộn với AWS SDK for .NET**
-  - Cảm giác lần đầu tiên viết code C# gọi API đẩy thành công một file thẳng lên bucket S3 thật sự rất tuyệt. Mình bắt đầu quen với việc tương tác hạ tầng bằng code thay vì bấm giao diện Management Console.
+- **Tương tác hạ tầng qua AWS SDK for .NET**
+  - Quá trình này giúp mình làm quen với việc cấu hình và điều khiển các dịch vụ AWS hoàn toàn bằng mã nguồn thay vì thao tác thủ công trên Management Console, bước đầu làm quen với tự động hóa trong quản trị hệ thống.
 
-- **Sự lợi hại của Pre-signed URL**
-  - Đây chính là "Aha Moment" lớn nhất của mình! Ban đầu mình rất đau đầu: *"Làm sao để cái Bucket S3 của mình khóa Private hoàn toàn (không ai chọc vào được), nhưng thằng Frontend Angular của người dùng vẫn load được ảnh hóa đơn để xem?"*
-  - Câu trả lời là **Pre-signed URL**. Code Backend của mình dùng cặp Access/Secret key âm thầm tạo ra một cái link tạm thời sống đúng 15 phút rồi quăng cho Frontend. Vừa bảo mật 100%, vừa tiện lợi, khỏi phải tải ảnh về server rồi mới stream qua cho Frontend!
+- **Đảm bảo bảo mật với Pre-signed URL**
+  - Một yêu cầu đặt ra là: Làm sao để S3 Bucket luôn ở trạng thái Private hoàn toàn để bảo mật, nhưng Frontend Angular vẫn có thể tải và hiển thị hình ảnh hóa đơn cho người dùng?
+  - Giải pháp tối ưu chính là sử dụng **Pre-signed URL**. Ứng dụng Backend dùng cặp Access/Secret key để tạo ra một đường dẫn truy cập có thời hạn (ví dụ: 15 phút). Nhờ vậy, hình ảnh được phân phối an toàn, bảo mật dữ liệu tuyệt đối và không cần phải tải dữ liệu về Server rồi mới truyền sang Frontend.
 
-- **Thấm đòn với IAM và "Least Privilege"**
-  - Ban đầu, tiện tay mình cấp luôn quyền `S3FullAccess` cho con IAM User dùng trong code. Kết quả bị review bắt đập đi làm lại.
-  - Mình buộc phải ngồi cấu hình JSON Policy kẹp chặt lại: Chỉ được phép quyền `PutObject` và `GetObject` vào đúng duy nhất cái Bucket `snaptics-invoices-xyz`. Hơi cực lúc đầu, nhưng ngủ rất ngon vì biết hệ thống cực kỳ an toàn.
+- **Áp dụng nguyên tắc Least Privilege với IAM**
+  - Trong giai đoạn đầu, mình có xu hướng cấp quyền rộng (ví dụ: `S3FullAccess`) cho IAM User để tiện lợi cho việc lập trình. Quá trình kiểm tra chéo đã cho thấy đây là một rủi ro bảo mật lớn.
+  - Mình đã thực hành thắt chặt JSON Policy, chỉ cấp quyền `PutObject` và `GetObject` cho đúng một S3 Bucket cụ thể (`snaptics-invoices-xyz`). Thao tác này giúp hệ thống an toàn và hạn chế tối đa rủi ro lộ lọt dữ liệu.
 
-- **Vấp ngã với CORS (Cross-Origin Resource Sharing)**
-  - Code xong xuôi, Frontend gọi URL ảnh bị trình duyệt vả ngay lỗi CORS đỏ chót. Mình học được bài học xương máu rằng bảo mật Cloud không chỉ nằm ở Backend, mà còn phải thiết lập CORS Policy ngay trên S3 Bucket để trình duyệt nó "nhận anh em" với tên miền của Frontend.
+- **Xử lý vấn đề bảo mật CORS**
+  - Khi triển khai, luồng lấy ảnh bằng Pre-signed URL bị trình duyệt chặn do lỗi CORS. Mình nhận ra rằng bảo mật trên Cloud cần cấu hình đồng bộ ở mọi lớp. Việc thiết lập đúng CORS Policy trên S3 Bucket đã giải quyết vấn đề, cho phép giao tiếp an toàn giữa các domain độc lập.
 
-- **Bài toán Tối ưu chi phí**
-  - Dữ liệu hóa đơn tạo ra rác rất nhiều (ảnh mờ, ảnh lỗi upload). Nếu để im, S3 sẽ tính tiền lưu trữ vĩnh viễn. Mình phải thiết lập ngay S3 Lifecycle Policies để tự động "đổ rác" xóa các ảnh tạm sau 7 ngày.
+- **Quản lý vòng đời dữ liệu (Lifecycle) và Tối ưu chi phí**
+  - Dữ liệu rác (ảnh mờ, lỗi upload) sinh ra liên tục. Nếu không quản lý, S3 sẽ gây lãng phí chi phí lưu trữ. Mình đã cấu hình S3 Lifecycle Policies để tự động xóa các file hình ảnh tạm thời sau 7 ngày, một thao tác nhỏ nhưng mang lại giá trị vận hành lâu dài.
 
 ### Tổng kết hành trình
 
-Kỳ thực tập này không chỉ dạy mình cách dùng vài dịch vụ AWS. Nó đập đi xây lại tư duy của mình. 
+Kỳ thực tập không chỉ giúp mình nâng cao kỹ năng sử dụng công cụ AWS, mà quan trọng hơn là định hình lại tư duy thiết kế hệ thống.
 
-Mình nhận ra Cloud Computing không phải là thuê một cái máy ảo rồi bê y nguyên code cũ lên chạy. Cloud-Native là nghệ thuật thiết kế: bảo mật từ trong trứng (IAM), tối ưu chi phí ngay từ đầu (Lifecycle), tách rời các chức năng (S3 + EC2 + SQS), và chia sẻ an toàn (Pre-signed URL).
-
-Những trải nghiệm thực chiến này là hành trang vô giá, tạo đà rất lớn để mình tiếp tục theo đuổi con đường trở thành một Fullstack / Cloud Engineer chuyên nghiệp!
+Cloud-Native là một phương pháp tiếp cận toàn diện: đề cao tính bảo mật từ thiết kế (IAM), tối ưu hóa chi phí (Lifecycle), thiết kế module tách biệt (S3 + EC2 + SQS), và chia sẻ tài nguyên an toàn (Pre-signed URL). Những kiến thức và trải nghiệm thực tiễn này sẽ là nền tảng vững chắc để mình tiếp tục phát triển trên con đường trở thành một Kỹ sư Cloud / Fullstack chuyên nghiệp.
 
 ### Hình minh họa
 

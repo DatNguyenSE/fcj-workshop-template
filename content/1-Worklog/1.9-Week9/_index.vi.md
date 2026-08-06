@@ -8,31 +8,24 @@ pre: " <b> 1.9. </b> "
 
 ### Mục tiêu tuần 9
 
-* Truy xuất Gemini API Key từ AWS Parameter Store và cấu hình tích hợp Google Gemini 2.5 Flash SDK vào Backend .NET.
-* Xây dựng luồng Backend API Trợ lý AI Insight phục vụ tư vấn tài chính thông minh dựa trên dữ liệu chi tiêu của người dùng.
-* Xây dựng Fullstack tính năng Phân tích & Báo cáo chi tiêu (Spending Analysis & Reports).
-* Phát triển API thống kê chi tiêu phía Backend và tích hợp biểu đồ trực quan với **Ngx-charts / Chart.js** trên Frontend (Angular).
-* Thiết kế bộ lọc thời gian linh hoạt (ngày, tuần, tháng, quý, năm) và xử lý logic truy vấn dữ liệu từ CSDL SQL Server.
-* Thiết kế giao diện trò chuyện Chatbot hiện đại trên Angular (Sidebar lịch sử hội thoại, khung chat chính, ô nhập câu hỏi).
-* Xử lý luồng tin nhắn realtime, hiệu ứng AI đang phản hồi (Typing indicator animation) và câu hỏi gợi ý mẫu.
+* Tích hợp AI tạo sinh (Generative AI) bằng Google Gemini API để phân tích dữ liệu tài chính của người dùng.
+* Xây dựng luồng Backend trích xuất dữ liệu giao dịch trong tháng, đóng gói thành Prompt Context gửi cho AI.
+* Xây dựng tính năng Báo cáo & Phân tích chi tiêu (Spending Analysis) sử dụng thư viện `ngx-charts` trên Angular.
+* Tối ưu hóa các truy vấn SQL (Query optimization) trên hệ thống Amazon RDS để đảm bảo load dữ liệu báo cáo nhanh.
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Lấy `GeminiApiKey` một cách bảo mật từ AWS Systems Manager thông qua `IConfiguration` trong Backend .NET.<br>- Tích hợp SDK Gemini 2.5 Flash để xây dựng API Chatbot AI tư vấn tài chính.<br>- Xây dựng API lưu trữ lịch sử hội thoại của người dùng vào cơ sở dữ liệu. | 06/07/2026 | 06/07/2026 | [Google Gemini API Docs](https://ai.google.dev/docs) |
-| 3 | - Thiết kế Database schema và viết API Backend lấy dữ liệu thống kê phân tích chi tiêu tổng quan.<br>- Thiết kế bố cục trang Phân tích & Báo cáo chi tiêu trên Angular.<br>- Tích hợp thư viện biểu đồ **Ngx-charts / Chart.js** để vẽ Pie Chart phân bổ ngân sách và Bar Chart tổng quan. | 07/07/2026 | 07/07/2026 | [Ngx-charts Guide](https://swimlane.github.io/ngx-charts/) |
-| 4 | - Xây dựng API thống kê biến động chi tiêu theo thời gian.<br>- Phát triển Line Chart trên Frontend và thanh công cụ bộ lọc thời gian (Tuần, Tháng, Quý, Năm).<br>- Tối ưu hóa câu truy vấn SQL để tính toán nhanh % tăng/giảm so với kỳ trước. | 08/07/2026 | 08/07/2026 | [Financial Chart Patterns](https://dribbble.com/) |
-| 5 | - Thiết kế cấu trúc giao diện trang Trò chuyện với AI (AI Assistant Chat Component) trên Angular.<br>- Cấu hình Frontend gọi API AI Insight và hiển thị khung tin nhắn (Message Bubbles) phân biệt User và AI.<br>- Xây dựng hiệu ứng visual AI đang suy nghĩ / trả lời (Typing Indicator Animation). | 09/07/2026 | 09/07/2026 | [Chat Interface UI Patterns](https://uicoach.io/) |
-| 6 | - Thiết kế danh sách các Prompt gợi ý mẫu trên màn hình bắt đầu của Chatbot.<br>- Cấu hình luồng Dead Letter Queue (DLQ) cho SQS để dự phòng xử lý khi gọi AI API bị lỗi Timeout.<br>- Kiểm tra khả năng hiển thị responsive của các biểu đồ báo cáo và giao diện Chat AI trên thiết bị di động. | 10/07/2026 | 10/07/2026 | [AI Chatbot UX Best Practices](https://uxplanet.org/) |
+| 2 | - **Sáng:** Đăng ký Google Gemini API Key. Đưa key vào AWS Parameter Store để bảo mật giống như cách làm với Azure.<br>- **Chiều:** Cài đặt SDK `Google.GenerativeAI` cho Backend. Viết Prompt Engineering cơ bản để AI đọc hiểu được mảng dữ liệu (Array) giao dịch của người dùng. | 06/07/2026 | 06/07/2026 | [Google Gemini API Docs](https://ai.google.dev/docs) |
+| 3 | - **Sáng:** Bị lỗi AI hay trả lời dài dòng và format markdown bị lộn xộn. Tinh chỉnh lại Prompt, sử dụng kỹ thuật ép kiểu (force format) bắt AI trả về đúng JSON hoặc bullet points ngắn gọn.<br>- **Chiều:** Hoàn thiện API `/api/ai/insights` trả về lời khuyên tài chính (ví dụ: cảnh báo tiêu quá tay vào Ăn uống). Tích hợp giao diện Chatbot UI đơn giản trên Angular. | 07/07/2026 | 07/07/2026 | [Prompt Engineering Guide](https://www.promptingguide.ai/) |
+| 4 | - **Sáng:** Viết câu lệnh SQL Query (tích hợp qua EF Core) dùng `GroupBy` để tính tổng tiền chi tiêu theo từng Danh mục (Categories) trong tháng.<br>- **Chiều:** Test API Report thấy thời gian phản hồi khá chậm khi seed thử 10,000 dòng data. Nghiên cứu và tạo thêm Index trên RDS cho các cột `TransactionDate` và `CategoryId`, tốc độ cải thiện rõ rệt. | 08/07/2026 | 08/07/2026 | [SQL Server Indexing](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/sql-server-index-design-guide) |
+| 5 | - **Sáng:** Cài đặt thư viện `ngx-charts` cho Frontend. Code giao diện Biểu đồ tròn (Pie Chart) hiển thị cơ cấu chi tiêu trong tháng.<br>- **Chiều:** Code Biểu đồ cột (Bar Chart) so sánh chi tiêu 6 tháng. Bị lỗi biểu đồ không tự co giãn (Responsive) và bị tràn ra ngoài màn hình trên điện thoại, debug và bọc thêm CSS Flexbox/Grid container để fix lỗi. | 09/07/2026 | 09/07/2026 | [Ngx-charts Documentation](https://swimlane.gitbook.io/ngx-charts/) |
+| 6 | - **Sáng:** Lắp ráp hoàn chỉnh trang Phân tích chi tiêu (Spending Analysis UI), kết hợp cả Biểu đồ trực quan bên trên và Insight tư vấn của AI bên dưới.<br>- **Chiều:** Test luồng kết hợp E2E: User đổi tháng xem biểu đồ -> Hệ thống load lại data -> Bấm nút "Xin lời khuyên AI" -> Backend gửi data mới đi hỏi AI. Luồng chạy trơn tru, gom code push lên Repo. | 10/07/2026 | 10/07/2026 | [Angular Component Interaction](https://angular.io/guide/component-interaction) |
 
 ### Kết quả đạt được tuần 9
 
-* Tích hợp thành công Gemini 2.5 Flash vào hệ thống Backend một cách bảo mật bằng API Key lấy từ AWS.
-* Hoàn thành luồng tích hợp Trợ lý AI và giao diện trang Trò chuyện với AI theo chuẩn ứng dụng chat hiện đại.
-* Xây dựng hiệu ứng Typing animation phản hồi chân thực mang lại cảm giác tương tác tự nhiên với AI.
-* Hoàn thành tính năng Phân tích chi tiêu từ Backend API đến Frontend với hệ thống biểu đồ Ngx-charts vô cùng sống động.
-* Phát triển bộ lọc thời gian báo cáo đa dạng và truy vấn dữ liệu hiệu quả từ cơ sở dữ liệu.
-* Hiển thị trực quan chỉ số so sánh xu hướng chi tiêu tăng/giảm theo từng chu kỳ tài chính.
-* Tích hợp bộ danh sách Prompt Chips gợi ý câu hỏi giúp người dùng dễ dàng bắt đầu hội thoại với AI.
-* Đảm bảo các biểu đồ tài chính và giao diện chat AI tương thích chuẩn 100% trên màn hình điện thoại di động.
+* Tích hợp thành công Generative AI (Gemini Flash) mang lại tính năng độc đáo, thông minh cho hệ thống (AI Insight).
+* Làm chủ kỹ năng Prompt Engineering cơ bản, ép định dạng đầu ra của AI để dễ dàng parse trên Backend.
+* Tối ưu hóa thành công hiệu năng Database (RDS) thông qua kỹ thuật tạo Index, phục vụ tốt cho tính năng Báo cáo nặng data.
+* Sử dụng thành thạo thư viện biểu đồ ngx-charts và khắc phục được triệt để vấn đề Responsive trên thiết bị di động.

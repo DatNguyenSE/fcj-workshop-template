@@ -1,6 +1,6 @@
 ---
 title: "Week 11 Worklog"
-date: 2026-07-27
+date: 2026-07-20
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
@@ -8,27 +8,24 @@ pre: " <b> 1.11. </b> "
 
 ### Week 11 Objectives
 
-* Draft and finalize Blog 1: "Scalable E-Commerce Architecture on AWS" (Analyzing ECS Fargate, ALB, CloudFront, Aurora Serverless v2, ElastiCache).
-* Draft and finalize Blog 2: "AWS Journey & Cloud-Native Mindset from Real Internship" (Sharing hands-on experiences with Amazon S3, AWSSDK.S3, Decoupling, IAM Least Privilege, Pre-signed URLs, CORS).
-* Draft and finalize Blog 3: "How AWS Upgraded Amazon Cognito with Zero Downtime" (Analyzing Zero Downtime Migration architecture, Dual-write, Anti-entropy validation).
-* Publish full bilingual versions (Vietnamese and English) for all 3 blogs into the Hugo workspace (`content/3-BlogsPosted/`) with high-resolution diagrams.
-* Review and update internal cross-links connecting Worklogs, Proposal, Workshop, and Blogs Posted within the Hugo report interface.
+* Design and build the Administrator Panel subsystem with a completely independent UI from the User side.
+* Build a strict Role-Based Access Control (RBAC) flow on both the Frontend (Route Guards) and Backend (Attributes).
+* Develop administrative features: User Management (Block/Unblock), Support Ticket Management.
+* Integrate the Hangfire tool to visually manage Background Jobs (Background tasks) on a Dashboard.
 
 ### Tasks Completed During the Week
 
-| Day | Tasks | Start Date | Completion Date | Learning Resources |
+| Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Write content for Blog 1 covering Scalable E-Commerce Web Architecture on AWS.<br>- Analyze end-to-end request flow: Route 53 -> CloudFront -> AWS WAF -> ALB -> ECS Fargate -> ElastiCache / Aurora Serverless v2.<br>- Detail system monitoring and automated notification mechanisms via CloudWatch Alarms and Amazon SNS. | 27/07/2026 | 27/07/2026 | [Blog 1 Overview](3-BlogsPosted/3.1-Blog1/)<br>[AWS Scalable Web Guidance](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/) |
-| Tuesday | - Write content for Blog 2 summarizing practical experiences interacting with Amazon S3 during backend development.<br>- Detail compute and storage Decoupling principles using AWSSDK.S3 in C#/.NET.<br>- Share real-world lessons on IAM Least Privilege, securing Secret Keys via Environment Variables, generating Pre-signed URLs, and resolving CORS issues. | 28/07/2026 | 28/07/2026 | [Blog 2 Overview](3-BlogsPosted/3.2-Blog2/)<br>[Amazon S3 Developer Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
-| Wednesday | - Write content for Blog 3 analyzing AWS's modern infrastructure upgrade of Amazon Cognito.<br>- Highlight new capabilities: High-throughput performance, Customer-managed keys (KMS), and Multi-Region replication.<br>- Analyze zero-downtime migration patterns: Shadow mode validation, Dual-write architecture, and Anti-entropy validation. | 29/07/2026 | 29/07/2026 | [Blog 3 Overview](3-BlogsPosted/3.3-Blog3/)<br>[AWS Cognito Infrastructure Upgrade Blog](https://aws.amazon.com/blogs/security/amazon-cognito-unlocks-advanced-capabilities-with-next-generation-infrastructure/) |
-| Thursday | - Format Markdown layout and embed architecture diagrams across all 3 blog posts within Hugo.<br>- Verify image file paths inside `static/images/` to ensure crisp rendering across both Vietnamese and English pages.<br>- Audit technical hashtags and official AWS reference documentation links for each blog post. | 30/07/2026 | 30/07/2026 | [Blogs Posted Directory](3-BlogsPosted/)<br>[Hugo Content Management](https://gohugo.io/content-management/formats/) |
-| Friday | - **Audit & System Synchronization:**<br>- Validate date metadata consistency (`date: 2026-07-27`) and weight ordering across all 3 blog posts.<br>- Verify internal cross-linking from Week 10–11 Worklog entries to corresponding blog posts.<br>- Commit complete article source code, ready for final internship evaluation. | 31/07/2026 | 31/07/2026 | [Blogs Posted Directory](3-BlogsPosted/)<br>[Hugo Shortcodes](https://gohugo.io/content-management/shortcodes/) |
+| Monday | - **Morning:** Designed the specialized Admin Layout UI framework (Dark sidebar, separate Header). Installed `Angular CanActivate AdminGuard` to block normal Users from accessing `/admin`.<br>- **Afternoon:** Built the User Management feature. Paginated Users list API. UI features Search and Status filters (Active/Locked). | 20/07/2026 | 20/07/2026 | [Angular Route Guards](https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards) |
+| Tuesday | - **Morning:** Coded the Lock/Unlock user account feature from the Admin side. Tested by locking my own account; the result was the Session being invalidated and immediately kicked back to the login screen.<br>- **Afternoon:** Coded the Support Ticket Management feature on the Admin side. Supported viewing Ticket history and chatting back to Users directly on the dashboard. | 21/07/2026 | 21/07/2026 | [ASP.NET Core Authorization](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles) |
+| Wednesday | - **Morning:** Authorized Backend APIs by marking sensitive Controllers with the `[Authorize(Roles = "Admin")]` Attribute.<br>- **Afternoon:** Tested calling Admin APIs using a normal User's JWT Token. Got a `403 Forbidden` error instead of `401 Unauthorized`, thereby clearly understanding the practical difference between Authentication and Authorization. | 22/07/2026 | 22/07/2026 | [401 vs 403 Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) |
+| Thursday | - **Morning:** Installed the Hangfire library on the Backend to manage Background Jobs (e.g., SQS invoice scanning Job, old DB garbage collection Job).<br>- **Afternoon:** Got a security flaw where the Hangfire Dashboard was exposed to the public. Researched and applied security (Hangfire Authorization Filter) allowing only Admin accounts to access. If not configured, anyone could access `/hangfire` and arbitrarily trigger Jobs. | 23/07/2026 | 23/07/2026 | [Hangfire Dashboard Security](https://docs.hangfire.io/en/latest/configuration/using-dashboard.html) |
+| Friday | - **Morning:** Designed the 404 Not Found page and the System Maintenance Page as fallbacks for Server incidents.<br>- **Afternoon:** Reviewed all Roles/Permissions on the system. Fixed bugs regarding hiding/showing buttons based on UI Roles. Cleaned up code and prepared for the final integration phase. | 24/07/2026 | 24/07/2026 | [UX Error Pages](https://uxdesign.cc/how-to-design-404-page-12345) |
 
 ### Week 11 Achievements
 
-* Published Blog 1 sharing scalable E-Commerce Web architecture design, capable of handling flash sales with automated CloudWatch/SNS monitoring.
-* Published Blog 2 distilling hands-on experiences with Amazon S3, decoupled system design, AWSSDK.S3 programming, IAM security, and Pre-signed URLs.
-* Published Blog 3 analyzing AWS's zero-downtime infrastructure migration of Amazon Cognito utilizing Shadow Mode and Dual-write patterns.
-* Synchronized bilingual documentation (`_index.vi.md` and `_index.md`) for all 3 blog posts in `content/3-BlogsPosted/`.
-* Embedded high-resolution architectural diagrams in dedicated `images/` directories for enhanced visual clarity.
-* Optimized internal navigation links and standardized Markdown formatting across the Hugo internship report.
+* Successfully built an independent Admin Panel system, thoroughly managing Users and Tickets.
+* Perfectly deployed a multi-layered RBAC mechanism: UI blocking via Angular Guards and Data access blocking via .NET Authorization.
+* Successfully integrated Hangfire as a background Job monitor, ensuring the Dashboard is properly securely configured.
+* Deeply understood and accurately handled 2 classic security error codes: 401 (Unauthenticated) and 403 (Unauthorized).

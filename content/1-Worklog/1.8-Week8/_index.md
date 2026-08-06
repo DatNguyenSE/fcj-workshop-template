@@ -8,28 +8,26 @@ pre: " <b> 1.8. </b> "
 
 ### Week 8 Objectives
 
-* Provision and configure core AWS backend services: Amazon S3 (for receipt image storage), Amazon SQS (for asynchronous processing queues).
-* Configure AWS Systems Manager Parameter Store to securely store API Keys (Azure, Gemini) and Database connection strings.
-* Integrate Azure Document Intelligence into the .NET Backend to automatically extract information (Merchant, Total) from receipt images.
-* Build the `scan-bill` API on the Backend, handling S3 pre-signed URL uploads, pushing messages to SQS, and invoking Azure OCR.
-* Integrate the Invoice Scanning feature into the Angular Frontend, allowing users to upload images and receive extracted data in real-time.
-* Set up the RDS SQL Server Database and adjust the Backend architecture for secure connections within the VPC.
+* Design an Asynchronous processing architecture using Amazon SQS message queues.
+* Integrate AI Azure Document Intelligence (Azure OCR) to automatically extract invoice information (Merchant, Total, Date).
+* Use AWS Systems Manager Parameter Store to securely store third-party API Keys.
+* Build a Background Worker (Hosted Service) on the .NET Backend to continuously pull messages from SQS and process images.
+* Integrate SignalR WebSockets to push real-time result notifications back to the user on the Frontend.
 
 ### Tasks Completed During the Week
 
-| Day | Tasks | Start Date | Completion Date | Learning Resources |
+| Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Provisioned Amazon S3 Bucket with Block Public Access for private receipt storage.<br>- Provisioned Amazon SQS Queue (along with a Dead Letter Queue) to handle asynchronous invoice analysis.<br>- Configured AWS Systems Manager Parameter Store to store AzureKey, GeminiKey, and ConnectionStrings. | 29/06/2026 | 29/06/2026 | [Snaptics Proposal](2-Proposal/)<br>[AWS S3 & SQS Guide](https://aws.amazon.com/s3/) |
-| Tuesday | - Set up Amazon RDS for SQL Server in a Private Subnet and configured Security Groups.<br>- Wrote .NET Backend code to read security configurations from Parameter Store instead of `appsettings.json`.<br>- Installed AWS SDKs so the Backend can interact with S3 (create Pre-signed URLs) and SQS (send/receive messages). | 30/06/2026 | 30/06/2026 | [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) |
-| Wednesday | - Registered for Azure Document Intelligence, obtained the Endpoint and Key, and saved them to AWS Parameter Store.<br>- Integrated the Azure Document Analysis Client SDK into the .NET Backend.<br>- Built the `scan-bill` API: Receives scan requests, uploads images to S3, and passes the URI to Azure OCR to extract Merchant Name and Total Amount. | 01/07/2026 | 01/07/2026 | [Azure Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) |
-| Thursday | - Integrated the Angular Frontend to call the `scan-bill` API.<br>- Designed the invoice upload UI (Drag & Drop box), displaying loading states while processing.<br>- Processed data returned from the API and auto-filled it into the new Transaction input form on the UI. | 02/07/2026 | 02/07/2026 | [Angular File Upload](https://angular.io/guide/file-uploads) |
-| Friday | - Tested the end-to-end Invoice Scanning flow: Image Upload from Angular -> S3 -> SQS -> Worker invokes Azure OCR -> Result returned to Frontend.<br>- Handled edge cases for blurry images, incorrect formats, or failed OCR recognition.<br>- Documented APIs, fixed AWS misconfigurations, and conducted the Week 8 review. | 03/07/2026 | 03/07/2026 | [Postman API Testing](https://www.postman.com/) |
+| Monday | - **Morning:** Provisioned an Amazon SQS queue (Standard Queue) on the AWS Console.<br>- **Afternoon:** Registered a Microsoft Azure account, provisioned the Document Intelligence (OCR) service, and grabbed the API Key and Endpoint. Stored these 2 Keys securely in the AWS Systems Manager Parameter Store instead of a config file. | 29/06/2026 | 29/06/2026 | [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) |
+| Tuesday | - **Morning:** Coded the feature to Publish messages containing the S3 Image URI to SQS whenever a user finishes uploading an invoice.<br>- **Afternoon:** Coded a Background Worker (`IHostedService`) on .NET to pull messages from SQS. Encountered an issue where the worker pulled the same message multiple times; researched and increased the SQS `Visibility Timeout` to 30s because the AI image analysis process takes a long time. | 30/06/2026 | 30/06/2026 | [Amazon SQS Visibility Timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html) |
+| Wednesday | - **Morning:** Wrote a Service calling the Azure OCR API within the Background Worker. Passed the S3 image URI to Azure for analysis.<br>- **Afternoon:** Parsed the JSON data returned from Azure, mapping Merchant Name, Total Amount, and Transaction Date fields to C# Objects and saving a draft into RDS. | 01/07/2026 | 01/07/2026 | [Azure Document Intelligence REST API](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) |
+| Thursday | - **Morning:** Got a worker crash Exception due to the JSON from Azure returning Null for some fields (due to testing with blurry/torn invoice images). Debugged and added safe Null checking statements (Null-conditional operators).<br>- **Afternoon:** Configured the SignalR library on the .NET Backend. Pushed real-time scan status notifications ("Success/Failed") to the Angular Frontend. | 02/07/2026 | 02/07/2026 | [SignalR in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction) |
+| Friday | - **Morning:** Coded the Frontend UI (Review Invoice Form) allowing Users to review and confirm (or edit) the information the AI just extracted.<br>- **Afternoon:** Light system load testing: pressed upload on 10 invoice images simultaneously. Monitored the AWS SQS Queue and observed the Worker pulling and processing each message sequentially without dropping any. Drew the SQS -> Azure data flow diagram on Draw.io. | 03/07/2026 | 03/07/2026 | [Design Patterns: Queue-Based Load Leveling](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling) |
 
 ### Week 8 Achievements
 
-* Successfully deployed core AWS infrastructure services (S3, SQS, RDS, Parameter Store) for the Snaptics system.
-* Secured all sensitive information (API Keys, Database Passwords) using AWS Systems Manager Parameter Store.
-* Successfully integrated Azure Document Intelligence into the .NET Backend for precise receipt data extraction.
-* Completed the `scan-bill` API, handling complex business logic combining S3, SQS, and AI OCR.
-* Finalized the Frontend UI, allowing users to upload receipt images and experience seamless automatic data extraction.
-* Successfully tested end-to-end data flows from the Client to Cloud Services (AWS & Azure).
+* Successfully deployed an asynchronous processing architecture using Amazon SQS, preventing the Frontend from freezing while waiting for long image processing.
+* Successfully integrated the Azure OCR AI solution, accurately extracting information from Vietnamese/English invoices.
+* Gained a deep understanding of the message queue Visibility Timeout mechanism and handled duplicate processing errors.
+* Absolutely secure API key management using AWS Parameter Store.
+* Perfectly integrated SignalR WebSockets, providing a smooth Real-time experience for users (upload then do other tasks, the machine notifies when done).

@@ -8,29 +8,25 @@ pre: " <b> 1.10. </b> "
 
 ### Mục tiêu tuần 10
 
-* Xây dựng Fullstack tính năng Danh sách Thông báo (Notification Center) và Header Dropdown Menu.
-* Tích hợp SignalR để đẩy thông báo realtime từ Backend .NET lên Frontend Angular.
-* Thiết lập API và phân loại thông báo: Quét hóa đơn, Cảnh báo ngân sách, Gợi ý AI, Lời mời ví gia đình.
-* Xây dựng Fullstack tính năng Yêu cầu Hỗ trợ (Support Ticket) bao gồm API quản lý Ticket và giao diện Form tạo Ticket, luồng thảo luận.
-* Thực hành bài lab **Workshop 5.5**: Cấu hình VPC Endpoint IAM Policies để siết chặt an ninh và giới hạn quyền truy cập tài nguyên Amazon S3.
-* Xây dựng trang Cài đặt Tài khoản Người dùng (User Account Settings UI) và tích hợp API cập nhật hồ sơ.
+* Xây dựng Fullstack tính năng Trung tâm thông báo (Notification Center) với chuông báo Realtime.
+* Ứng dụng WebSockets (SignalR) duy trì kết nối liên tục, ổn định giữa Server và Client.
+* Xây dựng hệ thống Hỗ trợ khách hàng (Support Ticket) cho phép User gửi yêu cầu trợ giúp đến Admin.
+* Thực hành bài lab **Workshop 5.5**: Cấu hình chi tiết IAM Policy cho VPC Endpoint để thắt chặt bảo mật kết nối tới S3.
+* Xây dựng giao diện User Account Settings (Đổi ảnh đại diện, Cập nhật hồ sơ cá nhân).
 
 ### Các công việc thực hiện trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Thiết kế Database schema cho Notification và Support Ticket.<br>- Viết API lấy danh sách thông báo và đánh dấu đã đọc.<br>- Thiết kế giao diện Notification Dropdown Menu trên Top Header và biểu tượng Chuông thông báo đếm số chưa đọc. | 13/07/2026 | 13/07/2026 | [Notification System UX](https://uxdesign.cc/) |
-| 3 | - Tích hợp SignalR WebSockets vào Backend .NET và Frontend Angular để đẩy thông báo realtime.<br>- Phân loại thiết kế UI cho các mẫu thông báo: Quét hóa đơn, Cảnh báo ngân sách, Gợi ý tài chính, Lời mời tham gia Ví.<br>- Kiểm thử luồng nhận thông báo khi có giao dịch mới. | 14/07/2026 | 14/07/2026 | [SignalR with Angular](https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client) |
-| 4 | - Xây dựng các API CRUD cho Support Ticket và luồng thảo luận tin nhắn (Discussion Thread).<br>- Thiết kế bố cục trang Yêu cầu Hỗ trợ (Support Ticket Page) trên Angular.<br>- Xây dựng Bảng danh sách Ticket đã gửi và Form Tạo Ticket hỗ trợ mới với validation. | 15/07/2026 | 15/07/2026 | [Helpdesk UI Patterns](https://dribbble.com/) |
-| 5 | - **Thực hành Workshop 5 (Phần 5 - VPC Endpoint Policies):**<br>&emsp; + Tìm hiểu mô hình bảo mật phân lớp bằng VPC Endpoint IAM Policy ([Workshop VPC Endpoint Policies](5-Workshop/5.5-Policy/)).<br>&emsp; + Soạn thảo bản chính sách JSON Endpoint Policy gắn vào VPC Endpoint để chỉ cho phép truy cập duy nhất S3 Bucket của dự án Snaptics.<br>&emsp; + Chạy lệnh kiểm thử từ chối truy cập (Access Denied) khi truy vấn tới các S3 Buckets ngoài danh sách cho phép. | 16/07/2026 | 16/07/2026 | [Workshop VPC Endpoint Policies](5-Workshop/5.5-Policy/)<br>[VPC Endpoint Policy Reference](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) |
-| 6 | - Tích hợp API và thiết kế màn hình Xem chi tiết Ticket (Ticket Detail & Discussion Thread UI).<br>- Xây dựng trang Cài đặt Tài khoản Người dùng và tích hợp API cập nhật thông tin cá nhân, đổi mật khẩu.<br>- Kiểm tra lỗi form validation và tối ưu responsive tuần 10. | 17/07/2026 | 17/07/2026 | [Account Settings Layout](https://refactoringui.com/) |
+| 2 | - **Sáng:** Phân tích nghiệp vụ hệ thống Thông báo. Thiết kế bảng `Notifications` trong DB hỗ trợ nhiều phân loại (Cảnh báo ngân sách, AI, Hệ thống, Quét hóa đơn).<br>- **Chiều:** Xây dựng CRUD API cho Thông báo. Cấu hình mở rộng SignalR Hub để mỗi khi có event tạo Thông báo mới dưới DB, Server sẽ push JSON data thẳng tới các User đang online. | 13/07/2026 | 13/07/2026 | [Real-time apps with SignalR](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction) |
+| 3 | - **Sáng:** Code giao diện Chuông thông báo (Dropdown Menu) trên Angular Header. Làm hiệu ứng đếm số thông báo chưa đọc (Unread badge).<br>- **Chiều:** Test luồng Realtime Notification. Bị lỗi WebSocket connection drops (văng kết nối) liên tục khi để máy rảnh quá 1 phút, debug và thêm cấu hình `keepAliveIntervalInMilliseconds` cho client SignalR để fix. | 14/07/2026 | 14/07/2026 | [SignalR Configuration](https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration) |
+| 4 | - **Sáng:** Thiết kế luồng nghiệp vụ Support Ticket (Gửi yêu cầu hỗ trợ). Khởi tạo bảng `Tickets` và `TicketMessages` (Lưu lịch sử chat hỗ trợ). Viết API tạo Ticket.<br>- **Chiều:** Code giao diện Form tạo Ticket trên Frontend và làm màn hình chat qua lại giữa User và Admin. Test gửi file đính kèm lỗi lên S3 thông qua luồng Pre-signed URL đã làm ở Tuần 7. | 15/07/2026 | 15/07/2026 | [Customer Support UX Patterns](https://uxdesign.cc/customer-support-ux-best-practices-28c0b561b369) |
+| 5 | - **Sáng:** Thực hành lab Workshop 5.5: Siết chặt an ninh cho Gateway VPC Endpoint của S3. Mặc định nó mở Full Access, giờ cần đổi thành Custom Policy.<br>- **Chiều:** Cấu hình Policy chỉ cho phép thao tác Get/Put đúng vào 1 Bucket `snaptics-invoices-dev`. Chạy thử API thì bị văng lỗi "Access Denied 403". Check log AWS CloudTrail phát hiện khai báo sai cú pháp ARN, đã fix lại `arn:aws:s3:::snaptics-invoices-dev/*` và chạy thông. | 16/07/2026 | 16/07/2026 | [VPC Endpoint Policies](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) |
+| 6 | - **Sáng:** Xây dựng trang Account Settings UI (Giao diện cài đặt tài khoản, đổi thông tin cá nhân).<br>- **Chiều:** Tích hợp API cập nhật hồ sơ cá nhân. Cuối tuần họp team, Merge các nhánh feature của mọi người vào nhánh `develop`. Gặp conflict ở file `app.module.ts` (do ai cũng khai báo Component mới), cả team ngồi gỡ conflict và build lại thành công. | 17/07/2026 | 17/07/2026 | [Resolving Git Conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line) |
 
 ### Kết quả đạt được tuần 10
 
-* Hoàn thành trung tâm Thông báo (Notification Center) Fullstack, tích hợp thành công SignalR đẩy thông báo realtime mượt mà.
-* Phân loại và thiết kế trực quan cho 4+ nhóm thông báo chính, đảm bảo dữ liệu đồng bộ với Backend.
-* Hoàn thành tính năng Quản lý Yêu cầu Hỗ trợ (Support Ticket) chuyên nghiệp từ API đến giao diện người dùng.
-* Thực hành thành công bài lab Workshop 5.5: Soạn thảo và gắn thành công VPC Endpoint Policy, ngăn chặn truy cập trái phép tới các S3 Buckets không thuộc dự án.
-* Tích hợp thành công luồng trao đổi thảo luận chi tiết trong Ticket giữa User và Đội ngũ Hỗ trợ.
-* Hoàn thành trang Cài đặt Tài khoản Người dùng gọn gàng, bảo mật và gọi API thay đổi mật khẩu thành công.
-* Đảm bảo tính nhất quán thẩm mỹ và khả năng phản hồi mượt mà trên mọi kích thước màn hình.
+* Hoàn thiện tính năng Notification Realtime đỉnh cao, xử lý triệt để lỗi rớt mạng WebSocket bằng cơ chế Ping/Pong (Keep-alive).
+* Xây dựng xong bộ khung cốt lõi cho tính năng Support Ticket, sẵn sàng cho Admin Panel ở tuần tới.
+* Nâng cao kỹ năng bảo mật AWS (SecOps) thông qua việc cấu hình chính xác VPC Endpoint IAM Policies, chặn nguy cơ lộ lọt dữ liệu ra các Bucket ngoài dự án.
+* Rèn luyện kỹ năng làm việc nhóm thực chiến thông qua việc xử lý Conflict Git "khó nhằn" khi merge code chung.

@@ -8,32 +8,27 @@ pre: " <b> 1.13. </b> "
 
 ### Week 13 Objectives
 
-* Conduct comprehensive End-to-End User Flow testing across the entire system, from Frontend to Backend and Database.
-* Fix all minor UI/UX bugs and optimize overall system performance (Angular & .NET API).
-* Configure AWS infrastructure deployment (Amplify for Frontend, CloudFront & ALB for Backend API) combined with SSL/HTTPS certificates.
-* Successfully compile the static Frontend Production build using Angular CLI and configure automated CI/CD from GitHub.
-* Ensure the CloudFront to ALB architecture operates smoothly via Custom Domains, accurately handling Headers and WebSockets (SignalR).
-* Practice **Workshop 5.6** lab: Thoroughly clean up experimental resources (VPC Endpoints, EC2 test instances, IAM policies, S3 test buckets) to avoid unnecessary AWS costs.
-* Capture real application screenshots, finalize internship report documentation, prepare the product demo script, and officially submit the Snaptics project on **07/08/2026**.
+* Compile the application build (Build Production) for both Frontend and Backend.
+* Deploy the static Frontend SPA onto the AWS Amplify platform.
+* Package the Backend into a Docker Container and deploy it onto the Serverless Amazon ECS (Fargate) architecture behind a Load Balancer.
+* Handle SSL/HTTPS security certificates using AWS Certificate Manager (ACM) to fix Mixed Content errors.
+* Reconfigure network and WebSocket settings so the application runs stably on a real Domain.
+* Practice **Workshop 5.6** lab: Clean up garbage resources and conclude the project.
 
 ### Tasks Completed During the Week
 
-| Day | Tasks | Start Date | Completion Date | Learning Resources |
+| Day | Tasks | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Conducted End-to-End Testing on the Fullstack system:<br>&emsp; + Login, Register, JWT Auth flows.<br>&emsp; + Dashboard, Transactions, Wallets, Budgets saving to SQL Server.<br>&emsp; + Invoice Scanning (S3 + SQS + Azure OCR), SignalR Notifications, Gemini AI Chatbot, Support Tickets.<br>&emsp; + Admin Management and Hangfire Background Jobs.<br>- Reviewed and refined UI/UX bugs, optimized API response times. | 03/08/2026 | 03/08/2026 | [Software Testing Best Practices](https://developer.mozilla.org/) |
-| Tuesday | - Accurately checked Production environment variables (`src/environments/environment.prod.ts` pointing to CloudFront API URL).<br>- Ran `ng build --configuration production` to compile the static Production build and confirmed 100% success.<br>- Optimized Parameter Store configurations on AWS Systems Manager for the Backend. | 04/08/2026 | 04/08/2026 | [Angular Deployment Guide](https://angular.io/guide/deployment) |
-| Wednesday | - Deployed the system to Production AWS:<br>&emsp; + Hosted Frontend on **AWS Amplify** with GitHub CI/CD.<br>&emsp; + Configured **CloudFront** in front of the Backend API ALB, setting Cache Policy to `CachingDisabled` and Origin Request Policy to `AllViewer`.<br>&emsp; + Routed Custom Domains via Route 53 and configured ACM SSL security certificates. | 05/08/2026 | 05/08/2026 | [AWS Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)<br>[CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) |
-| Thursday | - **Practice Workshop 5 (Part 6 - Resource Cleanup):**<br>&emsp; + Cleaned up all Workshop lab resources following the guide ([Workshop Clean-up](5-Workshop/5.6-Cleanup/)).<br>&emsp; + Deleted Gateway VPC Endpoints, Interface VPC Endpoints, EC2 test instances, S3 test buckets, and released Elastic IPs.<br>&emsp; + Reviewed AWS Cost Explorer to ensure no background junk resources cause extra charges. | 06/08/2026 | 06/08/2026 | [Workshop Clean-up](5-Workshop/5.6-Cleanup/)<br>[AWS Cost Management](https://aws.amazon.com/aws-cost-management/) |
-| Friday | - **Finalize & Submit Internship Report:**<br>- Gathered application screenshots and prepared the product Demo script for the final review.<br>- Summarized all Fullstack knowledge (.NET, Angular) and AWS cloud services integrated into the Snaptics architecture over 13 weeks.<br>- Finalized internship report documentation and **officially submitted the Snaptics Project**, concluding the FCJ Workforce internship program on **07/08/2026**. | 07/08/2026 | 07/08/2026 | [FCJ Workforce Regulations](https://hcm-rules.awsfcaj.com/1-regulations/) |
+| Monday | - **Morning:** Compiled the Frontend Production build using the `ng build --configuration production` command. Got hit with Strict Type Checking errors during build (ignored in dev but threw red errors in prod); spent time fixing all data types.<br>- **Afternoon:** Initialized the `Dockerfile` for the .NET Backend. Packaged it into a Docker Image and successfully pushed it to the Amazon ECR repository. | 03/08/2026 | 03/08/2026 | [Angular Deployment](https://angular.io/guide/deployment) |
+| Tuesday | - **Morning:** Deployed the Frontend to the AWS Amplify service. Took quite a while to configure Rewrite/Redirect rules on Amplify for Angular routes (so hitting F5 wouldn't return a 404 error).<br>- **Afternoon:** Initialized the Cluster and Task Definition. Deployed the Backend to run on Amazon ECS (AWS Fargate) to avoid managing servers. | 04/08/2026 | 04/08/2026 | [Deploying Angular on AWS Amplify](https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/module-1/) |
+| Wednesday | - **Morning:** Created an Application Load Balancer (ALB) as a request funnel for the Backend. Tested API calls from the Frontend (on Amplify) to the Backend (ALB).<br>- **Afternoon:** Web browser threw an HTTPS Mixed Content blocking error (Because the HTTPS Frontend tried calling the HTTP Backend). Registered a free SSL certificate from AWS Certificate Manager (ACM) and attached it to the ALB. Configured Route53 Domain routing to the ALB. | 05/08/2026 | 05/08/2026 | [ALB and HTTPS](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html) |
+| Thursday | - **Morning:** Encountered an issue where Notifications weren't popping up. Debugged and found ALB wasn't routing WebSockets properly. Reconfigured Headers on the ALB, allowing `ws://` and `wss://` protocols to operate through the Custom Domain.<br>- **Afternoon:** Practiced Workshop 5.6 lab: Reviewed and cleaned up garbage resources (VPC Endpoints, Test EC2s, Test Buckets) on the AWS Console to avoid AWS charging money after the program ends. | 06/08/2026 | 06/08/2026 | [WebSockets on ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html) |
+| Friday | - **Morning:** The project went Live on the actual Domain. Took screenshots of the system UI. Finalized the Snaptics architecture internship report documentation.<br>- **Afternoon:** Final product demo with the team to review the flows. Officially submitted the project and successfully concluded the 13-week FCJ Workforce program. | 07/08/2026 | 07/08/2026 | [Project Submission Guidelines](#) |
 
 ### Week 13 Achievements
 
-* Successfully performed End-to-End testing, ensuring the entire Fullstack system operates smoothly from Frontend to Database.
-* Optimized Angular app size and Backend API performance, enhancing system response speed.
-* Successfully compiled the Angular Production Build with 100% success and no syntax errors.
-* Successfully deployed Production AWS infrastructure: Frontend running blazingly fast on Amplify, Backend API secured behind CloudFront & ALB.
-* Completed domain configuration via Route 53 with HTTPS security certificates for both Frontend and Backend APIs.
-* Successfully practiced 100% resource cleanup in Workshop 5 (Clean-up), optimizing AWS costs.
-* Fully prepared high-quality product Demo scripts and final defense presentation content.
-* Gained highly valuable practical experience in Fullstack Web Development, Serverless/Container architecture, and AWS services.
-* Completed and officially submitted the Internship Report & Snaptics Project on time by **07/08/2026**.
+* Passed strict inspection rules during Production Build, properly packaging both Frontend and Backend.
+* Completed deployment of a true Cloud-native system: Serverless Frontend (Amplify) and Containerized Backend (ECS Fargate).
+* Definitively resolved specific errors upon migrating to a real environment: SPA 404 F5 errors, HTTPS Mixed Content errors, blocked WebSockets.
+* Applied resource cleanup principles following the final lab to master cloud cost management.
+* Excellently delivered and handed over the Snaptics project - the crystallization of Fullstack & AWS Cloud knowledge after 13 weeks of effort.
