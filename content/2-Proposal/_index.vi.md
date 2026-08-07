@@ -136,8 +136,7 @@ Snaptics sử dụng kiến trúc Cloud-Native trên AWS, kết hợp Web SPA v�
 
 #### 4.4. Sơ đồ kiến trúc tổng thể
 
-![Sơ đồ kiến trúc hệ thống Snaptics trên AWS](/images/2-Proposal/snaptics_architecture.png)
-*Hình 1. Kiến trúc mục tiêu của hệ thống Snaptics trên AWS*
+![Sơ đồ kiến trúc hệ thống Snaptics trên AWS](/fcj-workshop-template/images/2-Proposal/snaptics_architecture_proposal.png)
 
 #### 4.5. Bảo mật, giám sát và kiểm soát chi phí
 * Sử dụng HTTPS và access token; gắn AWS WAF để lọc request bất thường ở lớp biên.

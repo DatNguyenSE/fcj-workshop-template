@@ -6,71 +6,82 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-# ANALYZING A HIGHLY SCALABLE E-COMMERCE WEBSITE ARCHITECTURE ON AWS
+# BUILDING A SCALABLE E-COMMERCE WEBSITE ON AWS
 
-During Flash Sales or major shopping events, e-commerce platforms often face massive traffic pressure. If the system architecture is simply an application connecting directly to a monolithic database, the system will easily suffer from overload and service disruption.
+Modern e-commerce websites often experience significant traffic fluctuations, especially during promotional campaigns, flash sales, and peak shopping seasons. If every request is handled by a single application server while directly accessing the database, the system can quickly become overloaded, resulting in slower response times or service interruptions.
 
-To solve this problem, AWS provides a standard Cloud-Native solution suite. By flexibly combining Networking, Compute, Caching, and Database services, we can build an e-commerce system with outstanding load-bearing and scaling capabilities. Let's analyze the components within this architecture.
+AWS provides a wide range of managed services that help organizations build scalable, secure, and highly available web applications. By combining networking, security, compute, caching, databases, and monitoring services, developers can design cloud-native architectures capable of handling dynamic workloads while maintaining a consistent user experience.
 
-### The Big Picture Architecture
+### Architecture Overview
 
-Data flow entering the system is distributed and protected through the following service layers:
+The overall request flow is illustrated below:
 
 **User → Amazon Route 53 → Amazon CloudFront → AWS WAF → Application Load Balancer → Amazon ECS (AWS Fargate) → Amazon ElastiCache / Amazon Aurora Serverless v2**
 
-Each service performs a specialized role:
+Each AWS service plays a specific role within the architecture:
 
-- **Amazon Route 53 (Network Routing)**
-  - Provides high-speed Domain Name System (DNS) resolution and routes users to the most optimal access points.
+- **Amazon Route 53**
+  - Resolves domain names and routes user requests to the appropriate AWS resources.
 
-- **Amazon CloudFront (Delivery Optimization)**
-  - Distributes static content (product images, CSS/JS files) from a global network of Edge Locations, helping reduce the load on the main server and accelerating page load speeds.
+- **Amazon CloudFront**
+  - Delivers content from edge locations closer to users, reducing latency and improving website performance.
 
-- **AWS WAF (Application Security)**
-  - A web application firewall that promptly blocks common attacks (like SQL Injection, XSS), protecting the system from malicious traffic.
+- **AWS WAF**
+  - Protects the application against common web attacks such as SQL injection and cross-site scripting (XSS).
 
-- **Application Load Balancer (Load Balancing)**
-  - Evenly distributes valid traffic to backend processing containers, preventing localized bottlenecks.
+- **Application Load Balancer**
+  - Distributes incoming requests across multiple backend containers to improve scalability and availability.
 
-- **Amazon ECS with AWS Fargate (Elastic Compute)**
-  - A containerized backend execution environment (Serverless). The system automatically scales compute resources based on actual demand without needing to manage physical server infrastructure.
+- **Amazon ECS with AWS Fargate**
+  - Runs containerized backend services without requiring developers to manage servers.
 
-- **Amazon ElastiCache (High-speed Caching)**
-  - Temporarily stores frequently accessed data (e.g., hot products, shopping carts). Reading data from RAM provides extremely fast responses and relieves query pressure on the main database.
+- **Amazon Cognito**
+  - Handles user registration, authentication, and authorization securely.
 
-- **Amazon Aurora Serverless v2 (Elastic Database)**
-  - Manages core data (users, orders). The ability to automatically scale compute resources in a fraction of a second helps the database gracefully handle sudden spikes in transaction volumes.
+- **Amazon ElastiCache**
+  - Stores frequently accessed data in memory to reduce database workload and improve response times.
 
-### Monitoring and Alert System
+- **Amazon Aurora Serverless v2**
+  - Stores core application data while automatically scaling database capacity based on workload.
 
-To maintain stability, the system integrates monitoring tools:
-**Amazon CloudWatch** continuously collects performance metrics (CPU, RAM, error rates) of ECS and Aurora. When safety thresholds are breached, a **CloudWatch Alarm** is triggered, notifying the operations team via **Amazon SNS** for timely intervention.
+### Monitoring and Alerting
 
-### Practical Lessons Learned
+Monitoring plays an important role in maintaining application reliability.
 
-When comparing this large-scale architectural diagram with the Snaptics project during my internship, I drew several lessons regarding system design thinking.
+Amazon CloudWatch continuously collects metrics and logs from Amazon ECS and Amazon Aurora. When abnormal conditions are detected, such as high CPU utilization, application errors, or database performance degradation, **CloudWatch Alarm** automatically triggers **Amazon SNS** to send notifications via email or SMS.
 
-The biggest takeaway is: **The strength of a scalable system lies in the clever combination of Managed Services, rather than attempting to build a monolithic application to do everything.**
-Decoupling components plays a crucial role:
-- Caching is assigned to CloudFront and ElastiCache.
-- Security and traffic filtering are assigned to WAF.
-- Load balancing is handled by ALB.
-- Business logic is completely centralized in ECS Fargate.
+**Monitoring Flow**
 
-This mindset makes the system flexible, easier to maintain, and allows each component to scale independently based on actual operational needs.
+**Amazon CloudWatch → CloudWatch Alarm → Amazon SNS → Email / SMS**
 
-### Illustration
+### Benefits of the Architecture
+
+This architecture offers several advantages:
+
+- Improved application performance through CloudFront and ElastiCache.
+- Enhanced security using AWS WAF and Amazon Cognito.
+- Automatic scalability with Amazon ECS, AWS Fargate, and Aurora Serverless v2.
+- High availability through Application Load Balancer.
+- Continuous monitoring and proactive alerting using CloudWatch and Amazon SNS.
+
+### What I learned
+
+This reference architecture demonstrates how multiple AWS managed services can be integrated to build a scalable and cloud-native e-commerce platform.
+
+By exploring this architecture, I gained a better understanding of the responsibilities of individual AWS services and how networking, security, container orchestration, caching, databases, and monitoring work together to support production-ready applications. It also reinforced the importance of designing systems that are scalable, secure, and resilient from the beginning.
+
+### Images
 
 <div style="text-align: center;">
     <img src="/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.jpg"
-         alt="E-commerce website architecture"
+         alt="Scalable E-commerce Architecture"
          style="width: 900px; height: auto; border-radius: 8px;">
-    <p>A scalable E-commerce website architecture on AWS.</p>
+    <p>Scalable E-commerce website architecture on AWS.</p>
 </div>
 
-### References
+### Reference Material
 
-To understand this architecture deeper, you can consult documentation from AWS:
+This blog is based on the following AWS official guidance:
 
 - **Guidance for Web Store on AWS**
   https://docs.aws.amazon.com/solutions/web-store-on-aws/

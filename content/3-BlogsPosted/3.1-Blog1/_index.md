@@ -6,82 +6,92 @@ chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-# How Did AWS Upgrade Amazon Cognito With Zero Downtime?
+# How AWS Upgraded Amazon Cognito with Nearly Zero Downtime
 
-Authentication is always the core component of any application. A minor interruption in the authentication system can significantly impact the experience of thousands, or even millions, of users. Recently, reading a case study on how AWS upgraded the entire core infrastructure of Amazon Cognito on a global scale with near-zero downtime taught me a great deal about system design thinking.
+Authentication is one of the most critical components of modern applications. Even a few minutes of downtime can prevent users from signing in, resetting passwords, or accessing essential services. As a result, upgrading the infrastructure behind an identity service such as Amazon Cognito requires careful planning to avoid disrupting millions of users.
 
-This article dissects how AWS migrated the system to a next-generation architecture, bringing a host of powerful features while perfectly maintaining backward compatibility.
+Recently, AWS shared how Amazon Cognito was migrated to its next-generation infrastructure, introducing several new capabilities while maintaining backward compatibility and minimizing service interruptions.
 
-### Highlighted New Features
+### New Features
 
-Amazon Cognito's new infrastructure brings impressive operational capabilities:
+The upgraded Amazon Cognito infrastructure introduces several important improvements:
 
-- **High-throughput Performance**
-  - Supports tens of millions of users within a single User Pool.
-  - Stably handles thousands of transactions per second (TPS).
-  - Performance optimizations significantly reduce latency during user logins.
+- **High-throughput performance**
+  - Supports tens of millions of users within a single user pool.
+  - Handles thousands of transactions per second (TPS).
+  - Provides lower latency for authentication requests.
 
-- **Customer-managed Encryption Keys (CMK)**
-  - Deep integration with AWS KMS.
-  - Enterprises can now hold their own data encryption keys.
-  - Solves strict enterprise-level security compliance requirements.
+- **Customer-managed encryption keys (CMK)**
+  - Integrates with AWS KMS.
+  - Allows organizations to manage their own encryption keys.
+  - Improves security and compliance for enterprise environments.
 
-- **Multi-Region Replication**
-  - Automatically synchronizes User Profiles, Passwords, and configurations across multiple AWS Regions.
-  - Enhances High Availability and Disaster Recovery capabilities.
+- **Multi-Region replication**
+  - Replicates user profiles, passwords, user attributes, and configurations across AWS Regions.
+  - Improves availability and disaster recovery for authentication systems.
 
-### Core Architectural Principles
+### Architecture Improvements
 
-Instead of just optimizing the source code, AWS redesigned the architecture based on fundamental principles:
+AWS redesigned Cognito around several important principles:
 
-- **Identity-first Design**
-  - The system focuses entirely on optimizing the identity problem, rather than trying to be a multi-purpose storage vault. This makes scaling much smoother.
+- **Identity-first design**
+  - Optimized specifically for identity management rather than acting as a general-purpose data store.
+  - Improves scalability and performance.
 
-- **Backward Compatibility**
-  - The upgrade process is completely invisible to customers, requiring no changes to a single line of code.
-  - All legacy authentication API flows continue to operate normally on the new infrastructure.
+- **Backward compatibility**
+  - Infrastructure changes do not require customers to modify their existing applications.
+  - Existing authentication behavior remains unchanged.
 
-- **Avoid One-way Doors**
-  - The "no dead ends" principle: The architecture is designed to be open, allowing for easy future integrations and upgrades without being bound by hard-coded decisions.
+- **Avoid one-way doors**
+  - The architecture supports future improvements without requiring irreversible design decisions.
 
-### Migration Strategy: The Art of Operations
+### Migration Strategy
 
-Migrating hundreds of millions of user profiles safely requires meticulous strategies:
+One of the most interesting aspects of this upgrade is how AWS migrated hundreds of millions of user profiles with almost no visible downtime.
 
-- **Shadow Mode Validation**
-  - Invisible testing: User requests are run in parallel on both the old and new systems.
-  - AWS continuously cross-references Responses and Status Codes to ensure the new system operates accurately before switching real data traffic.
+The migration strategy included:
 
-- **Dual-write Architecture**
-  - Writing data to both systems simultaneously.
-  - Ensures the database is always synchronized and ready to fallback (revert to the old system) in case of incidents.
+- **Shadow mode validation**
+  - Requests were processed by both the old and new systems.
+  - Responses, status codes, and behaviors were continuously compared before production traffic was switched.
 
-- **Anti-entropy Validation**
-  - A mechanism to continuously scan and cross-reference data between the two sides. The old system acts as the "Source of Truth" to standardize the new system if discrepancies are detected.
+- **Dual-write architecture**
+  - Data was written to both infrastructures during migration.
+  - If the new system failed, the legacy infrastructure continued serving requests.
 
-- **Incremental Rollout & Rollback**
-  - Deploying in small clusters. Ready to rollback immediately if anomalies are detected, minimizing risk.
+- **Anti-entropy validation**
+  - Continuous data comparison detected inconsistencies.
+  - The legacy infrastructure acted as the source of truth for reconciliation.
 
-### Practical Lessons for the Snaptics Project
+- **Incremental rollout and rollback**
+  - Migration was performed gradually instead of all at once.
+  - Rollback remained available throughout the deployment process.
 
-Reading this case study and reflecting on the deployment process of the Snaptics project, I realize a major difference between a "feature development" (make it work) mindset and a "high availability" (make it resilient) mindset.
+### What I Learned
 
-Previously, when changing database structures or updating APIs, I tended to favor direct deployments. However, through the lessons on **Shadow Mode** and **Dual-write**, I understand that when operating real-world systems, ensuring a seamless user experience is the top priority. Updates must be executed safely and in a controlled manner.
+This article demonstrated that infrastructure modernization is not only about adding new features but also about minimizing operational risks.
 
-The **Backward Compatibility** mindset also helps me be more cautious when designing APIs. I've developed the habit of asking: *"Will this change affect current Clients calling the API?"*. These are incredibly valuable experiences to move towards becoming a professional Cloud Engineer.
+Some valuable lessons include:
 
-### Illustration
+- Validate new systems before redirecting production traffic.
+- Design migration strategies with rollback capability.
+- Prioritize backward compatibility whenever possible.
+- Modernize infrastructure incrementally rather than using a "big bang" approach.
+
+These engineering practices are valuable references for building reliable cloud applications and large-scale distributed systems.
+
+### Images
 
 <div style="text-align: center;">
     <img src="/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.jpg"
-         alt="Amazon Cognito Next-generation Infrastructure"
+         alt="Architecture"
          style="width: 800px; height: auto; border-radius: 8px;">
-    <p>Amazon Cognito's Next-generation Infrastructure Architecture</p>
+    <p>Architecture</p>
 </div>
 
-### Reference Article
+### Reference Material
 
-This article summarizes the analysis from the AWS Security Blog:
+This blog was inspired by the following AWS Security Blog article:
 
 - **Amazon Cognito unlocks advanced capabilities with next-generation infrastructure**
-- https://aws.amazon.com/blogs/security/amazon-cognito-unlocks-advanced-capabilities-with-next-generation-infrastructure/
+  https://aws.amazon.com/blogs/security/amazon-cognito-unlocks-advanced-capabilities-with-next-generation-infrastructure/

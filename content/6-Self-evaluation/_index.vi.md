@@ -6,10 +6,12 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong suốt thời gian thực tập tại **Amazon Web Services Vietnam Co., Ltd.** từ **11/05/2026** đến **18/08/2026**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.  
-Tôi đã tham gia chương trình **First Cloud AI Journey (FCAJ)** và dự án **Snaptics**, qua đó cải thiện kỹ năng về điện toán đám mây (AWS), phát triển full-stack và làm việc nhóm.
+Trong thời gian thực tập tại **Amazon Web Services Vietnam Co., Ltd.** từ **11/05/2026** đến **18/08/2026**, tôi có cơ hội chuyển hóa những kiến thức được học ở trường thành kinh nghiệm thực tế trong môi trường chuyên nghiệp.
+Thông qua chương trình **First Cloud AI Journey (FCAJ)** và dự án **Snaptics**, tôi từng bước phát triển năng lực về điện toán đám mây AWS, lập trình full-stack, tư duy phát triển sản phẩm và phối hợp làm việc nhóm.
 
-Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy, và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.
+Một trong những giá trị lớn nhất tôi nhận được là được tiếp cận và học hỏi rất nhiều từ các **AWS best practices**. Các bài học về AWS Well-Architected Framework, nguyên tắc bảo mật theo Least Privilege, thiết kế hệ thống có tính sẵn sàng cao, khả năng mở rộng, giám sát vận hành và tối ưu chi phí đã giúp tôi hiểu rằng xây dựng một ứng dụng không chỉ dừng ở việc làm cho tính năng hoạt động. Tôi cần cân nhắc đồng thời về bảo mật, độ tin cậy, hiệu năng, khả năng vận hành và chi phí ngay từ giai đoạn thiết kế. Những kiến thức này được tôi vận dụng khi thiết kế VPC, phân tách Public/Private Subnet, cấu hình IAM, RDS, S3, SQS, Parameter Store và triển khai ứng dụng Snaptics.
+
+Về tác phong, tôi luôn cố gắng hoàn thành nhiệm vụ đúng thời hạn, tuân thủ quy định, chủ động tìm hiểu khi gặp vấn đề và trao đổi với các thành viên để nâng cao chất lượng công việc. Quá trình này cũng giúp tôi nhận ra những điểm còn hạn chế và xác định rõ hơn hướng phát triển chuyên môn trong thời gian tới.
 
 Để phản ánh một cách khách quan quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
 
@@ -30,6 +32,6 @@ Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân t
 
 ### Cần cải thiện
 
-* Đào sâu kiến thức nền tảng và chuyên môn để đạt mức thành thạo cao hơn
-* Cải thiện tư duy giải quyết vấn đề và khả năng sáng tạo khi đối mặt với những thách thức mới
-* Học cách giao tiếp, trình bày tốt hơn trong giao tiếp hằng ngày và trong công việc
+* Tiếp tục củng cố kiến thức nền tảng về cloud, backend, frontend và các AWS best practices để có thể thiết kế, triển khai hệ thống ở mức chuyên sâu hơn
+* Rèn luyện phương pháp phân tích nguyên nhân gốc rễ, tư duy giải quyết vấn đề và khả năng đưa ra giải pháp phù hợp trong những tình huống chưa từng gặp
+* Cải thiện kỹ năng giao tiếp, trình bày và diễn đạt ý tưởng một cách ngắn gọn, rõ ràng trong trao đổi hằng ngày cũng như trong công việc

@@ -6,58 +6,69 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-# PHÂN TÍCH KIẾN TRÚC WEBSITE E-COMMERCE KHẢ NĂNG MỞ RỘNG CAO TRÊN AWS
+# KIẾN TRÚC WEBSITE THƯƠNG MẠI ĐIỆN TỬ CÓ KHẢ NĂNG MỞ RỘNG TRÊN AWS
 
-Mỗi dịp Flash Sale hay các sự kiện mua sắm lớn, các nền tảng thương mại điện tử thường phải đối mặt với áp lực truy cập khổng lồ. Nếu kiến trúc hệ thống chỉ đơn giản là một ứng dụng kết nối trực tiếp với cơ sở dữ liệu nguyên khối, hệ thống sẽ rất dễ gặp tình trạng quá tải và gián đoạn dịch vụ.
+Các website thương mại điện tử thường có lượng truy cập thay đổi rất lớn, đặc biệt trong các chương trình khuyến mãi, Flash Sale hoặc mùa mua sắm cao điểm. Nếu toàn bộ yêu cầu đều được xử lý trên một máy chủ và truy cập trực tiếp vào cơ sở dữ liệu, hệ thống rất dễ gặp tình trạng quá tải, làm giảm hiệu năng hoặc gây gián đoạn dịch vụ.
 
-Để giải quyết bài toán này, AWS cung cấp một bộ giải pháp Cloud-Native tiêu chuẩn. Bằng cách kết hợp linh hoạt các dịch vụ Mạng, Điện toán, Caching và Cơ sở dữ liệu, chúng ta có thể xây dựng một hệ thống E-commerce có khả năng chịu tải và mở rộng vượt trội. Hãy cùng phân tích các thành phần trong kiến trúc này.
+AWS cung cấp nhiều dịch vụ được quản lý giúp xây dựng các ứng dụng có khả năng mở rộng, bảo mật và tính sẵn sàng cao. Bằng cách kết hợp các dịch vụ về mạng, bảo mật, điện toán, bộ nhớ đệm, cơ sở dữ liệu và giám sát, các hệ thống thương mại điện tử có thể đáp ứng lượng truy cập lớn mà vẫn duy trì trải nghiệm ổn định cho người dùng.
 
-### Nhìn toàn cảnh kiến trúc
+### Tổng quan kiến trúc
 
-Luồng dữ liệu đi vào hệ thống sẽ được phân phối và bảo vệ qua các lớp dịch vụ sau:
+Luồng xử lý của hệ thống được xây dựng như sau:
 
 **Người dùng → Amazon Route 53 → Amazon CloudFront → AWS WAF → Application Load Balancer → Amazon ECS (AWS Fargate) → Amazon ElastiCache / Amazon Aurora Serverless v2**
 
-Mỗi dịch vụ đảm nhận một vai trò chuyên biệt:
+Mỗi dịch vụ AWS đảm nhận một vai trò riêng trong kiến trúc:
 
-- **Amazon Route 53 (Định tuyến mạng)**
-  - Cung cấp dịch vụ phân giải tên miền (DNS) tốc độ cao và định tuyến người dùng đến các điểm truy cập tối ưu nhất.
+- **Amazon Route 53**
+  - Phân giải tên miền và định tuyến yêu cầu của người dùng đến các tài nguyên AWS phù hợp.
 
-- **Amazon CloudFront (Tối ưu hóa phân phối)**
-  - Phân phối các nội dung tĩnh (hình ảnh sản phẩm, file CSS/JS) từ mạng lưới Edge Locations toàn cầu, giúp giảm tải cho server chính và tăng tốc độ tải trang.
+- **Amazon CloudFront**
+  - Phân phối nội dung từ các Edge Location gần người dùng nhằm giảm độ trễ và tăng tốc độ truy cập.
 
-- **AWS WAF (Bảo mật ứng dụng)**
-  - Tường lửa ứng dụng web giúp ngăn chặn kịp thời các cuộc tấn công phổ biến (như SQL Injection, XSS), bảo vệ hệ thống khỏi các lưu lượng độc hại.
+- **AWS WAF**
+  - Bảo vệ ứng dụng trước các cuộc tấn công web phổ biến như SQL Injection và Cross-Site Scripting (XSS).
 
-- **Application Load Balancer (Cân bằng tải)**
-  - Phân phối đều đặn lưu lượng truy cập hợp lệ vào các container xử lý backend, ngăn chặn tình trạng nghẽn cổ chai cục bộ.
+- **Application Load Balancer**
+  - Phân phối lưu lượng truy cập đến nhiều container backend nhằm tăng khả năng mở rộng và tính sẵn sàng của hệ thống.
 
-- **Amazon ECS với AWS Fargate (Điện toán linh hoạt)**
-  - Môi trường chạy backend bằng container (Serverless). Hệ thống tự động co giãn tài nguyên điện toán dựa trên nhu cầu thực tế mà không cần quản lý hạ tầng máy chủ vật lý.
+- **Amazon ECS với AWS Fargate**
+  - Triển khai và vận hành các dịch vụ backend dưới dạng container mà không cần quản lý máy chủ.
 
-- **Amazon ElastiCache (Caching tốc độ cao)**
-  - Lưu trữ tạm thời các dữ liệu thường xuyên được truy xuất (ví dụ: sản phẩm hot, giỏ hàng). Việc đọc dữ liệu từ RAM giúp phản hồi cực nhanh và giảm bớt áp lực truy vấn cho cơ sở dữ liệu chính.
+- **Amazon Cognito**
+  - Hỗ trợ đăng ký, xác thực và quản lý người dùng một cách an toàn.
 
-- **Amazon Aurora Serverless v2 (Cơ sở dữ liệu đàn hồi)**
-  - Quản lý các dữ liệu cốt lõi (người dùng, đơn hàng). Khả năng tự động mở rộng tài nguyên tính toán trong tích tắc giúp cơ sở dữ liệu đáp ứng tốt những thời điểm lượng giao dịch tăng đột biến.
+- **Amazon ElastiCache**
+  - Lưu trữ tạm thời các dữ liệu được truy cập thường xuyên nhằm giảm tải cho cơ sở dữ liệu và cải thiện hiệu năng.
 
-### Hệ thống Giám sát và Cảnh báo
+- **Amazon Aurora Serverless v2**
+  - Lưu trữ dữ liệu chính của hệ thống và tự động mở rộng tài nguyên theo khối lượng công việc.
 
-Để duy trì tính ổn định, hệ thống được tích hợp các công cụ giám sát:
-**Amazon CloudWatch** liên tục thu thập các số liệu về hiệu suất (CPU, RAM, tỷ lệ lỗi) của ECS và Aurora. Khi các ngưỡng an toàn bị vượt qua, **CloudWatch Alarm** sẽ được kích hoạt, thông báo qua **Amazon SNS** tới đội ngũ vận hành để kịp thời xử lý.
+### Giám sát và cảnh báo
 
-### Kinh nghiệm thực tiễn đúc kết được
+Giám sát hệ thống đóng vai trò quan trọng trong việc đảm bảo ứng dụng hoạt động ổn định.
 
-Khi đối chiếu sơ đồ kiến trúc quy mô lớn này với dự án Snaptics trong kỳ thực tập, mình đã rút ra được nhiều bài học về tư duy thiết kế hệ thống.
+Amazon CloudWatch liên tục thu thập các chỉ số và nhật ký hoạt động từ Amazon ECS và Amazon Aurora. Khi phát hiện những dấu hiệu bất thường như CPU sử dụng cao, ứng dụng phát sinh nhiều lỗi hoặc hiệu năng cơ sở dữ liệu suy giảm, **CloudWatch Alarm** sẽ tự động kích hoạt **Amazon SNS** để gửi cảnh báo qua Email hoặc SMS.
 
-Kinh nghiệm lớn nhất là: **Sức mạnh của một hệ thống có khả năng mở rộng (scalable) nằm ở sự kết hợp khéo léo các Managed Services, thay vì cố gắng xây dựng một ứng dụng nguyên khối (monolithic) làm mọi việc.** 
-Việc tách rời các thành phần (Decoupling) đóng vai trò then chốt:
-- Caching được giao cho CloudFront và ElastiCache.
-- Bảo mật và chặn lọc lưu lượng được giao cho WAF.
-- Cân bằng tải được xử lý bởi ALB.
-- Logic nghiệp vụ hoàn toàn tập trung xử lý tại ECS Fargate.
+**Luồng giám sát**
 
-Tư duy này giúp hệ thống trở nên linh hoạt, dễ dàng bảo trì và mỗi thành phần đều có thể tự mở rộng một cách độc lập tùy theo nhu cầu vận hành thực tế.
+**Amazon CloudWatch → CloudWatch Alarm → Amazon SNS → Email / SMS**
+
+### Lợi ích của kiến trúc
+
+Kiến trúc này mang lại nhiều lợi ích:
+
+- Cải thiện hiệu năng nhờ Amazon CloudFront và Amazon ElastiCache.
+- Tăng cường bảo mật với AWS WAF và Amazon Cognito.
+- Khả năng mở rộng linh hoạt nhờ Amazon ECS, AWS Fargate và Aurora Serverless v2.
+- Đảm bảo tính sẵn sàng cao thông qua Application Load Balancer.
+- Giám sát liên tục và cảnh báo sớm bằng Amazon CloudWatch và Amazon SNS.
+
+### Những điều học được
+
+Kiến trúc tham khảo này cho thấy cách các dịch vụ được quản lý trên AWS có thể phối hợp với nhau để xây dựng một website thương mại điện tử theo mô hình Cloud-Native.
+
+Thông qua việc tìm hiểu kiến trúc này, mình hiểu rõ hơn vai trò của từng dịch vụ AWS cũng như cách các thành phần về mạng, bảo mật, container, bộ nhớ đệm, cơ sở dữ liệu và giám sát được kết hợp để xây dựng một hệ thống có khả năng mở rộng, bảo mật và sẵn sàng đáp ứng các yêu cầu trong môi trường thực tế.
 
 ### Hình minh họa
 
@@ -70,7 +81,7 @@ Tư duy này giúp hệ thống trở nên linh hoạt, dễ dàng bảo trì v�
 
 ### Tài liệu tham khảo
 
-Để hiểu sâu hơn về kiến trúc này, các bạn có thể tham khảo tài liệu từ AWS:
+Bài viết được tổng hợp dựa trên các tài liệu chính thức của AWS:
 
 - **Guidance for Web Store on AWS**
   https://docs.aws.amazon.com/solutions/web-store-on-aws/

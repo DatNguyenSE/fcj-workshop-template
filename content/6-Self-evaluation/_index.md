@@ -6,10 +6,12 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **Amazon Web Services Vietnam Co., Ltd.** from **11/05/2026** to **18/08/2026**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in the **First Cloud AI Journey (FCAJ)** program and the **Snaptics** project, through which I improved my skills in cloud computing (AWS), full-stack development, and teamwork.
+During my internship at **Amazon Web Services Vietnam Co., Ltd.** from **11/05/2026** to **18/08/2026**, I was able to turn the knowledge gained at university into practical experience in a professional environment.
+Through the **First Cloud AI Journey (FCAJ)** program and the **Snaptics** project, I gradually strengthened my skills in AWS cloud computing, full-stack development, product-oriented thinking, and teamwork.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+One of the most valuable outcomes of this internship was learning extensively from **AWS best practices**. Lessons from the AWS Well-Architected Framework, the Least Privilege principle, highly available architecture, scalability, operational monitoring, and cost optimization helped me understand that building an application is not only about making its features work. Security, reliability, performance, operability, and cost should all be considered from the design stage. I applied these principles while designing the VPC, separating Public and Private Subnets, configuring IAM, RDS, S3, SQS, and Parameter Store, and deploying the Snaptics application.
+
+Regarding my work ethic, I consistently tried to complete assigned tasks on time, follow workplace regulations, investigate issues proactively, and communicate with team members to improve the quality of our work. This process also helped me recognize my limitations and define a clearer direction for my future professional development.
 
 To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
 
@@ -30,6 +32,6 @@ To objectively reflect on my internship period, I would like to evaluate myself 
 
 ### Needs Improvement
 
-* Deepen my foundational knowledge and professional expertise to reach a higher level of mastery
-* Improve problem-solving thinking and creativity when facing unfamiliar challenges
-* Enhance communication and presentation skills in both daily interactions and professional contexts
+* Continue strengthening my foundations in cloud computing, backend, frontend, and AWS best practices so that I can design and deploy systems at a deeper level
+* Develop stronger root-cause analysis, problem-solving, and solution-design skills when dealing with unfamiliar situations
+* Improve my communication, presentation, and ability to express ideas concisely and clearly in both daily interactions and professional contexts
